@@ -2,18 +2,22 @@ package com.velocitypackage.services.ws;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class WebSocketInputStreamReader
 {
-    private InputStream inputStream;
-    private byte[] incomingBuffer;
-    private byte[] messageBuffer;
-    private byte[] masks;
-    private boolean messageSplitOverMultipleRead;
-    private int messageLength;
-    private int messageReadCount;
+    private final InputStream inputStream;
+    private final byte[] incomingBuffer;
+    private final byte[] messageBuffer;
+    private final byte[] masks;
+    private final boolean messageSplitOverMultipleRead;
+    private final int messageLength;
+    private final int messageReadCount;
+    private final List<String> synchronizedMessageQueue;
     
     public WebSocketInputStreamReader(InputStream webSocketInputStream){
+        synchronizedMessageQueue = Collections.synchronizedList(new LinkedList<>());
         inputStream = webSocketInputStream;
         incomingBuffer = new byte[8000];
         messageBuffer = null;
@@ -21,38 +25,40 @@ public class WebSocketInputStreamReader
         messageSplitOverMultipleRead = false;
         messageLength = 0;
         messageReadCount = 0;
-        
-        Thread thread = new Thread(this::loop);
+        Thread messageReaderThread = new Thread(this::messageReadingPump);
+        messageReaderThread.start();
     }
     
-    private void loop(){
+    
+    
+    private void messageReadingPump(){
         byte[] b = incomingBuffer;
         byte[] message = messageBuffer;
         boolean isSplit = messageSplitOverMultipleRead;
         int length = messageLength;
         int totalRead = messageReadCount;
         while (true) {
-            int len = 0;//length of bytes read from socket
+            int len;//length of bytes read from socket
             try {
                 len = inputStream.read(b);
             } catch (IOException e) {
                 break;
             }
             if (len != -1) {
-                boolean more = false;
-                int totalLength = 0;
+                boolean more;
+                int totalLength;
                 do {
                     int j = 0;
-                    int i = 0;
+                    int i;
                     if (!isSplit) {
-                        byte rLength = 0;
+                        byte rLength;
                         int rMaskIndex = 2;
-                        int rDataStart = 0;
+                        int rDataStart;
                         // b[0] assuming text
                         byte data = b[1];
                         byte op = (byte) 127;
                         rLength = (byte) (data & op);
-                        length = (int) rLength;
+                        length = rLength;
                         if (rLength == (byte) 126) {
                             rMaskIndex = 4;
                             length = Byte.toUnsignedInt(b[2]) << 8;
@@ -84,7 +90,7 @@ public class WebSocketInputStreamReader
                         isSplit=true;
                     }else {
                         isSplit=false;
-                        System.out.println(new String(message));
+                        synchronizedMessageQueue.add(new String(message));
                         b = new byte[8000];
                     }
                 
