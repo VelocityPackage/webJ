@@ -85,7 +85,7 @@ public class HttpService
                 if (httpContext.acceptPath(path))
                 {
                     isNull = false;
-                    String content = httpContext.content();
+                    String content = httpContext.content().replaceAll("\n", "").trim();
                     exchange.sendResponseHeaders(200, content.getBytes().length);
                     OutputStream output = exchange.getResponseBody();
                     output.write(content.getBytes());
