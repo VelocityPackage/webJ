@@ -28,7 +28,7 @@ public class WebSocketInputStreamReader
         messageReaderThread.start();
     }
     
-    private String readLine(){
+    public String readLine(){
         String s = null;
         if(!synchronizedMessageQueue.isEmpty()){
             s = synchronizedMessageQueue.remove(0);

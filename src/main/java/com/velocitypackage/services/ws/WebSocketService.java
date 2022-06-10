@@ -52,6 +52,27 @@ public class WebSocketService
         {
             throw new IllegalStateException("Websockets handshake was unsuccessful", webSocketHandshakeException);
         }
+        
+        
+        //########################
+        try
+        {
+            WebSocketOutputStreamWriter outputStreamWriter = new WebSocketOutputStreamWriter(outputStream);
+            outputStreamWriter.writeLine("Test");
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        WebSocketInputStreamReader inputStreamReader = new WebSocketInputStreamReader(inputStream);
+        while (true){
+            String line = inputStreamReader.readLine();
+            if(line != null){
+                System.out.println(line);
+            }
+        }
+    
+    
+        //########################
     }
     
     private void webSocketHandshake(InputStream inputStream, OutputStream outputStream) throws IOException
