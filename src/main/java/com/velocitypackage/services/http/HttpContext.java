@@ -1,4 +1,4 @@
-package com.velocitypackage.http;
+package com.velocitypackage.services.http;
 
 public interface HttpContext
 {

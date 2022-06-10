@@ -1,7 +1,7 @@
-package com.velocitypackage;
+package com.velocitypackage.tools;
 
-import com.velocitypackage.http.HttpContext;
-import com.velocitypackage.http.HttpService;
+import com.velocitypackage.services.http.HttpContext;
+import com.velocitypackage.services.http.HttpService;
 
 import java.io.IOException;
 import java.nio.file.Files;

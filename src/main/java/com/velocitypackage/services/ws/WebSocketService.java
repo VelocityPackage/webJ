@@ -1,4 +1,4 @@
-package com.velocitypackage.ws;
+package com.velocitypackage.services.ws;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,25 +13,34 @@ public class WebSocketService
     private final InputStream inputStream;
     private final OutputStream outputStream;
     
-    public WebSocketService(int port){
-        try {
+    public WebSocketService(int port)
+    {
+        try
+        {
             serverSocket = new ServerSocket(port);
-        } catch (IOException createException) {
+        } catch (IOException createException)
+        {
             throw new IllegalStateException("Could not create web server", createException);
         }
-        try {
+        try
+        {
             clientSocket = serverSocket.accept(); //waits until a client connects
-        } catch (IOException waitException) {
+        } catch (IOException waitException)
+        {
             throw new IllegalStateException("Could not wait for client connection", waitException);
         }
-        try {
-            inputStream  = clientSocket.getInputStream();
-        } catch (IOException inputStreamException) {
+        try
+        {
+            inputStream = clientSocket.getInputStream();
+        } catch (IOException inputStreamException)
+        {
             throw new IllegalStateException("Could not connect to client input stream", inputStreamException);
         }
-        try {
-            outputStream  = clientSocket.getOutputStream();
-        } catch (IOException outputStreamException) {
+        try
+        {
+            outputStream = clientSocket.getOutputStream();
+        } catch (IOException outputStreamException)
+        {
             throw new IllegalStateException("Could not connect to client output stream", outputStreamException);
         }
         try

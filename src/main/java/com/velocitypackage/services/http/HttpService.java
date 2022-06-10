@@ -1,4 +1,4 @@
-package com.velocitypackage.http;
+package com.velocitypackage.services.http;
 
 import com.sun.net.httpserver.HttpServer;
 import org.jetbrains.annotations.NotNull;
