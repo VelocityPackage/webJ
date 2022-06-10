@@ -2,18 +2,23 @@ package com.velocitypackage.services.ws;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class WebSocketInputStreamReader
 {
-    private InputStream inputStream;
-    private byte[] incomingBuffer;
-    private byte[] messageBuffer;
-    private byte[] masks;
-    private boolean messageSplitOverMultipleRead;
-    private int messageLength;
-    private int messageReadCount;
+    private final InputStream inputStream;
+    private final byte[] incomingBuffer;
+    private final byte[] messageBuffer;
+    private final byte[] masks;
+    private final boolean messageSplitOverMultipleRead;
+    private final int messageLength;
+    private final int messageReadCount;
+    private final List<String> synchronizedMessageList;
     
     public WebSocketInputStreamReader(InputStream webSocketInputStream){
+        synchronizedMessageList = Collections.synchronizedList(new ArrayList<>());
         inputStream = webSocketInputStream;
         incomingBuffer = new byte[8000];
         messageBuffer = null;
@@ -84,7 +89,7 @@ public class WebSocketInputStreamReader
                         isSplit=true;
                     }else {
                         isSplit=false;
-                        System.out.println(new String(message));
+                        synchronizedMessageList.add(new String(message));
                         b = new byte[8000];
                     }
                 
