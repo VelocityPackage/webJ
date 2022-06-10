@@ -26,8 +26,6 @@ public class WebGraphicsApplication
             {
                 try
                 {
-                    System.out.println(this.getClass().getResource("frame.html").getContent());
-                    
                     String content = Files.readString(Path.of(this.getClass().getResource("frame.html").getPath()));
                     
                     System.out.println("Start");
