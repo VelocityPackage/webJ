@@ -1,9 +1,10 @@
 var relativePath = "/socket";
+var port = "8081";
 
 var path = 
 	"ws://" + 
 	location.hostname + 
-	(location.port ? ':' + location.port: '') + 
+	":" + port + "" +
 	relativePath;
 
 var load = document.createElement('div');
@@ -17,7 +18,6 @@ function update(content) {
 update(
 	load
 );
-
 
 var socket = null;
 
