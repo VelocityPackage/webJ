@@ -3,7 +3,6 @@ package com.velocitypackage.services.ws;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class WebSocketInputStreamReader
 {
@@ -29,7 +28,13 @@ public class WebSocketInputStreamReader
         messageReaderThread.start();
     }
     
-    
+    private String readLine(){
+        String s = null;
+        if(!synchronizedMessageQueue.isEmpty()){
+            s = synchronizedMessageQueue.remove(0);
+        }
+        return s;
+    }
     
     private void messageReadingPump(){
         byte[] b = incomingBuffer;
