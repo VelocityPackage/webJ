@@ -9,9 +9,10 @@ import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class HttpService
 {
-    private HttpServer server;
+    private final HttpServer server;
     
     private final List<HttpContext> httpContexts = new ArrayList<>();
     
@@ -32,56 +33,72 @@ public class HttpService
         }
     }
     
+    /**
+     * Adds a new context
+     *
+     * @param httpContext context self
+     */
     public void add(@NotNull HttpContext httpContext)
     {
         httpContexts.add(httpContext);
     }
     
+    /**
+     * remove specific context
+     *
+     * @param httpContext context self
+     */
     public void remove(@NotNull HttpContext httpContext)
     {
         httpContexts.remove(httpContext);
     }
     
+    /**
+     * remove context with index
+     *
+     * @param index position of context
+     */
     public void remove(int index)
     {
         httpContexts.remove(index);
     }
     
+    /**
+     * start the http service in another thread
+     */
     public void start()
     {
-        new Thread(this::run);
+        new Thread(this::run).start();
     }
     
+    /**
+     * runnable
+     */
     private void run()
     {
-        try
+        server.createContext("/", exchange ->
         {
-            server.createContext("/", exchange ->
+            String path = exchange.getRequestURI().getPath();
+            boolean isNull = true;
+            for (HttpContext httpContext : httpContexts)
             {
-                String path = exchange.getRequestURI().getPath();
-                boolean isNull = true;
-                for (HttpContext httpContext : httpContexts)
+                if (httpContext.acceptPath(path))
                 {
-                    if (httpContext.acceptPath(path))
-                    {
-                        isNull = false;
-                        String content = httpContext.content();
-                        exchange.sendResponseHeaders(200, content.getBytes().length);
-                        OutputStream output = exchange.getResponseBody();
-                        output.write(content.getBytes());
-                        output.flush();
-                        output.close();
-                    }
+                    isNull = false;
+                    String content = httpContext.content();
+                    exchange.sendResponseHeaders(200, content.getBytes().length);
+                    OutputStream output = exchange.getResponseBody();
+                    output.write(content.getBytes());
+                    output.flush();
+                    output.close();
                 }
-                if (! isNull)
-                {
-                    exchange.sendResponseHeaders(405, - 1);
-                }
-            });
-            server.setExecutor(null);
-            server.start();
-        } catch (Exception ignore)
-        {
-        }
+            }
+            if (! isNull)
+            {
+                exchange.sendResponseHeaders(405, - 1);
+            }
+        });
+        server.setExecutor(null);
+        server.start();
     }
 }
