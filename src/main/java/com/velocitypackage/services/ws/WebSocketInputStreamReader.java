@@ -37,27 +37,27 @@ public class WebSocketInputStreamReader
         int length = messageLength;
         int totalRead = messageReadCount;
         while (true) {
-            int len = 0;//length of bytes read from socket
+            int len;//length of bytes read from socket
             try {
                 len = inputStream.read(b);
             } catch (IOException e) {
                 break;
             }
             if (len != -1) {
-                boolean more = false;
-                int totalLength = 0;
+                boolean more;
+                int totalLength;
                 do {
                     int j = 0;
-                    int i = 0;
+                    int i;
                     if (!isSplit) {
-                        byte rLength = 0;
+                        byte rLength;
                         int rMaskIndex = 2;
-                        int rDataStart = 0;
+                        int rDataStart;
                         // b[0] assuming text
                         byte data = b[1];
                         byte op = (byte) 127;
                         rLength = (byte) (data & op);
-                        length = (int) rLength;
+                        length = rLength;
                         if (rLength == (byte) 126) {
                             rMaskIndex = 4;
                             length = Byte.toUnsignedInt(b[2]) << 8;
