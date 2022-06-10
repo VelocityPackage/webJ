@@ -2,9 +2,8 @@ package com.velocitypackage.services.ws;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class WebSocketInputStreamReader
 {
@@ -15,10 +14,10 @@ public class WebSocketInputStreamReader
     private final boolean messageSplitOverMultipleRead;
     private final int messageLength;
     private final int messageReadCount;
-    private final List<String> synchronizedMessageList;
+    private final List<String> synchronizedMessageQueue;
     
     public WebSocketInputStreamReader(InputStream webSocketInputStream){
-        synchronizedMessageList = Collections.synchronizedList(new ArrayList<>());
+        synchronizedMessageQueue = Collections.synchronizedList(new LinkedList<>());
         inputStream = webSocketInputStream;
         incomingBuffer = new byte[8000];
         messageBuffer = null;
@@ -26,11 +25,13 @@ public class WebSocketInputStreamReader
         messageSplitOverMultipleRead = false;
         messageLength = 0;
         messageReadCount = 0;
-        
-        Thread thread = new Thread(this::loop);
+        Thread messageReaderThread = new Thread(this::messageReadingPump);
+        messageReaderThread.start();
     }
     
-    private void loop(){
+    
+    
+    private void messageReadingPump(){
         byte[] b = incomingBuffer;
         byte[] message = messageBuffer;
         boolean isSplit = messageSplitOverMultipleRead;
@@ -89,7 +90,7 @@ public class WebSocketInputStreamReader
                         isSplit=true;
                     }else {
                         isSplit=false;
-                        synchronizedMessageList.add(new String(message));
+                        synchronizedMessageQueue.add(new String(message));
                         b = new byte[8000];
                     }
                 
