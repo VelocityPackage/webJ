@@ -27,3 +27,5 @@ hs_err_pid*
 
 # Intellij IDEA
 .idea
+
+target
