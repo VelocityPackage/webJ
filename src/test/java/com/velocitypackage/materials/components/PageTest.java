@@ -101,6 +101,30 @@ class PageTest
         
         page.add(view);
         
+        FlexGrid flexGrid = new FlexGrid();
+        
+        flexGrid.add(new Text("blablablabla"));
+        flexGrid.add(new Text("d"));
+        flexGrid.add(new Text("alksdfkasdbfäabjsädfkadsjföasködjföklasdflöjasdlflöasdflkalsökdf"));
+        flexGrid.add(new Text("blablablabla"));
+        flexGrid.add(new Text("d"));
+        flexGrid.add(new Text("blablablabla"));
+        flexGrid.add(new Text("asdasdfasdfadsfasdf"));
+        flexGrid.add(new Text("adasdfasdfasdfadsfasdfasf"));
+        
+        Grid grid = new Grid(4);
+        grid.add(new Text("blablabla"));
+        grid.add(new Text(""));
+        grid.add(new Text("blablabla"));
+        grid.add(new Text("alksdfkasdbfäabjsädfkadsjföasködjföklasdflöjasdlflöasdflkalsökdf"));
+        grid.add(new Text("dddd"));
+        grid.add(new Text("s"));
+        grid.add(new Text("asdfasdfasdfasdfasdfasf"));
+        grid.add(new Text("blablabla"));
+        
+        page.add(flexGrid);
+        page.add(grid);
+        
         System.out.println(page.getHyperText());
         
     }
