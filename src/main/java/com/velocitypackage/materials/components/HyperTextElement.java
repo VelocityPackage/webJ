@@ -93,25 +93,37 @@ public class HyperTextElement
      */
     public String compile()
     {
-        StringBuilder classes = new StringBuilder();
-        for (String cl : this.classes)
+        String classesForTag = "";
+        if (this.classes.size() > 0)
         {
-            classes.append(cl).append(" ");
+            StringBuilder classes = new StringBuilder();
+            for (String cl : this.classes)
+            {
+                classes.append(cl).append(" ");
+            }
+            classesForTag = " class=\"" + new String(classes).trim() + "\"";
         }
-        String classesForTag = "class=\"" + new String(classes).trim() + "\"";
-        StringBuilder ids = new StringBuilder();
-        for (String id : this.ids)
+        String idsForTag = "";
+        if (this.ids.size() > 0)
         {
-            ids.append(id).append(" ");
+            StringBuilder ids = new StringBuilder();
+            for (String id : this.ids)
+            {
+                ids.append(id).append(" ");
+            }
+            idsForTag = " id=\"" + new String(ids).trim() + "\"";
         }
-        String idsForTag = "id=\"" + new String(ids).trim() + "\"";
-        StringBuilder styles = new StringBuilder();
-        for (Map.Entry<STYLE, String> entry : this.styles.entrySet())
+        String stylesForTag = "";
+        if (this.styles.size() > 0)
         {
-            styles.append(styleToString(entry.getKey())).append(": ").append(entry.getValue()).append(";");
+            StringBuilder styles = new StringBuilder();
+            for (Map.Entry<STYLE, String> entry : this.styles.entrySet())
+            {
+                styles.append(styleToString(entry.getKey())).append(": ").append(entry.getValue()).append(";");
+            }
+            stylesForTag = " style=\"" + new String(styles).trim() + "\"";
         }
-        String stylesForTag = "style=\"" + new String(styles).trim() + "\"";
-        String starts = "<" + tagToString(tag) + " " + classesForTag + " " + idsForTag + " " + stylesForTag + ">";
+        String starts = "<" + tagToString(tag) + classesForTag + idsForTag + stylesForTag + ">";
         String ends = "</" + tagToString(tag) + ">";
         return starts + content + ends;
     }

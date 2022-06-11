@@ -1,11 +1,10 @@
 package com.velocitypackage.materials.components;
 
-public class TextArea implements Component
+public class Text implements Component
 {
-    
     private final String text;
     
-    public TextArea(String text)
+    public Text(String text)
     {
         this.text = text;
     }
@@ -23,6 +22,8 @@ public class TextArea implements Component
     @Override
     public HyperTextElement getHTML()
     {
-        return new HyperTextElement(HyperTextElement.TAG.TEXTAREA, text);
+        HyperTextElement text = new HyperTextElement(HyperTextElement.TAG.P, this.text);
+        text.addClass("stretched-link");
+        return null;
     }
 }
