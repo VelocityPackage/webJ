@@ -50,9 +50,48 @@ class PageTest
         
         view.add(new Text("The end"));
         
+        List listL = new List(List.Theme.LIGHT);
+        List listD = new List(List.Theme.DARK);
+        
+        listL.add(new List.Item("Home", "home", true)
+        {
+            @Override
+            void onClick()
+            {
+            
+            }
+        });
+        
+        listL.add(new List.Item("another", "home", false)
+        {
+            @Override
+            void onClick()
+            {
+            
+            }
+        });
+        
+        listD.add(new List.Item("Home", "home", true)
+        {
+            @Override
+            void onClick()
+            {
+            
+            }
+        });
+        
+        listD.add(new List.Item("another", "home", false)
+        {
+            @Override
+            void onClick()
+            {
+            
+            }
+        });
+        
         Header head = new Header();
         
-        head.add(new Header.Item("Home", "test")
+        head.add(new Header.Item("Home", "test", true)
         {
             @Override
             void onClick()
@@ -61,7 +100,7 @@ class PageTest
             }
         });
         
-        head.add(new Header.Item("WebGraphics", "test")
+        head.add(new Header.Item("WebGraphics", "test", false)
         {
             @Override
             void onClick()
@@ -70,7 +109,7 @@ class PageTest
             }
         });
         
-        head.add(new Header.Item("Velfa", "test")
+        head.add(new Header.Item("Velfa", "test", false)
         {
             @Override
             void onClick()
@@ -79,7 +118,7 @@ class PageTest
             }
         });
         
-        head.add(new Header.Item("jNode", "test")
+        head.add(new Header.Item("jNode", "test", false)
         {
             @Override
             void onClick()
@@ -88,7 +127,7 @@ class PageTest
             }
         });
         
-        head.add(new Header.Item("Jarcob", "test")
+        head.add(new Header.Item("Jarcob", "test", false)
         {
             @Override
             void onClick()
@@ -103,27 +142,20 @@ class PageTest
         
         FlexGrid flexGrid = new FlexGrid();
         
-        flexGrid.add(new Text("blablablabla"));
-        flexGrid.add(new Text("d"));
-        flexGrid.add(new Text("alksdfkasdbfäabjsädfkadsjföasködjföklasdflöjasdlflöasdflkalsökdf"));
-        flexGrid.add(new Text("blablablabla"));
-        flexGrid.add(new Text("d"));
-        flexGrid.add(new Text("blablablabla"));
-        flexGrid.add(new Text("asdasdfasdfadsfasdf"));
-        flexGrid.add(new Text("adasdfasdfasdfadsfasdfasf"));
+        flexGrid.add(listL);
+        flexGrid.add(listD);
         
-        Grid grid = new Grid(4);
-        grid.add(new Text("blablabla"));
-        grid.add(new Text(""));
-        grid.add(new Text("blablabla"));
-        grid.add(new Text("alksdfkasdbfäabjsädfkadsjföasködjföklasdflöjasdlflöasdflkalsökdf"));
-        grid.add(new Text("dddd"));
-        grid.add(new Text("s"));
-        grid.add(new Text("asdfasdfasdfasdfasdfasf"));
-        grid.add(new Text("blablabla"));
+        flexGrid.add(listL);
+        flexGrid.add(listD);
+        
+        flexGrid.add(listL);
+        flexGrid.add(listD);
+        
+        flexGrid.add(listL);
+        flexGrid.add(listD);
+        
         
         page.add(flexGrid);
-        page.add(grid);
         
         System.out.println(page.getHyperText());
         

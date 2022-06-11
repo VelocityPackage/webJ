@@ -47,7 +47,7 @@ public class FlexGrid implements Component
             HyperTextElement element = new HyperTextElement(HyperTextElement.TAG.DIV, component.getHTML().compile());
             element.addClass("col");
             element.addStyle(HyperTextElement.STYLE.MARGIN, "10px");
-            element.addStyle(HyperTextElement.STYLE.BACKGROUND_COLOR, "black");
+            //element.addStyle(HyperTextElement.STYLE.BACKGROUND_COLOR, "black");
             content.append(element);
         }
         HyperTextElement row = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));

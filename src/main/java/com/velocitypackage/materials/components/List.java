@@ -1,32 +1,35 @@
 package com.velocitypackage.materials.components;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
-public class Header implements Component
+public class List implements Component
 {
-    private final List<Item> items;
+    private final java.util.List<List.Item> items;
+    private final Theme theme;
     
-    public Header()
+    public List(@NotNull Theme theme)
     {
         items = Collections.synchronizedList(new ArrayList<>());
+        this.theme = theme;
     }
     
     @Override
     public void add(Component component)
     {
-        if (component instanceof Item)
+        if (component instanceof List.Item)
         {
-            items.add((Item) component);
+            items.add((List.Item) component);
         }
     }
     
     @Override
     public void onClick(String id)
     {
-        for (Item item : items)
+        for (List.Item item : items)
         {
             item.onClick(id);
         }
@@ -36,20 +39,26 @@ public class Header implements Component
     public HyperTextElement getHTML()
     {
         StringBuilder content = new StringBuilder();
-        for (Item item : items)
+        for (List.Item item : items)
         {
             content.append(item.getHTML().compile());
         }
         HyperTextElement ul = new HyperTextElement(HyperTextElement.TAG.UL, new String(content));
-        ul.addClass("nav", "nav-pills");
-        HyperTextElement header = new HyperTextElement(HyperTextElement.TAG.HEADER, ul.compile());
-        header.addClass("d-flex", "justify-content-center", "py-3");
-        HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, header.compile());
-        container.addClass("container");
-        HyperTextElement aContainer = new HyperTextElement(HyperTextElement.TAG.DIV, container.compile());
-        aContainer.addStyle(HyperTextElement.STYLE.BOX_SHADOW, "0px 0px 7px 1px rgb(0 0 0 / 15%)");
-        aContainer.addStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "17px");
-        return aContainer;
+        if (theme == Theme.LIGHT)
+        {
+            ul.addClass("dropdown-menu", "position-static", "d-grid", "gap-1", "p-2", "rounded-3", "mx-0", "shadow", "w-220px");
+        }
+        if (theme == Theme.DARK)
+        {
+            ul.addClass("dropdown-menu", "dropdown-menu-dark", "position-static", "d-grid", "gap-1", "p-2", "rounded-3", "mx-0", "border-0", "shadow", "w-220px");
+        }
+        ul.addStyle(HyperTextElement.STYLE.MARGIN, "10px");
+        return ul;
+    }
+    
+    public enum Theme
+    {
+        DARK, LIGHT
     }
     
     public abstract static class Item implements Component
@@ -86,13 +95,9 @@ public class Header implements Component
         {
             if (active)
             {
-                HyperTextElement item = new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"nav-link active\" aria-current=\"page\">" + name + "</button>");
-                item.addClass("nav-item");
-                return item;
+                return new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"dropdown-item rounded-2 active\" aria-current=\"page\">" + name + "</button>");
             }
-            HyperTextElement item = new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"nav-link\" aria-current=\"page\">" + name + "</button>");
-            item.addClass("nav-item");
-            return item;
+            return new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"dropdown-item rounded-2\" aria-current=\"page\">" + name + "</button>");
         }
     }
 }
