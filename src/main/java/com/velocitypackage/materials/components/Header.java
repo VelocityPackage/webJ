@@ -79,7 +79,7 @@ public class Header implements Component
             }
         }
         
-        abstract void onClick();
+        public abstract void onClick();
         
         @Override
         public HyperTextElement getHTML()

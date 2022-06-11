@@ -1,5 +1,9 @@
 package com.velocitypackage.services.ws;
 
+import com.velocitypackage.materials.components.Component;
+import com.velocitypackage.materials.components.Header;
+import com.velocitypackage.materials.components.HyperTextElement;
+import com.velocitypackage.materials.components.Page;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -15,9 +19,18 @@ class WebSocketServiceTest extends WebSocketServer
     
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
-        conn.send("Welcome to the server!"); //This method sends a message to the new client
-        broadcast( "new connection: " + handshake.getResourceDescriptor() ); //This method sends a message to all clients connected
         System.out.println("new connection to " + conn.getRemoteSocketAddress());
+    
+        Page page = new Page();
+        Header header = new Header();
+        Header.Item item = new Header.Item("Base", "header", true)
+        {
+            @Override
+            public void onClick()
+            {
+                super.onClick(id);
+            }
+        };
     }
     
     @Override
