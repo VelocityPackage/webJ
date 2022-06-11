@@ -44,13 +44,60 @@ class PageTest
             }
         });
         
-        inner.add(new InlineFrame("https://amazon.de"));
-        inner.add(new Text("If the iFrame did not work use the link"));
         inner.add(new Link("https://amazon.de", "Amazon"));
         
         view.add(inner);
         
         view.add(new Text("The end"));
+        
+        Header head = new Header();
+        
+        head.add(new Header.Item("Home", "test")
+        {
+            @Override
+            void onClick()
+            {
+            
+            }
+        });
+        
+        head.add(new Header.Item("WebGraphics", "test")
+        {
+            @Override
+            void onClick()
+            {
+            
+            }
+        });
+        
+        head.add(new Header.Item("Velfa", "test")
+        {
+            @Override
+            void onClick()
+            {
+            
+            }
+        });
+        
+        head.add(new Header.Item("jNode", "test")
+        {
+            @Override
+            void onClick()
+            {
+            
+            }
+        });
+        
+        head.add(new Header.Item("Jarcob", "test")
+        {
+            @Override
+            void onClick()
+            {
+            
+            }
+        });
+        
+        page.add(head);
         
         page.add(view);
         

@@ -35,6 +35,7 @@ public abstract class Button implements Component
         button.addId(id);
         button.addClass("btn");
         button.addClass("btn-" + type.name().toLowerCase().trim());
+        button.addStyle(HyperTextElement.STYLE.MARGIN, "10px");
         return button;
     }
     

@@ -29,7 +29,7 @@ public class Link implements Component
             @Override
             public String compile()
             {
-                return "<a class=\"stretched-link\" href=\"" + link + "\">" + name + "</a>";
+                return "<a style=\"margin: 10px;\" href=\"" + link + "\">" + name + "</a>";
             }
         };
     }

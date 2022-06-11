@@ -23,7 +23,8 @@ public class Text implements Component
     public HyperTextElement getHTML()
     {
         HyperTextElement text = new HyperTextElement(HyperTextElement.TAG.P, this.text);
-        text.addClass("stretched-link");
-        return null;
+        text.addStyle(HyperTextElement.STYLE.MARGIN_LEFT, "10px");
+        text.addStyle(HyperTextElement.STYLE.MARGIN_RIGHT, "10px");
+        return text;
     }
 }
