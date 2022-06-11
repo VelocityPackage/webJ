@@ -2,6 +2,8 @@ package com.velocitypackage.services.http;
 
 /**
  * HttpContext like "/index" or "/home"
+ *
+ * @author maxmielchen
  */
 public interface HttpContext
 {

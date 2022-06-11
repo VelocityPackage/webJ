@@ -1,6 +1,6 @@
 package com.velocitypackage.materials;
 
-import com.velocitypackage.materials.comonents.HyperTextElement;
+import com.velocitypackage.materials.components.HyperTextElement;
 import org.junit.jupiter.api.Test;
 
 class HyperTextElementTest

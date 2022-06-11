@@ -1,4 +1,4 @@
-package com.velocitypackage.materials.comonents;
+package com.velocitypackage.materials.components;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -9,6 +9,8 @@ import java.util.Map;
 
 /**
  * This class interprets an HTML element
+ *
+ * @author maxmielchen
  */
 @SuppressWarnings("unused")
 public class HyperTextElement

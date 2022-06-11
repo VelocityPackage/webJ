@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 
 /**
  * This is the utility for files
+ *
+ * @author maxmielchen
  */
 public class FileService
 {

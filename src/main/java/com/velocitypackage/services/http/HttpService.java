@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * Service for http contexts
+ *
+ * @author maxmielchen
  */
 @SuppressWarnings("unused")
 public class HttpService
