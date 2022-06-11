@@ -46,7 +46,6 @@ public class Container implements Component
         {
             content.append(component.getHTML().compile());
         }
-        HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
-        return container;
+        return new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
     }
 }
