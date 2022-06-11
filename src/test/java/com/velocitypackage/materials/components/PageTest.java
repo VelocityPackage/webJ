@@ -94,7 +94,7 @@ class PageTest
         head.add(new Header.Item("Home", "test", true)
         {
             @Override
-            void onClick()
+            public void onClick()
             {
             
             }
@@ -103,7 +103,7 @@ class PageTest
         head.add(new Header.Item("WebGraphics", "test", false)
         {
             @Override
-            void onClick()
+            public void onClick()
             {
             
             }
@@ -112,7 +112,7 @@ class PageTest
         head.add(new Header.Item("Velfa", "test", false)
         {
             @Override
-            void onClick()
+            public void onClick()
             {
             
             }
@@ -121,7 +121,7 @@ class PageTest
         head.add(new Header.Item("jNode", "test", false)
         {
             @Override
-            void onClick()
+            public void onClick()
             {
             
             }
@@ -130,7 +130,7 @@ class PageTest
         head.add(new Header.Item("Jarcob", "test", false)
         {
             @Override
-            void onClick()
+            public void onClick()
             {
             
             }
