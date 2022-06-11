@@ -1,4 +1,4 @@
-package com.velocitypackage.materials;
+package com.velocitypackage.materials.comonents;
 
 public interface Component
 {
