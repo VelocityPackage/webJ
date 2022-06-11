@@ -2,8 +2,8 @@ package com.velocitypackage.materials.comonents;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +12,8 @@ public class HyperTextElement
 {
     private final TAG tag;
     private final String content;
-    private final List<String> classes = new LinkedList<>();
-    private final List<String> ids = new LinkedList<>();
+    private final List<String> classes = new ArrayList<>();
+    private final List<String> ids = new ArrayList<>();
     private final Map<STYLE, String> styles = new HashMap<>();
     
     public HyperTextElement(TAG tag)
