@@ -7,8 +7,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * This is the utility for files
+ */
 public class FileService
 {
+    /**
+     * gets a file from the resource folder and read the internals
+     *
+     * @param path path in the resource folder
+     * @return content of resource
+     * @throws IOException          if the file did not exist
+     * @throws NullPointerException if the file is empty
+     */
     public static String getContentOfResource(@NotNull String path) throws IOException, NullPointerException
     {
         try

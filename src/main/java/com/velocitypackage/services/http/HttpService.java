@@ -9,6 +9,9 @@ import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service for http contexts
+ */
 @SuppressWarnings("unused")
 public class HttpService
 {
