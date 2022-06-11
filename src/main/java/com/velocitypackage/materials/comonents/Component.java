@@ -1,5 +1,8 @@
 package com.velocitypackage.materials.comonents;
 
+/**
+ * This interface is the first layer for the Component system
+ */
 public interface Component
 {
     /**
@@ -14,5 +17,5 @@ public interface Component
      *
      * @return html
      */
-    String getHTML();
+    HyperTextElement getHTML();
 }

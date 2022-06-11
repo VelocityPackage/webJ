@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class interprets an HTML element
+ */
 @SuppressWarnings("unused")
 public class HyperTextElement
 {
@@ -16,38 +19,76 @@ public class HyperTextElement
     private final List<String> ids = new ArrayList<>();
     private final Map<STYLE, String> styles = new HashMap<>();
     
+    /**
+     * Creates element without content
+     *
+     * @param tag tag like BUTTON, DIV or H1
+     */
     public HyperTextElement(TAG tag)
     {
         this.tag = tag;
         content = "";
     }
     
+    /**
+     * Create element with content
+     *
+     * @param tag     tag like BUTTON, DIV, or H1
+     * @param content content
+     */
     public HyperTextElement(TAG tag, String content)
     {
         this.tag = tag;
         this.content = content;
     }
     
+    /**
+     * adds some classes to the element
+     *
+     * @param classes classes
+     */
     public void addClass(String... classes)
     {
         this.classes.addAll(List.of(classes));
     }
     
+    /**
+     * adds some ids to the element
+     *
+     * @param ids ids
+     */
     public void addId(String... ids)
     {
         this.ids.addAll(List.of(ids));
     }
     
+    /**
+     * append or reset some style options
+     *
+     * @param style option name
+     * @param value option value
+     */
     public void addStyle(STYLE style, String value)
     {
         this.styles.put(style, value);
     }
     
+    /**
+     * append or reset some style options
+     *
+     * @param style option name
+     * @param value option value
+     */
     public void addStyle(STYLE style, int value)
     {
         this.styles.put(style, String.valueOf(value));
     }
     
+    /**
+     * compiles the element to a string(content)
+     *
+     * @return compiled element
+     */
     public String compile()
     {
         StringBuilder classes = new StringBuilder();
