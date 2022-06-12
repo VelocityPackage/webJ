@@ -36,12 +36,12 @@ public class List implements Component
     }
     
     @Override
-    public HyperTextElement getHTML()
+    public HyperTextElement getContent()
     {
         StringBuilder content = new StringBuilder();
         for (List.Item item : items)
         {
-            content.append(item.getHTML().compile());
+            content.append(item.getContent().compile());
         }
         HyperTextElement ul = new HyperTextElement(HyperTextElement.TAG.UL, new String(content));
         if (theme == Theme.LIGHT)
@@ -67,10 +67,10 @@ public class List implements Component
         public final String id;
         private final boolean active;
         
-        public Item(String name, String id, boolean active)
+        public Item(String name, boolean active)
         {
             this.name = name;
-            this.id = id;
+            this.id = (String.valueOf(this.hashCode()).trim() + this.toString().trim());
             this.active = active;
         }
         
@@ -91,7 +91,7 @@ public class List implements Component
         abstract void onClick();
         
         @Override
-        public HyperTextElement getHTML()
+        public HyperTextElement getContent()
         {
             if (active)
             {

@@ -20,7 +20,7 @@ public class Text implements Component
     }
     
     @Override
-    public HyperTextElement getHTML()
+    public HyperTextElement getContent()
     {
         HyperTextElement text = new HyperTextElement(HyperTextElement.TAG.P, this.text);
         text.addStyle(HyperTextElement.STYLE.MARGIN_LEFT, "10px");

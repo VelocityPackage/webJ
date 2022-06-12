@@ -39,12 +39,12 @@ public class FlexGrid implements Component
     }
     
     @Override
-    public HyperTextElement getHTML()
+    public HyperTextElement getContent()
     {
         StringBuilder content = new StringBuilder();
         for (Component component : components)
         {
-            HyperTextElement element = new HyperTextElement(HyperTextElement.TAG.DIV, component.getHTML().compile());
+            HyperTextElement element = new HyperTextElement(HyperTextElement.TAG.DIV, component.getContent().compile());
             element.addClass("col");
             element.addStyle(HyperTextElement.STYLE.MARGIN, "10px");
             //element.addStyle(HyperTextElement.STYLE.BACKGROUND_COLOR, "black");

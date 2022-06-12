@@ -39,12 +39,12 @@ public class View implements Component
     }
     
     @Override
-    public HyperTextElement getHTML()
+    public HyperTextElement getContent()
     {
         StringBuilder content = new StringBuilder();
         for (Component component : components)
         {
-            content.append(component.getHTML().compile());
+            content.append(component.getContent().compile());
         }
         HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
         container.addClass("container");

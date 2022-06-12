@@ -45,7 +45,7 @@ public class Page
         StringBuilder content = new StringBuilder();
         for (Component component : components)
         {
-            content.append(component.getHTML().compile());
+            content.append(component.getContent().compile());
         }
         return new String(content);
     }

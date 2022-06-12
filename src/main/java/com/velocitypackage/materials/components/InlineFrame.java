@@ -20,7 +20,7 @@ public class InlineFrame implements Component
     }
     
     @Override
-    public HyperTextElement getHTML()
+    public HyperTextElement getContent()
     {
         return new HyperTextElement(HyperTextElement.TAG.IFRAME)
         {

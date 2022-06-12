@@ -22,7 +22,7 @@ public class Link implements Component
     }
     
     @Override
-    public HyperTextElement getHTML()
+    public HyperTextElement getContent()
     {
         return new HyperTextElement(HyperTextElement.TAG.IFRAME)
         {

@@ -33,12 +33,12 @@ public class Header implements Component
     }
     
     @Override
-    public HyperTextElement getHTML()
+    public HyperTextElement getContent()
     {
         StringBuilder content = new StringBuilder();
         for (Item item : items)
         {
-            content.append(item.getHTML().compile());
+            content.append(item.getContent().compile());
         }
         HyperTextElement ul = new HyperTextElement(HyperTextElement.TAG.UL, new String(content));
         ul.addClass("nav", "nav-pills");
@@ -58,10 +58,10 @@ public class Header implements Component
         public final String id;
         private final boolean active;
         
-        public Item(String name, String id, boolean active)
+        public Item(String name, boolean active)
         {
             this.name = name;
-            this.id = id;
+            this.id = (String.valueOf(this.hashCode()).trim() + this.toString().trim());
             this.active = active;
         }
         
@@ -82,7 +82,7 @@ public class Header implements Component
         public abstract void onClick();
         
         @Override
-        public HyperTextElement getHTML()
+        public HyperTextElement getContent()
         {
             if (active)
             {

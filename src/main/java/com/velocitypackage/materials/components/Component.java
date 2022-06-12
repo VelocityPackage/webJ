@@ -26,5 +26,5 @@ public interface Component
      *
      * @return html
      */
-    HyperTextElement getHTML();
+    HyperTextElement getContent();
 }

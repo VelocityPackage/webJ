@@ -7,17 +7,17 @@ public abstract class Button implements Component
     
     private final TYPE type;
     
-    public Button(String name, String id)
+    public Button(String name)
     {
         this.name = name;
-        this.id = id;
+        this.id = this.toString();
         this.type = TYPE.SECONDARY;
     }
     
-    public Button(TYPE type, String name, String id)
+    public Button(TYPE type, String name)
     {
         this.name = name;
-        this.id = id;
+        this.id = (String.valueOf(this.hashCode()).trim() + this.toString().trim());
         this.type = type;
     }
     
@@ -29,7 +29,7 @@ public abstract class Button implements Component
     public abstract void onClick();
     
     @Override
-    public HyperTextElement getHTML()
+    public HyperTextElement getContent()
     {
         HyperTextElement button = new HyperTextElement(HyperTextElement.TAG.BUTTON, name);
         button.addId(id);
