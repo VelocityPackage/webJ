@@ -28,7 +28,7 @@ class WebSocketServiceTest extends WebSocketServer
         page1.add(view);
         
         Header header = new Header();
-        Header.Item item = new Header.Item("Base", "header", true)
+        Header.Item item = new Header.Item("Base", true)
         {
             @Override
             public void onClick()
