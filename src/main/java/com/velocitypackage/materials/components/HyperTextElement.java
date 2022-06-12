@@ -19,6 +19,7 @@ public class HyperTextElement
     private final String content;
     private final List<String> classes = new ArrayList<>();
     private final List<String> ids = new ArrayList<>();
+    private String src = null;
     private final Map<STYLE, String> styles = new HashMap<>();
     
     /**
@@ -62,6 +63,16 @@ public class HyperTextElement
     public void addId(String... ids)
     {
         this.ids.addAll(List.of(ids));
+    }
+    
+    /**
+     * set src to element
+     *
+     * @param src src
+     */
+    public void setSrc(String src)
+    {
+        this.src = src;
     }
     
     /**
@@ -113,6 +124,11 @@ public class HyperTextElement
             }
             idsForTag = " id=\"" + new String(ids).trim() + "\"";
         }
+        String srcForTag = "";
+        if (src != null)
+        {
+            srcForTag = "src=\"" + src + "\"";
+        }
         String stylesForTag = "";
         if (this.styles.size() > 0)
         {
@@ -123,7 +139,7 @@ public class HyperTextElement
             }
             stylesForTag = " style=\"" + new String(styles).trim() + "\"";
         }
-        String starts = "<" + tagToString(tag) + classesForTag + idsForTag + stylesForTag + ">";
+        String starts = "<" + tagToString(tag) + classesForTag + idsForTag + srcForTag + stylesForTag + ">";
         String ends = "</" + tagToString(tag) + ">";
         return starts + content + ends;
     }
