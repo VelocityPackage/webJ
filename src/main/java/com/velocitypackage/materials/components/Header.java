@@ -86,11 +86,11 @@ public class Header implements Component
         {
             if (active)
             {
-                HyperTextElement item = new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"nav-link active\" aria-current=\"page\">" + name + "</button>");
+                HyperTextElement item = new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"nav-link active\" id=\"" + id + "\" aria-current=\"page\">" + name + "</button>");
                 item.addClass("nav-item");
                 return item;
             }
-            HyperTextElement item = new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"nav-link\" aria-current=\"page\">" + name + "</button>");
+            HyperTextElement item = new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"nav-link\" id=\"" + id + "\" aria-current=\"page\">" + name + "</button>");
             item.addClass("nav-item");
             return item;
         }

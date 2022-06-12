@@ -95,9 +95,9 @@ public class List implements Component
         {
             if (active)
             {
-                return new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"dropdown-item rounded-2 active\" aria-current=\"page\">" + name + "</button>");
+                return new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"dropdown-item rounded-2 active\" id=\"" + id + "\" aria-current=\"page\">" + name + "</button>");
             }
-            return new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"dropdown-item rounded-2\" aria-current=\"page\">" + name + "</button>");
+            return new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"dropdown-item rounded-2\" id=\"" + id + "\" aria-current=\"page\">" + name + "</button>");
         }
     }
 }

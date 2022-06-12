@@ -14,6 +14,8 @@ public interface Component
      */
     void add(Component component);
     
+    void putStyle(HyperTextElement.STYLE option, String value);
+    
     /**
      * for button interaction
      *

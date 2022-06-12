@@ -1,18 +1,20 @@
 package com.velocitypackage.materials.components;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.*;
 
 public class FlexGrid implements Component
 {
     private final List<Component> components;
     private final List<Button> buttons;
     
+    private final Map<HyperTextElement.STYLE, String> styles;
+    
     public FlexGrid()
     {
         components = Collections.synchronizedList(new ArrayList<>());
         buttons = Collections.synchronizedList(new ArrayList<>());
+        styles = new HashMap<>();
     }
     
     @Override
@@ -23,6 +25,12 @@ public class FlexGrid implements Component
         {
             buttons.add((Button) component);
         }
+    }
+    
+    @Override
+    public void putStyle(HyperTextElement.STYLE option, String value)
+    {
+        styles.put(option, value);
     }
     
     @Override
@@ -47,13 +55,16 @@ public class FlexGrid implements Component
             HyperTextElement element = new HyperTextElement(HyperTextElement.TAG.DIV, component.getContent().compile());
             element.addClass("col");
             element.addStyle(HyperTextElement.STYLE.MARGIN, "10px");
-            //element.addStyle(HyperTextElement.STYLE.BACKGROUND_COLOR, "black");
             content.append(element);
         }
         HyperTextElement row = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
         row.addClass("row");
         HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, row.compile());
         container.addClass("container");
+        for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+        {
+            container.addStyle(style.getKey(), style.getValue());
+        }
         return container;
     }
 }

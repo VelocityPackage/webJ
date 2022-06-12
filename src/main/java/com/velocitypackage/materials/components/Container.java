@@ -1,18 +1,20 @@
 package com.velocitypackage.materials.components;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.*;
 
 public class Container implements Component
 {
     private final List<Component> components;
     private final List<Button> buttons;
     
+    private final Map<HyperTextElement.STYLE, String> styles;
+    
     public Container()
     {
         components = Collections.synchronizedList(new ArrayList<>());
         buttons = Collections.synchronizedList(new ArrayList<>());
+        styles = new HashMap<>();
     }
     
     @Override
@@ -23,6 +25,12 @@ public class Container implements Component
         {
             buttons.add((Button) component);
         }
+    }
+    
+    @Override
+    public void putStyle(HyperTextElement.STYLE option, String value)
+    {
+        styles.put(option, value);
     }
     
     @Override
@@ -46,6 +54,12 @@ public class Container implements Component
         {
             content.append(component.getContent().compile());
         }
-        return new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
+        HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
+        
+        for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+        {
+            container.addStyle(style.getKey(), style.getValue());
+        }
+        return container;
     }
 }

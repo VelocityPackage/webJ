@@ -17,6 +17,12 @@ public class Link implements Component
     }
     
     @Override
+    public void putStyle(HyperTextElement.STYLE option, String value)
+    {
+    
+    }
+    
+    @Override
     public void onClick(String id)
     {
     }
