@@ -55,7 +55,7 @@ public class Container implements Component
             content.append(component.getContent().compile());
         }
         HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
-        
+        container.addStyle(HyperTextElement.STYLE.MARGIN, "10px");
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             container.addStyle(style.getKey(), style.getValue());

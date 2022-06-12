@@ -24,6 +24,11 @@ public class Header implements Component
     }
     
     @Override
+    public void putStyle(HyperTextElement.STYLE option, String value)
+    {
+    }
+    
+    @Override
     public void onClick(String id)
     {
         for (Item item : items)
@@ -67,6 +72,11 @@ public class Header implements Component
         
         @Override
         public void add(Component component)
+        {
+        }
+        
+        @Override
+        public void putStyle(HyperTextElement.STYLE style, String option)
         {
         }
         

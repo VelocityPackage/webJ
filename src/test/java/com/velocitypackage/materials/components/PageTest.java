@@ -157,6 +157,39 @@ class PageTest
         
         page.add(flexGrid);
         
+        
+        ButtonGroup group = new ButtonGroup();
+        
+        view.add(group);
+        
+        
+        group.add(new Button(Button.TYPE.DANGER, "Danger")
+        {
+            @Override
+            public void onClick()
+            {
+            
+            }
+        });
+        
+        group.add(new Button(Button.TYPE.SUCCESS, "Success")
+        {
+            @Override
+            public void onClick()
+            {
+            
+            }
+        });
+        
+        group.add(new Button(Button.TYPE.INFO, "Info")
+        {
+            @Override
+            public void onClick()
+            {
+            
+            }
+        });
+        
         System.out.println(page.getHyperText());
     }
 }

@@ -69,6 +69,7 @@ public class Headline implements Component
                 headline = new HyperTextElement(HyperTextElement.TAG.H6, text);
                 break;
         }
+        headline.addStyle(HyperTextElement.STYLE.MARGIN, "10px");
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             headline.addStyle(style.getKey(), style.getValue());

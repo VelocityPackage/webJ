@@ -27,6 +27,11 @@ public class List implements Component
     }
     
     @Override
+    public void putStyle(HyperTextElement.STYLE option, String value)
+    {
+    }
+    
+    @Override
     public void onClick(String id)
     {
         for (List.Item item : items)
@@ -76,6 +81,11 @@ public class List implements Component
         
         @Override
         public void add(Component component)
+        {
+        }
+        
+        @Override
+        public void putStyle(HyperTextElement.STYLE option, String value)
         {
         }
         
