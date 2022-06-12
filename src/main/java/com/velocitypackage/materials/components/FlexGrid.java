@@ -1,7 +1,9 @@
 package com.velocitypackage.materials.components;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.*;
+import java.util.Map;
 
 public class FlexGrid implements Component
 {
@@ -54,13 +56,11 @@ public class FlexGrid implements Component
         {
             HyperTextElement element = new HyperTextElement(HyperTextElement.TAG.DIV, component.getContent().compile());
             element.addClass("col");
-            element.addStyle(HyperTextElement.STYLE.MARGIN, "10px");
             content.append(element);
         }
         HyperTextElement row = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
         row.addClass("row");
         HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, row.compile());
-        container.addClass("container");
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             container.addStyle(style.getKey(), style.getValue());

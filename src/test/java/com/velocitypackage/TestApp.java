@@ -19,55 +19,45 @@ public class TestApp extends WebApplication
     {
         Page page = new Page();
         
-        Header header = new Header();
+        Container header = new Container();
+        header.putStyle(HyperTextElement.STYLE.WIDTH, "100%");
+        
+        Container left = new Container();
+        Container middle = new Container();
+        Container right = new Container();
+        
+        FlexGrid headerGrid = new FlexGrid();
+        headerGrid.add(left);
+        headerGrid.add(middle);
+        headerGrid.add(right);
+        header.add(headerGrid);
+        
+        Button home = new Button(Button.TYPE.SUCCESS, "Home")
+        {
+            @Override
+            public void onClick()
+            {
+            }
+        };
+        
+        left.add(home);
+        
+        Button apple = new Button(Button.TYPE.DANGER, "Apple Danger")
+        {
+            @Override
+            public void onClick()
+            {
+            
+            }
+        };
+        
+        apple.putStyle(HyperTextElement.STYLE.FLOAT, "right");
+        
+        right.add(apple);
+        
         page.add(header);
-        Header.Item button = new Header.Item("Projects", false)
-        {
-            @Override
-            public void onClick()
-            {
-                System.out.println("projects");
-            }
-        };
-        Header.Item button2 = new Header.Item("Home", true)
-        {
-            @Override
-            public void onClick()
-            {
-                System.out.println("home");
-            }
-        };
-        header.add(button2);
-        header.add(button);
         
-        
-        View view = new View();
-        page.add(view);
-        
-        FlexGrid flexGrid = new FlexGrid();
-        
-        view.add(flexGrid);
-        
-        Container container = new Container();
-        container.putStyle(HyperTextElement.STYLE.HEIGHT, "50px");
-        container.putStyle(HyperTextElement.STYLE.BACKGROUND_COLOR, "black");
-        
-        
-        flexGrid.add(container);
-        flexGrid.add(container);
-        flexGrid.add(container);
-        flexGrid.add(container);
-        flexGrid.add(container);
-        flexGrid.add(container);
-        
-        
-        Container footer = new Container();
-        page.add(footer);
-        footer.putStyle(HyperTextElement.STYLE.WIDTH, "100%");
-        Text text = new Text("© 2021 Marvin Mielchen. All Rights Reserved.");
-        footer.add(text);
-        Link link = new Link("https://www.youtube.com/", "Youtube");
-        footer.add(link);
+        header.putStyle(HyperTextElement.STYLE.BACKGROUND_COLOR, "#202020");
         
         AppRoot appRoot = new AppRoot();
         appRoot.setPage(page);
