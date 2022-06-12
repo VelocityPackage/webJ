@@ -26,7 +26,7 @@ public class TestApp extends WebApplication
             @Override
             public void onClick()
             {
-        
+                System.out.println("projects");
             }
         };
         Header.Item button2 = new Header.Item("Home", true)
@@ -34,7 +34,7 @@ public class TestApp extends WebApplication
             @Override
             public void onClick()
             {
-            
+                System.out.println("home");
             }
         };
         header.add(button2);
@@ -46,17 +46,19 @@ public class TestApp extends WebApplication
         
         FlexGrid flexGrid = new FlexGrid();
         
-        System.out.println("Hang1");
-        
         view.add(flexGrid);
-        
-        System.out.println("Hang2");
         
         Container container = new Container();
         container.putStyle(HyperTextElement.STYLE.HEIGHT, "50px");
+        container.putStyle(HyperTextElement.STYLE.BACKGROUND_COLOR, "black");
         
         
-        //flexGrid.add(container);
+        flexGrid.add(container);
+        flexGrid.add(container);
+        flexGrid.add(container);
+        flexGrid.add(container);
+        flexGrid.add(container);
+        flexGrid.add(container);
         
         
         Container footer = new Container();
@@ -66,9 +68,6 @@ public class TestApp extends WebApplication
         footer.add(text);
         Link link = new Link("https://www.youtube.com/", "Youtube");
         footer.add(link);
-        
-        System.out.println("zero");
-        System.out.println(page.getHyperText());
         
         AppRoot appRoot = new AppRoot();
         appRoot.setPage(page);
