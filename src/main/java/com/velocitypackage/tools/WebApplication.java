@@ -17,6 +17,7 @@ public abstract class WebApplication
         WebSocketService webSocketService = new WebSocketService(wsPort, this);
         webSocketService.setReuseAddr(true);
         webSocketService.start();
+        System.out.println("web-socket server listening on port " + wsPort);
         HttpService httpService = new HttpService(httpPort);
         httpService.add(new HttpContext()
         {
@@ -58,5 +59,6 @@ public abstract class WebApplication
             }
         });
         httpService.start();
+        System.out.println("http server listening on port " + httpPort);
     }
 }
