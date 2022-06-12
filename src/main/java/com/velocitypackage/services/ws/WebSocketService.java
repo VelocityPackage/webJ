@@ -24,11 +24,6 @@ public final class  WebSocketService extends WebSocketServer
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake)
     {
-        if(conn == null){
-            System.out.println("Socket exception");
-            System.exit(1);
-            return;
-        }
         AppRoot website = webApplication.build();
         clientList.put(conn, webApplication.build());
         conn.send(website.getHyperText());
@@ -37,11 +32,6 @@ public final class  WebSocketService extends WebSocketServer
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote)
     {
-        if(conn == null){
-        System.out.println("Socket exception");
-        System.exit(1);
-        return;
-    }
         AppRoot appRoot = clientList.get(conn);
         if(appRoot != null){
             clientList.remove(conn);
@@ -51,11 +41,6 @@ public final class  WebSocketService extends WebSocketServer
     @Override
     public void onMessage(WebSocket conn, String message)
     {
-        if(conn == null){
-            System.out.println("Socket exception");
-            System.exit(1);
-            return;
-        }
         AppRoot appRoot = clientList.get(conn);
         if(appRoot != null){
             appRoot.onClick(message);
@@ -66,11 +51,6 @@ public final class  WebSocketService extends WebSocketServer
     @Override
     public void onError(WebSocket conn, Exception ex)
     {
-        if(conn == null){
-            System.out.println("Socket exception");
-            System.exit(1);
-            return;
-        }
         AppRoot appRoot = clientList.get(conn);
         if(appRoot != null){
             clientList.remove(conn);

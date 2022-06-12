@@ -15,6 +15,7 @@ public abstract class WebApplication
     public void start(int wsPort, int httpPort, String websiteTitle) throws IOException
     {
         WebSocketService webSocketService = new WebSocketService(wsPort, this);
+        webSocketService.setReuseAddr(true);
         webSocketService.start();
         HttpService httpService = new HttpService(httpPort);
         httpService.add(new HttpContext()
