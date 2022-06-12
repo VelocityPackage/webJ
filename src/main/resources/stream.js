@@ -1,5 +1,5 @@
 var relativePath = "/socket";
-var port = "8081";
+var port = "%WSPORT%";
 
 var path = 
 	"ws://" + 
