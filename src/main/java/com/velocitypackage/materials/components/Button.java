@@ -26,6 +26,12 @@ public abstract class Button implements Component
     {
     }
     
+    @Override
+    public void onClick(String id)
+    {
+    
+    }
+    
     public abstract void onClick();
     
     @Override
