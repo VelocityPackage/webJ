@@ -11,8 +11,8 @@ public class Page
     
     public Page()
     {
-        components = Collections.synchronizedList(new ArrayList<>());
-        buttons = Collections.synchronizedList(new ArrayList<>());
+        components = new ArrayList<>();
+        buttons = new ArrayList<>();
     }
     
     public void add(Component component)

@@ -12,8 +12,8 @@ public class FlexGrid implements Component
     
     public FlexGrid()
     {
-        components = Collections.synchronizedList(new ArrayList<>());
-        buttons = Collections.synchronizedList(new ArrayList<>());
+        components = new ArrayList<>();
+        buttons = new ArrayList<>();
         styles = new HashMap<>();
     }
     

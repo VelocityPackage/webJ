@@ -1,6 +1,6 @@
 package com.velocitypackage.services.ws;
 
-import com.velocitypackage.materials.application.Website;
+import com.velocitypackage.materials.application.AppRoot;
 
 import com.velocitypackage.tools.WebApplication;
 import org.java_websocket.WebSocket;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 public final class  WebSocketService extends WebSocketServer
 {
-    private Map<WebSocket, Website> clientList;
+    private Map<WebSocket, AppRoot> clientList;
     private final WebApplication webApplication;
     
     public WebSocketService(int port, WebApplication webApplication){
@@ -24,7 +24,10 @@ public final class  WebSocketService extends WebSocketServer
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake)
     {
-        Website website = webApplication.build();
+        if(conn == null){
+            return;
+        }
+        AppRoot website = webApplication.build();
         clientList.put(conn, webApplication.build());
         conn.send(website.getHyperText());
     }
@@ -32,19 +35,39 @@ public final class  WebSocketService extends WebSocketServer
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote)
     {
-    
+        if(conn == null){
+            return;
+        }
+        AppRoot appRoot = clientList.get(conn);
+        if(appRoot != null){
+            clientList.remove(conn);
+        }
     }
     
     @Override
     public void onMessage(WebSocket conn, String message)
     {
-    
+        if(conn == null){
+            return;
+        }
+        AppRoot appRoot = clientList.get(conn);
+        if(appRoot != null){
+            appRoot.onClick(message);
+            conn.send(appRoot.getHyperText());
+        }
     }
     
     @Override
     public void onError(WebSocket conn, Exception ex)
     {
-    
+        if(conn == null){
+            return;
+        }
+        AppRoot appRoot = clientList.get(conn);
+        if(appRoot != null){
+            clientList.remove(conn);
+        }
+        System.out.println("Error with connection: " + conn.getResourceDescriptor());
     }
     
     @Override

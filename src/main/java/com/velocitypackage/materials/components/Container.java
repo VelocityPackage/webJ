@@ -12,8 +12,8 @@ public class Container implements Component
     
     public Container()
     {
-        components = Collections.synchronizedList(new ArrayList<>());
-        buttons = Collections.synchronizedList(new ArrayList<>());
+        components = new ArrayList<>();
+        buttons = new ArrayList<>();
         styles = new HashMap<>();
     }
     

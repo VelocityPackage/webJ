@@ -4,12 +4,16 @@ import com.velocitypackage.materials.components.Component;
 import com.velocitypackage.materials.components.HyperTextElement;
 import com.velocitypackage.materials.components.Page;
 
-public class Website
+public class AppRoot
 {
     private Page currentPage;
     
-    public Website(){
+    public AppRoot(){
+        currentPage = new Page();
+    }
     
+    public void onClick(String id){
+        currentPage.onClick(id);
     }
     
     public void setPage(Page p){

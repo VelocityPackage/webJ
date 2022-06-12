@@ -11,7 +11,7 @@ public class Header implements Component
     
     public Header()
     {
-        items = Collections.synchronizedList(new ArrayList<>());
+        items = new ArrayList<>();
     }
     
     @Override

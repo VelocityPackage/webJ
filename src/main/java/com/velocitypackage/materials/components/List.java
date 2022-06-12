@@ -13,7 +13,7 @@ public class List implements Component
     
     public List(@NotNull Theme theme)
     {
-        items = Collections.synchronizedList(new ArrayList<>());
+        items = new ArrayList<>();
         this.theme = theme;
     }
     
