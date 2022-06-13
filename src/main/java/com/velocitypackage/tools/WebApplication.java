@@ -12,7 +12,7 @@ public abstract class WebApplication
 {
     public abstract AppRoot build();
     
-    public void start(int wsPort, int httpPort, String websiteTitle) throws IOException
+    public final void start(int wsPort, int httpPort, String websiteTitle) throws IOException
     {
         WebSocketService webSocketService = new WebSocketService(wsPort, this);
         webSocketService.setReuseAddr(true);
