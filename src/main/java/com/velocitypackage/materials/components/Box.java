@@ -64,7 +64,8 @@ public class Box implements Component
         StringBuilder content = new StringBuilder();
         for (Component component : components)
         {
-            content.append(component.getContent().compile());
+            HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, component.getContent().compile());
+            content.append(container.compile());
         }
         HyperTextElement box = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
         if (tilt == TILT.HORIZONTAL)
@@ -74,12 +75,12 @@ public class Box implements Component
         return box;
     }
     
-    private enum TILT
+    public enum TILT
     {
         HORIZONTAL, VERTICAL
     }
     
-    private enum ALIGN
+    public enum ALIGN
     {
         CENTER, LEFT, RIGHT
     }

@@ -65,11 +65,17 @@ public class TestApp extends WebApplication
         bar.add(list);
         bar.add(button);
         
-        Image image = new Image(new File("image.webp"));
-        image.putStyle(HyperTextElement.STYLE.HEIGHT, "100%");
+        Image image = new Image(new File("8k.jpeg"));
+        image.putStyle(HyperTextElement.STYLE.HEIGHT, "100vh");
+        image.putStyle(HyperTextElement.STYLE.WIDTH, "100vw");
         
-        page.add(bar);
-        page.add(image);
+        
+        Box box = new Box(Box.TILT.HORIZONTAL);
+        box.putStyle(HyperTextElement.STYLE.WIDTH, "100vw");
+        box.add(bar);
+        box.add(image);
+        
+        page.add(box);
         
         
         AppRoot appRoot = new AppRoot();

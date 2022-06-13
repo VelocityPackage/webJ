@@ -47,6 +47,8 @@ public class Image implements Component
     public HyperTextElement getContent()
     {
         HyperTextElement image = new HyperTextElement(HyperTextElement.TAG.IMG);
+        image.addClass("img-fluid");
+        image.addStyle(HyperTextElement.STYLE.OBJECT_FIT, "cover");
         image.setSrc(base64Image);
         for (HyperTextElement.STYLE s : styles.keySet())
         {
