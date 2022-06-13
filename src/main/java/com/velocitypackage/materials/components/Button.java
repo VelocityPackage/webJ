@@ -20,7 +20,7 @@ public abstract class Button implements Component
         styles = new HashMap<>();
     }
     
-    public Button(TYPE type, String name)
+    public Button(String name, TYPE type)
     {
         this.name = name;
         this.id = (String.valueOf(this.hashCode()).trim() + this.toString().trim());

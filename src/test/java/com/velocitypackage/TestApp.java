@@ -49,7 +49,7 @@ public class TestApp extends WebApplication
             }
         });
         
-        Button button = new Button(Button.TYPE.DANGER, "Delete All")
+        Button button = new Button("Delete All", Button.TYPE.DANGER)
         {
             @Override
             public void onClick()
