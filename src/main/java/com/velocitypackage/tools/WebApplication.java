@@ -7,6 +7,7 @@ import com.velocitypackage.services.http.HttpService;
 import com.velocitypackage.services.ws.WebSocketService;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 public abstract class WebApplication
 {
@@ -17,7 +18,7 @@ public abstract class WebApplication
         WebSocketService webSocketService = new WebSocketService(wsPort, this);
         webSocketService.setReuseAddr(true);
         webSocketService.start();
-        System.out.println("web-socket server listening on port " + wsPort);
+        System.out.println("WebSocket server listening on port " + wsPort);
         HttpService httpService = new HttpService(httpPort);
         httpService.add(new HttpContext()
         {
@@ -26,6 +27,7 @@ public abstract class WebApplication
             {
                 return path.equals("/");
             }
+            
             @Override
             public String content()
             {
@@ -45,7 +47,7 @@ public abstract class WebApplication
             {
                 return path.equals("/stream");
             }
-    
+            
             @Override
             public String content()
             {
@@ -59,6 +61,9 @@ public abstract class WebApplication
             }
         });
         httpService.start();
-        System.out.println("http server listening on port " + httpPort);
+        System.out.println("HTTP server listening on port " + httpPort);
+        System.out.println("http://localhost:" + httpPort);
+        System.out.println("http://" + InetAddress.getLocalHost().getHostAddress() + ":" + httpPort);
+        System.out.println("http://" + InetAddress.getLocalHost().getHostName() + ":" + httpPort);
     }
 }

@@ -3,6 +3,7 @@ package com.velocitypackage.materials.components;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 
 public class List implements Component
@@ -31,11 +32,11 @@ public class List implements Component
     }
     
     @Override
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
         for (List.Item item : items)
         {
-            item.onClick(id);
+            item.onInteract(id, inputs);
         }
     }
     
@@ -63,13 +64,13 @@ public class List implements Component
     public abstract static class Item implements Component
     {
         public final String name;
-        public final String id;
-        private final boolean active;
+        private final String id;
+        public final boolean active;
         
         public Item(String name, boolean active)
         {
             this.name = name;
-            this.id = (String.valueOf(this.hashCode()).trim() + this.toString().trim());
+            this.id = String.valueOf(this.hashCode());
             this.active = active;
         }
         
@@ -84,7 +85,7 @@ public class List implements Component
         }
         
         @Override
-        public void onClick(String id)
+        public void onInteract(String id, Map<String, String> inputs)
         {
             if (Objects.equals(this.id, id))
             {

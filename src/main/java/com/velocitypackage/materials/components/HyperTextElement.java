@@ -20,6 +20,9 @@ public class HyperTextElement
     private final List<String> classes = new ArrayList<>();
     private final List<String> ids = new ArrayList<>();
     private String src = null;
+    private String type = null;
+    private String value = null;
+    private String placeholder = null;
     private final Map<STYLE, String> styles = new HashMap<>();
     
     /**
@@ -66,13 +69,43 @@ public class HyperTextElement
     }
     
     /**
-     * set src to element
+     * set src of element
      *
-     * @param src src
+     * @param src src of element
      */
     public void setSrc(String src)
     {
         this.src = src;
+    }
+    
+    /**
+     * set type of element
+     *
+     * @param type type of element
+     */
+    public void setType(String type)
+    {
+        this.type = type;
+    }
+    
+    /**
+     * set placeholder to element
+     *
+     * @param placeholder placeholder
+     */
+    public void setPlaceholder(String placeholder)
+    {
+        this.placeholder = placeholder;
+    }
+    
+    /**
+     * set value of element
+     *
+     * @param value value of element
+     */
+    public void setValue(String value)
+    {
+        this.value = value;
     }
     
     /**
@@ -129,6 +162,21 @@ public class HyperTextElement
         {
             srcForTag = " src=\"" + src + "\"";
         }
+        String typeForTag = "";
+        if (type != null)
+        {
+            typeForTag = " type=\"" + type + "\"";
+        }
+        String placeholderForTag = "";
+        if (placeholder != null)
+        {
+            placeholderForTag = " placeholder=\"" + placeholder + "\"";
+        }
+        String valueForTag = "";
+        if (value != null)
+        {
+            valueForTag = " value=\"" + value + "\"";
+        }
         String stylesForTag = "";
         if (this.styles.size() > 0)
         {
@@ -139,7 +187,7 @@ public class HyperTextElement
             }
             stylesForTag = " style=\"" + new String(styles).trim() + "\"";
         }
-        String starts = "<" + tagToString(tag) + classesForTag + idsForTag + srcForTag + stylesForTag + ">";
+        String starts = "<" + tagToString(tag) + classesForTag + idsForTag + srcForTag + typeForTag + placeholderForTag + valueForTag + stylesForTag + ">";
         String ends = "</" + tagToString(tag) + ">";
         return starts + content + ends;
     }

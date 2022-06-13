@@ -1,7 +1,9 @@
 package com.velocitypackage.materials.components;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.*;
+import java.util.Map;
 
 public class View implements Component
 {
@@ -34,15 +36,11 @@ public class View implements Component
     }
     
     @Override
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
         for (Component component : components)
         {
-            component.onClick(id);
-        }
-        for (Button button : buttons)
-        {
-            button.onClick();
+            component.onInteract(id, inputs);
         }
     }
     

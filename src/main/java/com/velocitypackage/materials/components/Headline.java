@@ -40,7 +40,7 @@ public class Headline implements Component
     }
     
     @Override
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
     }
     

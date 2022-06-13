@@ -1,19 +1,19 @@
 package com.velocitypackage.materials.components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class Container implements Component
+public abstract class Form implements Component
 {
     private final List<Component> components;
     private final Map<HyperTextElement.STYLE, String> styles;
+    private final String id;
     
-    public Container()
+    public Form()
     {
         components = new ArrayList<>();
         styles = new HashMap<>();
+        id = super.toString();
     }
     
     @Override
@@ -31,11 +31,18 @@ public class Container implements Component
     @Override
     public void onInteract(String id, Map<String, String> inputs)
     {
-        for (Component component : components)
+        if (Objects.equals(this.id.trim(), id.trim()))
         {
-            component.onInteract(id, inputs);
+            callback(inputs);
         }
     }
+    
+    public String getInputKey(Input input)
+    {
+        return input.getFormId();
+    }
+    
+    public abstract void callback(Map<String, String> data);
     
     @Override
     public HyperTextElement getContent()
@@ -45,11 +52,12 @@ public class Container implements Component
         {
             content.append(component.getContent().compile());
         }
-        HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
+        HyperTextElement form = new HyperTextElement(HyperTextElement.TAG.FORM, new String(content));
+        form.addId(id);
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
-            container.addStyle(style.getKey(), style.getValue());
+            form.addStyle(style.getKey(), style.getValue());
         }
-        return container;
+        return form;
     }
 }

@@ -2,40 +2,27 @@ package com.velocitypackage.materials.components;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Page
 {
     private final List<Component> components;
-    private final List<Button> buttons;
     
     public Page()
     {
         components = new ArrayList<>();
-        buttons = new ArrayList<>();
     }
     
     public void add(Component component)
     {
         components.add(component);
-        if (component instanceof Button)
-        {
-            buttons.add((Button) component);
-        }
     }
     
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
         for (Component component : components)
         {
-            component.onClick(id);
-        }
-        
-        for (Button button : buttons)
-        {
-            if (button.id.trim().equals(id.trim()))
-            {
-                button.onClick();
-            }
+            component.onInteract(id, inputs);
         }
     }
     

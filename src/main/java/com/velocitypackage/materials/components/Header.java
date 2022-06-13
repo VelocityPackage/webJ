@@ -1,8 +1,8 @@
 package com.velocitypackage.materials.components;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Header implements Component
@@ -29,11 +29,11 @@ public class Header implements Component
     }
     
     @Override
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
         for (Item item : items)
         {
-            item.onClick(id);
+            item.onInteract(id, inputs);
         }
     }
     
@@ -60,13 +60,13 @@ public class Header implements Component
     public abstract static class Item implements Component
     {
         public final String name;
-        public final String id;
-        private final boolean active;
+        private final String id;
+        public final boolean active;
         
         public Item(String name, boolean active)
         {
             this.name = name;
-            this.id = (String.valueOf(this.hashCode()).trim() + this.toString().trim());
+            this.id = String.valueOf(this.hashCode());
             this.active = active;
         }
         
@@ -81,7 +81,7 @@ public class Header implements Component
         }
         
         @Override
-        public void onClick(String id)
+        public void onInteract(String id, Map<String, String> inputs)
         {
             if (Objects.equals(this.id, id))
             {

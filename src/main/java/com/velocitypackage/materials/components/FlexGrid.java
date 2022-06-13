@@ -8,14 +8,12 @@ import java.util.Map;
 public class FlexGrid implements Component
 {
     private final List<Component> components;
-    private final List<Button> buttons;
     
     private final Map<HyperTextElement.STYLE, String> styles;
     
     public FlexGrid()
     {
         components = new ArrayList<>();
-        buttons = new ArrayList<>();
         styles = new HashMap<>();
     }
     
@@ -23,10 +21,6 @@ public class FlexGrid implements Component
     public void add(Component component)
     {
         components.add(component);
-        if (component instanceof Button)
-        {
-            buttons.add((Button) component);
-        }
     }
     
     @Override
@@ -36,15 +30,11 @@ public class FlexGrid implements Component
     }
     
     @Override
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
         for (Component component : components)
         {
-            component.onClick(id);
-        }
-        for (Button button : buttons)
-        {
-            button.onClick();
+            component.onInteract(id, inputs);
         }
     }
     

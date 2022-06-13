@@ -1,7 +1,6 @@
 package com.velocitypackage.services.ws;
 
 import com.velocitypackage.materials.application.AppRoot;
-
 import com.velocitypackage.tools.WebApplication;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
@@ -11,12 +10,13 @@ import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class  WebSocketService extends WebSocketServer
+public final class WebSocketService extends WebSocketServer
 {
     private Map<WebSocket, AppRoot> clientList;
     private final WebApplication webApplication;
     
-    public WebSocketService(int port, WebApplication webApplication){
+    public WebSocketService(int port, WebApplication webApplication)
+    {
         super(new InetSocketAddress(port));
         this.webApplication = webApplication;
     }
@@ -24,16 +24,16 @@ public final class  WebSocketService extends WebSocketServer
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake)
     {
-        AppRoot website = webApplication.build();
         clientList.put(conn, webApplication.build());
-        conn.send(website.getHyperText());
+        conn.send(clientList.get(conn).getHyperText());
     }
     
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote)
     {
         AppRoot appRoot = clientList.get(conn);
-        if(appRoot != null){
+        if (appRoot != null)
+        {
             clientList.remove(conn);
         }
     }
@@ -42,8 +42,9 @@ public final class  WebSocketService extends WebSocketServer
     public void onMessage(WebSocket conn, String message)
     {
         AppRoot appRoot = clientList.get(conn);
-        if(appRoot != null){
-            appRoot.onClick(message);
+        if (appRoot != null)
+        {
+            appRoot.onMessage(message);
             conn.send(appRoot.getHyperText());
         }
     }
@@ -52,7 +53,8 @@ public final class  WebSocketService extends WebSocketServer
     public void onError(WebSocket conn, Exception ex)
     {
         AppRoot appRoot = clientList.get(conn);
-        if(appRoot != null){
+        if (appRoot != null)
+        {
             clientList.remove(conn);
         }
         System.out.println("Error with connection: " + conn.getResourceDescriptor());

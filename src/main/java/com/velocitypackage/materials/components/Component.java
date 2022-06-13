@@ -1,5 +1,7 @@
 package com.velocitypackage.materials.components;
 
+import java.util.Map;
+
 /**
  * This interface is the first layer for the Component system
  *
@@ -17,11 +19,11 @@ public interface Component
     void putStyle(HyperTextElement.STYLE option, String value);
     
     /**
-     * for button interaction
+     * for interaction
      *
      * @param id
      */
-    void onClick(String id);
+    void onInteract(String id, Map<String, String> inputs);
     
     /**
      * returns the compiled html

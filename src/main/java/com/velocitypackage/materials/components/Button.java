@@ -2,20 +2,19 @@ package com.velocitypackage.materials.components;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public abstract class Button implements Component
 {
     private final String name;
-    public final String id;
-    
+    private final String id;
     private final TYPE type;
-    
     private final Map<HyperTextElement.STYLE, String> styles;
     
     public Button(String name)
     {
         this.name = name;
-        this.id = this.toString();
+        this.id = String.valueOf(this.hashCode());
         this.type = TYPE.SECONDARY;
         styles = new HashMap<>();
     }
@@ -23,7 +22,7 @@ public abstract class Button implements Component
     public Button(String name, TYPE type)
     {
         this.name = name;
-        this.id = (String.valueOf(this.hashCode()).trim() + this.toString().trim());
+        this.id = String.valueOf(this.hashCode());
         this.type = type;
         styles = new HashMap<>();
     }
@@ -40,8 +39,12 @@ public abstract class Button implements Component
     }
     
     @Override
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
+        if (Objects.equals(this.id.trim(), id.trim()))
+        {
+            onClick();
+        }
     }
     
     public abstract void onClick();
@@ -63,6 +66,6 @@ public abstract class Button implements Component
     
     public enum TYPE
     {
-        PRIMARY, SECONDARY, SUCCESS, DANGER, WARNING, INFO, LIGHT, DARK
+        PRIMARY, SECONDARY, SUCCESS, DANGER, WARNING, INFO, LIGHT, DARK, LINK
     }
 }

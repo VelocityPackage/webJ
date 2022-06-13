@@ -8,14 +8,12 @@ import java.util.Map;
 public class Sidebar implements Component
 {
     private final List<Component> components;
-    private final List<Button> buttons;
     private final Map<HyperTextElement.STYLE, String> styles;
     private final Theme theme;
     
     public Sidebar(Theme theme, int width)
     {
         this.components = new ArrayList<>();
-        this.buttons = new ArrayList<>();
         this.styles = new HashMap<>();
         this.theme = theme;
         styles.put(HyperTextElement.STYLE.WIDTH, width + "px");
@@ -26,10 +24,6 @@ public class Sidebar implements Component
     public void add(Component component)
     {
         components.add(component);
-        if (component instanceof Button)
-        {
-            buttons.add((Button) component);
-        }
     }
     
     @Override
@@ -39,18 +33,11 @@ public class Sidebar implements Component
     }
     
     @Override
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
         for (Component component : components)
         {
-            component.onClick(id);
-        }
-        for (Button button : buttons)
-        {
-            if (button.id.equals(id.trim()))
-            {
-                button.onClick();
-            }
+            component.onInteract(id, inputs);
         }
     }
     

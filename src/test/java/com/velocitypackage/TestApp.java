@@ -1,11 +1,14 @@
 package com.velocitypackage;
 
 import com.velocitypackage.materials.application.AppRoot;
-import com.velocitypackage.materials.components.*;
+import com.velocitypackage.materials.components.Button;
+import com.velocitypackage.materials.components.Form;
+import com.velocitypackage.materials.components.Input;
+import com.velocitypackage.materials.components.Page;
 import com.velocitypackage.tools.WebApplication;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 public class TestApp extends WebApplication
 {
@@ -20,63 +23,34 @@ public class TestApp extends WebApplication
     {
         Page page = new Page();
         
-        Sidebar bar = new Sidebar(Theme.DARK, 280);
-        
-        
-        List list = new List(Theme.DARK);
-        list.add(new List.Item("Home", true)
+        Button button = new Button("Haha")
         {
             @Override
             public void onClick()
             {
-            
-            }
-        });
-        list.add(new List.Item("Projects", false)
-        {
-            @Override
-            public void onClick()
-            {
-            
-            }
-        });
-        list.add(new List.Item("Contact", false)
-        {
-            @Override
-            public void onClick()
-            {
-            
-            }
-        });
-        
-        Button button = new Button("Delete All", Button.TYPE.DANGER)
-        {
-            @Override
-            public void onClick()
-            {
-                System.out.println("delete");
+                System.out.println("kaka");
             }
         };
         
-        button.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
-        button.putStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "10px");
-        button.putStyle(HyperTextElement.STYLE.MARGIN_TOP, "10px");
+        page.add(button);
         
-        bar.add(list);
-        bar.add(button);
+        Input text = new Input("Text", Input.TYPE.TEXT);
+        Input submit = new Input("Submit", Input.TYPE.SUBMIT);
         
-        Image image = new Image(new File("8k.jpeg"));
-        image.putStyle(HyperTextElement.STYLE.HEIGHT, "100vh");
-        image.putStyle(HyperTextElement.STYLE.WIDTH, "100vw");
+        Form form = new Form()
+        {
+            @Override
+            public void callback(Map<String, String> data)
+            {
+                System.out.println("blabla");
+                System.out.println(data.get(getInputKey(text)));
+            }
+        };
         
+        form.add(text);
+        form.add(submit);
         
-        Box box = new Box(Box.TILT.HORIZONTAL);
-        box.putStyle(HyperTextElement.STYLE.WIDTH, "100vw");
-        box.add(bar);
-        box.add(image);
-        
-        page.add(box);
-        
+        page.add(form);
         
         AppRoot appRoot = new AppRoot();
         appRoot.setPage(page);

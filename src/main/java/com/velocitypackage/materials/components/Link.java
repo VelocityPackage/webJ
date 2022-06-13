@@ -1,5 +1,7 @@
 package com.velocitypackage.materials.components;
 
+import java.util.Map;
+
 public class Link implements Component
 {
     private final String link;
@@ -19,11 +21,10 @@ public class Link implements Component
     @Override
     public void putStyle(HyperTextElement.STYLE option, String value)
     {
-    
     }
     
     @Override
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
     }
     

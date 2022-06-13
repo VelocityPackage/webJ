@@ -1,5 +1,7 @@
 package com.velocitypackage.materials.components;
 
+import java.util.Map;
+
 public class InlineFrame implements Component
 {
     private final String link;
@@ -20,7 +22,7 @@ public class InlineFrame implements Component
     }
     
     @Override
-    public void onClick(String id)
+    public void onInteract(String id, Map<String, String> inputs)
     {
     }
     

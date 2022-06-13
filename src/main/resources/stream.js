@@ -32,7 +32,7 @@ socket.onerror = function(event) {
 	update(
 		load
 	);
-}
+};
 
 socket.onclose = function(event) {
 	update(
@@ -45,10 +45,24 @@ socket.onmessage = function(event) {
 	var msg = event.data;
 	var content = document.body;
 	content.innerHTML = msg;
+
 	const buttons = document.getElementsByTagName('button');
 	for (const button of buttons) {
 		button.addEventListener('click', function() {
-			socket.send(button.id);
+			socket.send("id:" + button.id + " inputs:{}");
 		});
 	}
+
+    const forms = document.getElementsByTagName('form');
+    for (const form of forms) {
+        form.addEventListener('submit', function(e) {
+            const inputs = form.getElementsByTagName('input');
+            var inputsAsString = "";
+            for (const input of inputs) {
+                inputsAsString += input.id + "?#?" + input.value + ";#;";
+            }
+            var inputsAsString = "inputs:{" + inputsAsString + "}";
+            socket.send("id:" + form.id + " " + inputsAsString);
+        });
+    }
 };
