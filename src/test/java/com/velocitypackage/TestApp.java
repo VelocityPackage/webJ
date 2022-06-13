@@ -19,9 +19,58 @@ public class TestApp extends WebApplication
     public AppRoot build()
     {
         Page page = new Page();
+        
+        Sidebar bar = new Sidebar(Theme.DARK, 280);
+        
+        
+        List list = new List(Theme.DARK);
+        list.add(new List.Item("Home", true)
+        {
+            @Override
+            public void onClick()
+            {
+            
+            }
+        });
+        list.add(new List.Item("Projects", false)
+        {
+            @Override
+            public void onClick()
+            {
+            
+            }
+        });
+        list.add(new List.Item("Contact", false)
+        {
+            @Override
+            public void onClick()
+            {
+            
+            }
+        });
+        
+        Button button = new Button(Button.TYPE.DANGER, "Delete All")
+        {
+            @Override
+            public void onClick()
+            {
+                System.out.println("delete");
+            }
+        };
+        
+        button.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        button.putStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "10px");
+        button.putStyle(HyperTextElement.STYLE.MARGIN_TOP, "10px");
+        
+        bar.add(list);
+        bar.add(button);
+        
         Image image = new Image(new File("image.webp"));
-        image.putStyle(HyperTextElement.STYLE.WIDTH, "100%");
+        image.putStyle(HyperTextElement.STYLE.HEIGHT, "100%");
+        
+        page.add(bar);
         page.add(image);
+        
         
         AppRoot appRoot = new AppRoot();
         appRoot.setPage(page);

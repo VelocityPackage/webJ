@@ -127,7 +127,7 @@ public class HyperTextElement
         String srcForTag = "";
         if (src != null)
         {
-            srcForTag = "src=\"" + src + "\"";
+            srcForTag = " src=\"" + src + "\"";
         }
         String stylesForTag = "";
         if (this.styles.size() > 0)

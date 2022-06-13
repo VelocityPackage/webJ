@@ -13,7 +13,6 @@ public class Image implements Component
 {
     private String base64Image;
     private final Map<HyperTextElement.STYLE, String> styles;
-    private final String imageEscapeSymbol = "##";
     
     public Image(File image)
     {
@@ -21,7 +20,6 @@ public class Image implements Component
         try
         {
             base64Image += encodeBase64(image);
-            System.out.println(base64Image);
         } catch (IOException e)
         {
             e.printStackTrace();

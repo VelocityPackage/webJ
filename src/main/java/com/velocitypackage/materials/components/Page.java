@@ -1,7 +1,6 @@
 package com.velocitypackage.materials.components;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Page

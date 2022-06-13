@@ -43,11 +43,8 @@ socket.onclose = function(event) {
 
 socket.onmessage = function(event) {
 	var msg = event.data;
-	var content = document.createElement('div');
+	var content = document.body;
 	content.innerHTML = msg;
-	update(
-		content
-	);
 	const buttons = document.getElementsByTagName('button');
 	for (const button of buttons) {
 		button.addEventListener('click', function() {

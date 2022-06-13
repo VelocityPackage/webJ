@@ -3,7 +3,6 @@ package com.velocitypackage.materials.components;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
 
 public class List implements Component
@@ -61,11 +60,6 @@ public class List implements Component
         return ul;
     }
     
-    public enum Theme
-    {
-        DARK, LIGHT
-    }
-    
     public abstract static class Item implements Component
     {
         public final String name;
@@ -98,7 +92,7 @@ public class List implements Component
             }
         }
         
-        abstract void onClick();
+        public abstract void onClick();
         
         @Override
         public HyperTextElement getContent()

@@ -18,12 +18,13 @@ class WebSocketServiceTest extends WebSocketServer
     Page page1 = new Page();
     
     @Override
-    public void onOpen(WebSocket conn, ClientHandshake handshake) {
+    public void onOpen(WebSocket conn, ClientHandshake handshake)
+    {
         System.out.println("new connection to " + conn.getRemoteSocketAddress());
-    
+        
         
         View view = new View();
-        List list = new List(List.Theme.DARK);
+        List list = new List(Theme.DARK);
         view.add(list);
         page1.add(view);
         
@@ -45,33 +46,39 @@ class WebSocketServiceTest extends WebSocketServer
     }
     
     @Override
-    public void onClose(WebSocket conn, int code, String reason, boolean remote) {
+    public void onClose(WebSocket conn, int code, String reason, boolean remote)
+    {
         System.out.println("closed " + conn.getRemoteSocketAddress() + " with exit code " + code + " additional info: " + reason);
     }
     
     @Override
-    public void onMessage(WebSocket conn, String message) {
-        System.out.println("received message from "	+ conn.getRemoteSocketAddress() + ": " + message);
+    public void onMessage(WebSocket conn, String message)
+    {
+        System.out.println("received message from " + conn.getRemoteSocketAddress() + ": " + message);
         page.onClick(message);
     }
     
     @Override
-    public void onMessage( WebSocket conn, ByteBuffer message ) {
-        System.out.println("received ByteBuffer from "	+ conn.getRemoteSocketAddress());
+    public void onMessage(WebSocket conn, ByteBuffer message)
+    {
+        System.out.println("received ByteBuffer from " + conn.getRemoteSocketAddress());
     }
     
     @Override
-    public void onError(WebSocket conn, Exception ex) {
-        System.err.println("an error occurred on connection " + conn.getRemoteSocketAddress()  + ":" + ex);
+    public void onError(WebSocket conn, Exception ex)
+    {
+        System.err.println("an error occurred on connection " + conn.getRemoteSocketAddress() + ":" + ex);
     }
     
     @Override
-    public void onStart() {
+    public void onStart()
+    {
         System.out.println("server started successfully");
     }
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         WebSocketServer server = new WebSocketServiceTest();
         server.run();
     }
