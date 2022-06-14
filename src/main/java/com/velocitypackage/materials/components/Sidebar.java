@@ -1,20 +1,13 @@
 package com.velocitypackage.materials.components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class Sidebar implements Component
+public class Sidebar extends Component
 {
-    private final List<Component> components;
-    private final Map<HyperTextElement.STYLE, String> styles;
     private final Theme theme;
     
     public Sidebar(Theme theme, int width)
     {
-        this.components = new ArrayList<>();
-        this.styles = new HashMap<>();
         this.theme = theme;
         styles.put(HyperTextElement.STYLE.WIDTH, width + "px");
         styles.put(HyperTextElement.STYLE.HEIGHT, "100vh");
@@ -24,21 +17,6 @@ public class Sidebar implements Component
     public void add(Component component)
     {
         components.add(component);
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-        styles.put(option, value);
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
-    {
-        for (Component component : components)
-        {
-            component.onInteract(id, inputs);
-        }
     }
     
     @Override
@@ -70,6 +48,14 @@ public class Sidebar implements Component
                 }
                 sidebar = light;
                 break;
+        }
+        for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+        {
+            sidebar.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            sidebar.addClass(bootstrap(bootstrapClass));
         }
         return sidebar;
     }

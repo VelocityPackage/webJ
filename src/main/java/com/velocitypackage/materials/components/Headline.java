@@ -1,15 +1,12 @@
 package com.velocitypackage.materials.components;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class Headline implements Component
+public class Headline extends Component
 {
     
     private final String text;
     private final int headline;
-    
-    private final Map<HyperTextElement.STYLE, String> styles;
     
     /**
      * @param text     Value
@@ -25,22 +22,10 @@ public class Headline implements Component
         {
             this.headline = headline;
         }
-        styles = new HashMap<>();
     }
     
     @Override
     public void add(Component component)
-    {
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-        styles.put(option, value);
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
     {
     }
     
@@ -73,6 +58,14 @@ public class Headline implements Component
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             headline.addStyle(style.getKey(), style.getValue());
+        }
+        for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+        {
+            headline.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            headline.addClass(bootstrap(bootstrapClass));
         }
         return headline;
     }

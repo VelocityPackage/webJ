@@ -5,14 +5,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.Map;
 
 
-public class Image implements Component
+public class Image extends Component
 {
     private String base64Image;
-    private final Map<HyperTextElement.STYLE, String> styles;
     
     public Image(File image)
     {
@@ -24,22 +22,10 @@ public class Image implements Component
         {
             e.printStackTrace();
         }
-        styles = new HashMap<>();
     }
     
     @Override
     public void add(Component component)
-    {
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-        styles.put(option, value);
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
     {
     }
     
@@ -53,6 +39,14 @@ public class Image implements Component
         for (HyperTextElement.STYLE s : styles.keySet())
         {
             image.addStyle(s, styles.get(s));
+        }
+        for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+        {
+            image.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            image.addClass(bootstrap(bootstrapClass));
         }
         return image;
     }

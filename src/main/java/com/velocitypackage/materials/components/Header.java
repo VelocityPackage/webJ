@@ -1,17 +1,12 @@
 package com.velocitypackage.materials.components;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class Header implements Component
+public class Header extends Component
 {
-    private final List<Item> items;
-    
     public Header()
     {
-        items = new ArrayList<>();
     }
     
     @Override
@@ -19,21 +14,16 @@ public class Header implements Component
     {
         if (component instanceof Item)
         {
-            items.add((Item) component);
+            components.add(component);
         }
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
     }
     
     @Override
     public void onInteract(String id, Map<String, String> inputs)
     {
-        for (Item item : items)
+        for (Component component : components)
         {
-            item.onInteract(id, inputs);
+            component.onInteract(id, inputs);
         }
     }
     
@@ -41,8 +31,9 @@ public class Header implements Component
     public HyperTextElement getContent()
     {
         StringBuilder content = new StringBuilder();
-        for (Item item : items)
+        for (Component component : components)
         {
+            Item item = (Item) component;
             content.append(item.getContent().compile());
         }
         HyperTextElement ul = new HyperTextElement(HyperTextElement.TAG.UL, new String(content));
@@ -54,10 +45,18 @@ public class Header implements Component
         HyperTextElement aContainer = new HyperTextElement(HyperTextElement.TAG.DIV, container.compile());
         aContainer.addStyle(HyperTextElement.STYLE.BOX_SHADOW, "0px 0px 7px 1px rgb(0 0 0 / 15%)");
         aContainer.addStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "17px");
+        for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+        {
+            aContainer.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            aContainer.addClass(bootstrap(bootstrapClass));
+        }
         return aContainer;
     }
     
-    public abstract static class Item implements Component
+    public abstract static class Item extends Component
     {
         public final String name;
         private final String id;
@@ -72,11 +71,6 @@ public class Header implements Component
         
         @Override
         public void add(Component component)
-        {
-        }
-        
-        @Override
-        public void putStyle(HyperTextElement.STYLE style, String option)
         {
         }
         
@@ -102,6 +96,14 @@ public class Header implements Component
             }
             HyperTextElement item = new HyperTextElement(HyperTextElement.TAG.LI, "<button class=\"nav-link\" id=\"" + id + "\" aria-current=\"page\">" + name + "</button>");
             item.addClass("nav-item");
+            for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+            {
+                item.addStyle(style.getKey(), style.getValue());
+            }
+            for (Bootstrap bootstrapClass : classes)
+            {
+                item.addClass(bootstrap(bootstrapClass));
+            }
             return item;
         }
     }

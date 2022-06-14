@@ -2,18 +2,15 @@ package com.velocitypackage.materials.components;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
-public class List implements Component
+public class List extends Component
 {
-    private final java.util.List<List.Item> items;
     private final Theme theme;
     
     public List(@NotNull Theme theme)
     {
-        items = new ArrayList<>();
         this.theme = theme;
     }
     
@@ -22,21 +19,7 @@ public class List implements Component
     {
         if (component instanceof List.Item)
         {
-            items.add((List.Item) component);
-        }
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
-    {
-        for (List.Item item : items)
-        {
-            item.onInteract(id, inputs);
+            components.add(component);
         }
     }
     
@@ -44,8 +27,9 @@ public class List implements Component
     public HyperTextElement getContent()
     {
         StringBuilder content = new StringBuilder();
-        for (List.Item item : items)
+        for (Component component : components)
         {
+            Item item = (Item) component;
             content.append(item.getContent().compile());
         }
         HyperTextElement ul = new HyperTextElement(HyperTextElement.TAG.UL, new String(content));
@@ -58,10 +42,18 @@ public class List implements Component
             ul.addClass("dropdown-menu", "dropdown-menu-dark", "position-static", "d-grid", "gap-1", "p-2", "rounded-3", "mx-0", "border-0", "shadow", "w-220px");
         }
         ul.addStyle(HyperTextElement.STYLE.MARGIN, "10px");
+        for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+        {
+            ul.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            ul.addClass(bootstrap(bootstrapClass));
+        }
         return ul;
     }
     
-    public abstract static class Item implements Component
+    public abstract static class Item extends Component
     {
         public final String name;
         private final String id;
@@ -76,11 +68,6 @@ public class List implements Component
         
         @Override
         public void add(Component component)
-        {
-        }
-        
-        @Override
-        public void putStyle(HyperTextElement.STYLE option, String value)
         {
         }
         

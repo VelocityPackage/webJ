@@ -1,33 +1,18 @@
 package com.velocitypackage.materials.components;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class Text implements Component
+public class Text extends Component
 {
     private final String text;
-    
-    private final Map<HyperTextElement.STYLE, String> styles;
     
     public Text(String text)
     {
         this.text = text;
-        styles = new HashMap<>();
     }
     
     @Override
     public void add(Component component)
-    {
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-        styles.put(option, value);
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
     {
     }
     
@@ -40,6 +25,14 @@ public class Text implements Component
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             text.addStyle(style.getKey(), style.getValue());
+        }
+        for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+        {
+            text.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            text.addClass(bootstrap(bootstrapClass));
         }
         return text;
     }

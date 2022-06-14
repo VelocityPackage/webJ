@@ -1,22 +1,19 @@
 package com.velocitypackage.materials.components;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public abstract class Button implements Component
+public abstract class Button extends Component
 {
     private final String name;
     private final String id;
     private final TYPE type;
-    private final Map<HyperTextElement.STYLE, String> styles;
     
     public Button(String name)
     {
         this.name = name;
         this.id = String.valueOf(this.hashCode());
         this.type = TYPE.SECONDARY;
-        styles = new HashMap<>();
     }
     
     public Button(String name, TYPE type)
@@ -24,18 +21,11 @@ public abstract class Button implements Component
         this.name = name;
         this.id = String.valueOf(this.hashCode());
         this.type = type;
-        styles = new HashMap<>();
     }
     
     @Override
     public void add(Component component)
     {
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-        styles.put(option, value);
     }
     
     @Override
@@ -60,6 +50,10 @@ public abstract class Button implements Component
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             button.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            button.addClass(bootstrap(bootstrapClass));
         }
         return button;
     }

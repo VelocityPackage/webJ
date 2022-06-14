@@ -1,8 +1,6 @@
 package com.velocitypackage.materials.components;
 
-import java.util.Map;
-
-public class Link implements Component
+public class Link extends Component
 {
     private final String link;
     private final String name;
@@ -15,16 +13,6 @@ public class Link implements Component
     
     @Override
     public void add(Component component)
-    {
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
     {
     }
     

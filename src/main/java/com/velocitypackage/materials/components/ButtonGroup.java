@@ -1,19 +1,12 @@
 package com.velocitypackage.materials.components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class ButtonGroup implements Component
+public class ButtonGroup extends Component
 {
-    private final List<Button> buttons;
-    private final Map<HyperTextElement.STYLE, String> styles;
     
     public ButtonGroup()
     {
-        this.buttons = new ArrayList<>();
-        this.styles = new HashMap<>();
     }
     
     @Override
@@ -21,22 +14,7 @@ public class ButtonGroup implements Component
     {
         if (component instanceof Button)
         {
-            buttons.add((Button) component);
-        }
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-        styles.put(option, value);
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
-    {
-        for (Button button : buttons)
-        {
-            button.onInteract(id, inputs);
+            components.add(component);
         }
     }
     
@@ -44,8 +22,9 @@ public class ButtonGroup implements Component
     public HyperTextElement getContent()
     {
         StringBuilder content = new StringBuilder();
-        for (Button button : buttons)
+        for (Component component : components)
         {
+            Button button = (Button) component;
             button.putStyle(HyperTextElement.STYLE.MARGIN, "0");
             content.append(button.getContent());
         }
@@ -55,6 +34,10 @@ public class ButtonGroup implements Component
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             buttonGroup.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            buttonGroup.addClass(bootstrap(bootstrapClass));
         }
         return buttonGroup;
     }

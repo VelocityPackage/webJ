@@ -1,18 +1,14 @@
 package com.velocitypackage.materials.components;
 
-import java.util.List;
-import java.util.*;
+import java.util.Map;
+import java.util.Objects;
 
-public abstract class Form implements Component
+public abstract class Form extends Component
 {
-    private final List<Component> components;
-    private final Map<HyperTextElement.STYLE, String> styles;
     private final String id;
     
     public Form()
     {
-        components = new ArrayList<>();
-        styles = new HashMap<>();
         id = String.valueOf(this.hashCode());
     }
     
@@ -20,12 +16,6 @@ public abstract class Form implements Component
     public void add(Component component)
     {
         components.add(component);
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-        styles.put(option, value);
     }
     
     @Override
@@ -57,6 +47,10 @@ public abstract class Form implements Component
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             form.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            form.addClass(bootstrap(bootstrapClass));
         }
         return form;
     }

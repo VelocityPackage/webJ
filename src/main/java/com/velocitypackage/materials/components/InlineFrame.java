@@ -1,8 +1,6 @@
 package com.velocitypackage.materials.components;
 
-import java.util.Map;
-
-public class InlineFrame implements Component
+public class InlineFrame extends Component
 {
     private final String link;
     
@@ -13,16 +11,6 @@ public class InlineFrame implements Component
     
     @Override
     public void add(Component component)
-    {
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
     {
     }
     

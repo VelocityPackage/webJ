@@ -1,22 +1,19 @@
 package com.velocitypackage.materials.components;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Input implements Component
+public class Input extends Component
 {
     private final String id;
     private final String text;
     private final TYPE type;
-    private final Map<HyperTextElement.STYLE, String> styles;
     
     public Input(String text, TYPE type)
     {
         this.id = String.valueOf(this.hashCode());
         this.text = Objects.requireNonNullElse(text, "");
         this.type = type;
-        styles = new HashMap<>();
     }
     
     @Override
@@ -24,20 +21,9 @@ public class Input implements Component
     {
     }
     
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-        styles.put(option, value);
-    }
-    
     public final String getFormId()
     {
         return this.id;
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
-    {
     }
     
     @Override
@@ -54,6 +40,14 @@ public class Input implements Component
                 {
                     text.addStyle(style.getKey(), style.getValue());
                 }
+                for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+                {
+                    text.addStyle(style.getKey(), style.getValue());
+                }
+                for (Bootstrap bootstrapClass : classes)
+                {
+                    text.addClass(bootstrap(bootstrapClass));
+                }
                 return text;
             case PASSWORD:
                 HyperTextElement password = new HyperTextElement(HyperTextElement.TAG.INPUT);
@@ -63,6 +57,14 @@ public class Input implements Component
                 for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
                 {
                     password.addStyle(style.getKey(), style.getValue());
+                }
+                for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+                {
+                    password.addStyle(style.getKey(), style.getValue());
+                }
+                for (Bootstrap bootstrapClass : classes)
+                {
+                    password.addClass(bootstrap(bootstrapClass));
                 }
                 return password;
             case SUBMIT:
@@ -74,6 +76,14 @@ public class Input implements Component
                 {
                     submit.addStyle(style.getKey(), style.getValue());
                 }
+                for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+                {
+                    submit.addStyle(style.getKey(), style.getValue());
+                }
+                for (Bootstrap bootstrapClass : classes)
+                {
+                    submit.addClass(bootstrap(bootstrapClass));
+                }
                 return submit;
             case RESET:
                 HyperTextElement reset = new HyperTextElement(HyperTextElement.TAG.INPUT, this.text);
@@ -82,6 +92,14 @@ public class Input implements Component
                 for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
                 {
                     reset.addStyle(style.getKey(), style.getValue());
+                }
+                for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+                {
+                    reset.addStyle(style.getKey(), style.getValue());
+                }
+                for (Bootstrap bootstrapClass : classes)
+                {
+                    reset.addClass(bootstrap(bootstrapClass));
                 }
                 return reset;
             case EMAIL:
@@ -93,6 +111,14 @@ public class Input implements Component
                 {
                     email.addStyle(style.getKey(), style.getValue());
                 }
+                for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+                {
+                    email.addStyle(style.getKey(), style.getValue());
+                }
+                for (Bootstrap bootstrapClass : classes)
+                {
+                    email.addClass(bootstrap(bootstrapClass));
+                }
                 return email;
             case DATE:
                 HyperTextElement date = new HyperTextElement(HyperTextElement.TAG.INPUT, this.text);
@@ -102,6 +128,14 @@ public class Input implements Component
                 {
                     date.addStyle(style.getKey(), style.getValue());
                 }
+                for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+                {
+                    date.addStyle(style.getKey(), style.getValue());
+                }
+                for (Bootstrap bootstrapClass : classes)
+                {
+                    date.addClass(bootstrap(bootstrapClass));
+                }
                 return date;
             case NUMBER:
                 HyperTextElement number = new HyperTextElement(HyperTextElement.TAG.INPUT);
@@ -110,6 +144,14 @@ public class Input implements Component
                 for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
                 {
                     number.addStyle(style.getKey(), style.getValue());
+                }
+                for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+                {
+                    number.addStyle(style.getKey(), style.getValue());
+                }
+                for (Bootstrap bootstrapClass : classes)
+                {
+                    number.addClass(bootstrap(bootstrapClass));
                 }
                 return number;
             default:

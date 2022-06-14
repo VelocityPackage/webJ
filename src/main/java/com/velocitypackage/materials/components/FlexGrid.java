@@ -1,41 +1,17 @@
 package com.velocitypackage.materials.components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class FlexGrid implements Component
+public class FlexGrid extends Component
 {
-    private final List<Component> components;
-    
-    private final Map<HyperTextElement.STYLE, String> styles;
-    
     public FlexGrid()
     {
-        components = new ArrayList<>();
-        styles = new HashMap<>();
     }
     
     @Override
     public void add(Component component)
     {
         components.add(component);
-    }
-    
-    @Override
-    public void putStyle(HyperTextElement.STYLE option, String value)
-    {
-        styles.put(option, value);
-    }
-    
-    @Override
-    public void onInteract(String id, Map<String, String> inputs)
-    {
-        for (Component component : components)
-        {
-            component.onInteract(id, inputs);
-        }
     }
     
     @Override
@@ -54,6 +30,10 @@ public class FlexGrid implements Component
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             container.addStyle(style.getKey(), style.getValue());
+        }
+        for (Bootstrap bootstrapClass : classes)
+        {
+            container.addClass(bootstrap(bootstrapClass));
         }
         return container;
     }
