@@ -61,6 +61,10 @@ public class Box implements Component
         {
             box.addClass("d-flex", "flex-nowrap");
         }
+        for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
+        {
+            box.addStyle(style.getKey(), style.getValue());
+        }
         return box;
     }
     
