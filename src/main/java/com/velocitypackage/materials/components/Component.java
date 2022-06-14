@@ -16,6 +16,12 @@ public interface Component
      */
     void add(Component component);
     
+    /**
+     * puts some style
+     *
+     * @param option style option
+     * @param value  value option
+     */
     void putStyle(HyperTextElement.STYLE option, String value);
     
     /**

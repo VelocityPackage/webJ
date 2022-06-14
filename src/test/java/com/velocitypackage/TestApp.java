@@ -42,7 +42,6 @@ public class TestApp extends WebApplication
             @Override
             public void callback(Map<String, String> data)
             {
-                System.out.println("blabla");
                 System.out.println(data.get(getInputKey(text)));
             }
         };

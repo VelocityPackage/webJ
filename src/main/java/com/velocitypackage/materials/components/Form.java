@@ -13,7 +13,7 @@ public abstract class Form implements Component
     {
         components = new ArrayList<>();
         styles = new HashMap<>();
-        id = super.toString();
+        id = String.valueOf(this.hashCode());
     }
     
     @Override
