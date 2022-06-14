@@ -53,8 +53,7 @@ public class Box implements Component
         StringBuilder content = new StringBuilder();
         for (Component component : components)
         {
-            HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, component.getContent().compile());
-            content.append(container.compile());
+            content.append(component.getContent().compile());
         }
         HyperTextElement box = new HyperTextElement(HyperTextElement.TAG.DIV, new String(content));
         if (tilt == TILT.HORIZONTAL)
