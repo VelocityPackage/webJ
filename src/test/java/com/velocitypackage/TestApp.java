@@ -1,14 +1,11 @@
 package com.velocitypackage;
 
 import com.velocitypackage.materials.application.AppRoot;
-import com.velocitypackage.materials.components.Button;
-import com.velocitypackage.materials.components.Form;
-import com.velocitypackage.materials.components.Input;
-import com.velocitypackage.materials.components.Page;
+import com.velocitypackage.materials.components.*;
 import com.velocitypackage.tools.WebApplication;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 public class TestApp extends WebApplication
 {
@@ -23,33 +20,16 @@ public class TestApp extends WebApplication
     {
         Page page = new Page();
         
-        Button button = new Button("Haha")
-        {
-            @Override
-            public void onClick()
-            {
-                System.out.println("kaka");
-            }
-        };
+        Layout window = new Layout();
+        page.add(window);
+        Sidebar bar = new Sidebar(Theme.DARK, 280);
+        window.left.add(bar);
         
-        page.add(button);
         
-        Input text = new Input("Text", Input.TYPE.TEXT);
-        Input submit = new Input("Submit", Input.TYPE.SUBMIT);
-        
-        Form form = new Form()
-        {
-            @Override
-            public void callback(Map<String, String> data)
-            {
-                System.out.println(data.get(getInputKey(text)));
-            }
-        };
-        
-        form.add(text);
-        form.add(submit);
-        
-        page.add(form);
+        Image image = new Image(new File("8k.jpeg"));
+        image.putStyle(HyperTextElement.STYLE.WIDTH, "100vw");
+        image.putStyle(HyperTextElement.STYLE.HEIGHT, "100vh");
+        window.middle.add(image);
         
         AppRoot appRoot = new AppRoot();
         appRoot.setPage(page);

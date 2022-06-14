@@ -20,8 +20,6 @@ public class Text extends Component
     public HyperTextElement getContent()
     {
         HyperTextElement text = new HyperTextElement(HyperTextElement.TAG.P, this.text);
-        text.addStyle(HyperTextElement.STYLE.MARGIN_LEFT, "10px");
-        text.addStyle(HyperTextElement.STYLE.MARGIN_RIGHT, "10px");
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
         {
             text.addStyle(style.getKey(), style.getValue());

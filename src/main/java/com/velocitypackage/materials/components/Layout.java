@@ -27,7 +27,8 @@ public class Layout extends Component
                 super.add(component);
             }
         };
-        
+        topLeft.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        topLeft.putStyle(HyperTextElement.STYLE.PADDING, "0px");
         topMiddle = new Container()
         {
             @Override
@@ -38,7 +39,8 @@ public class Layout extends Component
                 super.add(component);
             }
         };
-        
+        topMiddle.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        topMiddle.putStyle(HyperTextElement.STYLE.PADDING, "0px");
         topRight = new Container()
         {
             @Override
@@ -48,7 +50,8 @@ public class Layout extends Component
                 super.add(component);
             }
         };
-        
+        topRight.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        topRight.putStyle(HyperTextElement.STYLE.PADDING, "0px");
         left = new Container()
         {
             @Override
@@ -58,7 +61,8 @@ public class Layout extends Component
                 super.add(component);
             }
         };
-        
+        left.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        left.putStyle(HyperTextElement.STYLE.PADDING, "0px");
         middle = new Container()
         {
             @Override
@@ -69,7 +73,8 @@ public class Layout extends Component
                 super.add(component);
             }
         };
-        
+        middle.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        middle.putStyle(HyperTextElement.STYLE.PADDING, "0px");
         right = new Container()
         {
             @Override
@@ -79,7 +84,8 @@ public class Layout extends Component
                 super.add(component);
             }
         };
-        
+        right.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        right.putStyle(HyperTextElement.STYLE.PADDING, "0px");
         bottomLeft = new Container()
         {
             @Override
@@ -89,7 +95,8 @@ public class Layout extends Component
                 super.add(component);
             }
         };
-        
+        bottomLeft.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        bottomLeft.putStyle(HyperTextElement.STYLE.PADDING, "0px");
         bottomMiddle = new Container()
         {
             @Override
@@ -100,7 +107,8 @@ public class Layout extends Component
                 super.add(component);
             }
         };
-        
+        bottomMiddle.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        bottomMiddle.putStyle(HyperTextElement.STYLE.PADDING, "0px");
         bottomRight = new Container()
         {
             @Override
@@ -110,6 +118,8 @@ public class Layout extends Component
                 super.add(component);
             }
         };
+        bottomRight.putStyle(HyperTextElement.STYLE.MARGIN, "0px");
+        bottomRight.putStyle(HyperTextElement.STYLE.PADDING, "0px");
     }
     
     @Override
@@ -135,27 +145,27 @@ public class Layout extends Component
     public HyperTextElement getContent()
     {
         StringBuilder contentTop = new StringBuilder();
-        contentTop.append(topLeft);
-        contentTop.append(topMiddle);
-        contentTop.append(topRight);
+        contentTop.append(topLeft.getContent());
+        contentTop.append(topMiddle.getContent());
+        contentTop.append(topRight.getContent());
         HyperTextElement top = new HyperTextElement(HyperTextElement.TAG.DIV, new String(contentTop)); //1. Row
-        top.addClass("row", "row-cols-3");
+        top.addClass("d-flex", "flex-row");
         StringBuilder contentMiddleVertical = new StringBuilder();
-        contentMiddleVertical.append(left);
-        contentMiddleVertical.append(middle);
-        contentMiddleVertical.append(right);
+        contentMiddleVertical.append(left.getContent());
+        contentMiddleVertical.append(middle.getContent());
+        contentMiddleVertical.append(right.getContent());
         HyperTextElement middleVertical = new HyperTextElement(HyperTextElement.TAG.DIV, new String(contentMiddleVertical)); //2. Row
-        middleVertical.addClass("row", "row-cols-3");
+        middleVertical.addClass("d-flex", "flex-row");
         StringBuilder contentBottom = new StringBuilder();
-        contentBottom.append(bottomLeft);
-        contentBottom.append(bottomMiddle);
-        contentBottom.append(bottomRight);
+        contentBottom.append(bottomLeft.getContent());
+        contentBottom.append(bottomMiddle.getContent());
+        contentBottom.append(bottomRight.getContent());
         HyperTextElement bottom = new HyperTextElement(HyperTextElement.TAG.DIV, new String(contentBottom)); //3. Row
-        bottom.addClass("row", "row-cols-3");
+        bottom.addClass("d-flex", "flex-row");
         StringBuilder layout = new StringBuilder();
-        layout.append(contentTop);
-        layout.append(contentMiddleVertical);
-        layout.append(contentBottom);
+        layout.append(top.compile());
+        layout.append(middleVertical.compile());
+        layout.append(bottom.compile());
         HyperTextElement container = new HyperTextElement(HyperTextElement.TAG.DIV, new String(layout));
         container.addStyle(HyperTextElement.STYLE.WIDTH, "100vw");
         for (Map.Entry<HyperTextElement.STYLE, String> style : styles.entrySet())
