@@ -11,6 +11,7 @@ public class Input extends Component
     
     public Input(String text, TYPE type)
     {
+        super();
         this.id = String.valueOf(this.hashCode());
         this.text = Objects.requireNonNullElse(text, "");
         this.type = type;
@@ -48,6 +49,10 @@ public class Input extends Component
                 {
                     text.addClass(bootstrap(bootstrapClass));
                 }
+                text.addStyle(HyperTextElement.STYLE.MARGIN_TOP, "10px");
+                text.addStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "10px");
+                text.addStyle(HyperTextElement.STYLE.MARGIN_RIGHT, "10px");
+                text.addClass("form-control");
                 return text;
             case PASSWORD:
                 HyperTextElement password = new HyperTextElement(HyperTextElement.TAG.INPUT);
@@ -66,6 +71,10 @@ public class Input extends Component
                 {
                     password.addClass(bootstrap(bootstrapClass));
                 }
+                password.addStyle(HyperTextElement.STYLE.MARGIN_TOP, "10px");
+                password.addStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "10px");
+                password.addStyle(HyperTextElement.STYLE.MARGIN_RIGHT, "10px");
+                password.addClass("form-control");
                 return password;
             case SUBMIT:
                 HyperTextElement submit = new HyperTextElement(HyperTextElement.TAG.INPUT);
@@ -84,6 +93,10 @@ public class Input extends Component
                 {
                     submit.addClass(bootstrap(bootstrapClass));
                 }
+                submit.addStyle(HyperTextElement.STYLE.MARGIN_TOP, "10px");
+                submit.addStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "10px");
+                submit.addStyle(HyperTextElement.STYLE.MARGIN_RIGHT, "10px");
+                submit.addClass("btn", "btn-primary");
                 return submit;
             case RESET:
                 HyperTextElement reset = new HyperTextElement(HyperTextElement.TAG.INPUT, this.text);
@@ -101,6 +114,10 @@ public class Input extends Component
                 {
                     reset.addClass(bootstrap(bootstrapClass));
                 }
+                reset.addStyle(HyperTextElement.STYLE.MARGIN_TOP, "10px");
+                reset.addStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "10px");
+                reset.addStyle(HyperTextElement.STYLE.MARGIN_RIGHT, "10px");
+                reset.addClass("btn", "btn-primary");
                 return reset;
             case EMAIL:
                 HyperTextElement email = new HyperTextElement(HyperTextElement.TAG.INPUT);
@@ -119,6 +136,10 @@ public class Input extends Component
                 {
                     email.addClass(bootstrap(bootstrapClass));
                 }
+                email.addStyle(HyperTextElement.STYLE.MARGIN_TOP, "10px");
+                email.addStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "10px");
+                email.addStyle(HyperTextElement.STYLE.MARGIN_RIGHT, "10px");
+                email.addClass("form-control");
                 return email;
             case DATE:
                 HyperTextElement date = new HyperTextElement(HyperTextElement.TAG.INPUT, this.text);
@@ -136,6 +157,9 @@ public class Input extends Component
                 {
                     date.addClass(bootstrap(bootstrapClass));
                 }
+                date.addStyle(HyperTextElement.STYLE.MARGIN_TOP, "10px");
+                date.addStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "10px");
+                date.addStyle(HyperTextElement.STYLE.MARGIN_RIGHT, "10px");
                 return date;
             case NUMBER:
                 HyperTextElement number = new HyperTextElement(HyperTextElement.TAG.INPUT);
@@ -153,6 +177,10 @@ public class Input extends Component
                 {
                     number.addClass(bootstrap(bootstrapClass));
                 }
+                number.addStyle(HyperTextElement.STYLE.MARGIN_TOP, "10px");
+                number.addStyle(HyperTextElement.STYLE.MARGIN_BOTTOM, "10px");
+                number.addStyle(HyperTextElement.STYLE.MARGIN_RIGHT, "10px");
+                number.addClass("form-control");
                 return number;
             default:
                 return new HyperTextElement(HyperTextElement.TAG.DIV);

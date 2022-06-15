@@ -4,8 +4,8 @@ import com.velocitypackage.materials.application.AppRoot;
 import com.velocitypackage.materials.components.*;
 import com.velocitypackage.tools.WebApplication;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 public class TestApp extends WebApplication
 {
@@ -20,16 +20,29 @@ public class TestApp extends WebApplication
     {
         Page page = new Page();
         
-        Layout window = new Layout();
-        page.add(window);
-        Sidebar bar = new Sidebar(Theme.DARK, 280);
-        window.left.add(bar);
         
+        Row row = new Row();
+        page.add(row);
+        row.add(new Sidebar(Theme.DARK, 280));
+        View view = new View();
+        view.putStyle(HyperTextElement.STYLE.BACKGROUND_COLOR, "black");
+        row.add(view);
         
-        Image image = new Image(new File("8k.jpeg"));
-        image.putStyle(HyperTextElement.STYLE.WIDTH, "100vw");
-        image.putStyle(HyperTextElement.STYLE.HEIGHT, "100vh");
-        window.middle.add(image);
+        Input name = new Input("Name", Input.TYPE.TEXT);
+        Input submit = new Input("Submit", Input.TYPE.SUBMIT);
+        
+        Form form = new Form()
+        {
+            @Override
+            public void callback(Map<String, String> data)
+            {
+                System.out.println("New register: " + data.get(getInputKey(name)));
+            }
+        };
+        
+        form.add(name, submit);
+        
+        view.add(form);
         
         AppRoot appRoot = new AppRoot();
         appRoot.setPage(page);
