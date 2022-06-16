@@ -1,6 +1,7 @@
 package com.velocitypackage.materials.application;
 
-import com.velocitypackage.materials.components.Page;
+import com.velocitypackage.materials.components.Component;
+import com.velocitypackage.materials.hypertext.HyperTextElement;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,11 +9,18 @@ import java.util.Map;
 
 public class AppRoot
 {
-    private Page currentPage;
+    private Component currentRootComponent;
     
     public AppRoot()
     {
-        currentPage = new Page();
+        currentRootComponent = new Component()
+        {
+            @Override
+            public HyperTextElement getHyperText()
+            {
+                return new HyperTextElement("");
+            }
+        };
     }
     
     public void onMessage(String msg)
@@ -26,16 +34,16 @@ public class AppRoot
         {
             inputMap.put(input.split("\\?#\\?")[0], input.split("\\?#\\?")[1]);
         }
-        currentPage.onInteract(id, inputMap);
+        currentRootComponent.onInteract(id, inputMap);
     }
     
-    public void setPage(Page p)
+    public void setPage(Component component)
     {
-        currentPage = p;
+        currentRootComponent = component;
     }
     
-    public String getHyperText()
+    public HyperTextElement getHyperText()
     {
-        return currentPage.getHyperText();
+        return currentRootComponent.getHyperText();
     }
 }

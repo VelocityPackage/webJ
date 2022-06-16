@@ -1,7 +1,7 @@
 package com.velocitypackage.tools;
 
 import com.velocitypackage.materials.application.AppRoot;
-import com.velocitypackage.services.files.FileService;
+import com.velocitypackage.services.file.FileService;
 import com.velocitypackage.services.http.HttpContext;
 import com.velocitypackage.services.http.HttpService;
 import com.velocitypackage.services.ws.WebSocketService;

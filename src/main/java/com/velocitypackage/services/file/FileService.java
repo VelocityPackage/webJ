@@ -1,4 +1,4 @@
-package com.velocitypackage.services.files;
+package com.velocitypackage.services.file;
 
 import org.jetbrains.annotations.NotNull;
 
