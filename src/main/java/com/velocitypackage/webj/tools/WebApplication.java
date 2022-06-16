@@ -1,10 +1,10 @@
-package com.velocitypackage.tools;
+package com.velocitypackage.webj.tools;
 
-import com.velocitypackage.materials.application.AppRoot;
-import com.velocitypackage.services.file.FileService;
-import com.velocitypackage.services.http.HttpContext;
-import com.velocitypackage.services.http.HttpService;
-import com.velocitypackage.services.ws.WebSocketService;
+import com.velocitypackage.webj.materials.application.AppRoot;
+import com.velocitypackage.webj.services.file.FileService;
+import com.velocitypackage.webj.services.http.HttpContext;
+import com.velocitypackage.webj.services.http.HttpService;
+import com.velocitypackage.webj.services.ws.WebSocketService;
 
 import java.io.IOException;
 import java.net.InetAddress;

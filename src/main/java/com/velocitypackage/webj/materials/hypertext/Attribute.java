@@ -1,4 +1,4 @@
-package com.velocitypackage.materials.hypertext;
+package com.velocitypackage.webj.materials.hypertext;
 
 @SuppressWarnings("unused")
 public enum Attribute

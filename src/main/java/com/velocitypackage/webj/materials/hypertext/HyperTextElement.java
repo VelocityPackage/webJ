@@ -1,4 +1,4 @@
-package com.velocitypackage.materials.hypertext;
+package com.velocitypackage.webj.materials.hypertext;
 
 import java.text.MessageFormat;
 import java.util.*;

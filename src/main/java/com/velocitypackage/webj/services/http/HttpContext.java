@@ -1,4 +1,4 @@
-package com.velocitypackage.services.http;
+package com.velocitypackage.webj.services.http;
 
 /**
  * HttpContext like "/index" or "/home"

@@ -1,7 +1,7 @@
-package com.velocitypackage.services.ws;
+package com.velocitypackage.webj.services.ws;
 
-import com.velocitypackage.materials.application.AppRoot;
-import com.velocitypackage.tools.WebApplication;
+import com.velocitypackage.webj.materials.application.AppRoot;
+import com.velocitypackage.webj.tools.WebApplication;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
