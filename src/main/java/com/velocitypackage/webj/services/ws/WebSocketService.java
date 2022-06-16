@@ -25,7 +25,7 @@ public final class WebSocketService extends WebSocketServer
     public void onOpen(WebSocket conn, ClientHandshake handshake)
     {
         clientList.put(conn, webApplication.build());
-        conn.send(clientList.get(conn).getHyperText());
+        conn.send(clientList.get(conn).getHyperText().generate());
     }
     
     @Override
@@ -45,7 +45,7 @@ public final class WebSocketService extends WebSocketServer
         if (appRoot != null)
         {
             appRoot.onMessage(message);
-            conn.send(appRoot.getHyperText());
+            conn.send(appRoot.getHyperText().generate());
         }
     }
     
