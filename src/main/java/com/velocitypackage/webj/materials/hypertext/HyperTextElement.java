@@ -205,7 +205,7 @@ public final class HyperTextElement
         {
             stringBuilder.append(hyperTextElement.generate());
         }
-        return new String(stringBuilder);
+        return new String(stringBuilder).trim();
     }
     
     private String generateAttributes()
