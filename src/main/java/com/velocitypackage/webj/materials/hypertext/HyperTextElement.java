@@ -8,8 +8,8 @@ import java.util.Map;
  */
 public final class HyperTextElement implements Element
 {
-    private Tag tag;
-    private Map<Attribute, String> attributeMap;
+    private final Tag tag;
+    private final Map<Attribute, String> attributeMap;
     
     /**
      * @param tag
