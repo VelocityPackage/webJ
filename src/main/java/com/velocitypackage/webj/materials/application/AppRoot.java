@@ -1,7 +1,6 @@
 package com.velocitypackage.webj.materials.application;
 
 import com.velocitypackage.webj.materials.components.Component;
-import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 
 import java.util.Arrays;
 import java.util.HashMap;

@@ -1,7 +1,5 @@
 package com.velocitypackage.webj.materials.components;
 
-import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
