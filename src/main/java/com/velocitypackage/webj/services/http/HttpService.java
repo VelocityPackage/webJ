@@ -1,7 +1,6 @@
 package com.velocitypackage.webj.services.http;
 
 import com.sun.net.httpserver.HttpServer;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -43,8 +42,12 @@ public class HttpService
      *
      * @param httpContext context self
      */
-    public void add(@NotNull HttpContext httpContext)
+    public void add(HttpContext httpContext)
     {
+        if (httpContext == null)
+        {
+            return;
+        }
         httpContexts.add(httpContext);
     }
     
@@ -53,8 +56,12 @@ public class HttpService
      *
      * @param httpContext context self
      */
-    public void remove(@NotNull HttpContext httpContext)
+    public void remove(HttpContext httpContext)
     {
+        if (httpContext == null)
+        {
+            return;
+        }
         httpContexts.remove(httpContext);
     }
     

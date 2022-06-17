@@ -1,7 +1,5 @@
 package com.velocitypackage.webj.services.file;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,8 +20,12 @@ public class FileService
      * @throws IOException          if the file did not exist
      * @throws NullPointerException if the file is empty
      */
-    public static String getContentOfResource(@NotNull String path) throws IOException, NullPointerException
+    public static String getContentOfResource(String path) throws IOException, NullPointerException
     {
+        if (path == null)
+        {
+            return null;
+        }
         try
         {
             ClassLoader classloader = Thread.currentThread().getContextClassLoader();
