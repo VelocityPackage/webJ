@@ -3,11 +3,17 @@ package com.velocitypackage.webj.materials.hypertext;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ */
 public final class HyperTextElement implements Element
 {
     private Tag tag;
     private Map<Attribute, String> attributeMap;
     
+    /**
+     * @param tag
+     */
     public HyperTextElement(Tag tag)
     {
         attributeMap = new HashMap<>();
@@ -71,6 +77,22 @@ public final class HyperTextElement implements Element
             return;
         }
         addAttribute(Attribute.STYLE, style.name().toLowerCase().replaceAll("_", "-") + ": " + value + ";");
+    }
+    
+    /**
+     * @return
+     */
+    public Tag getTag()
+    {
+        return tag;
+    }
+    
+    /**
+     * @return
+     */
+    public Map<Attribute, String> getAttributeMap()
+    {
+        return attributeMap;
     }
     
 }
