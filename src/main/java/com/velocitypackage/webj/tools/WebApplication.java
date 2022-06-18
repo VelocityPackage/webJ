@@ -1,6 +1,6 @@
 package com.velocitypackage.webj.tools;
 
-import com.velocitypackage.webj.materials.application.AppRoot;
+import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
 import com.velocitypackage.webj.services.file.FileService;
 import com.velocitypackage.webj.services.http.HttpContext;
 import com.velocitypackage.webj.services.http.HttpService;
@@ -11,7 +11,7 @@ import java.net.InetAddress;
 
 public abstract class WebApplication
 {
-    public abstract AppRoot build();
+    public abstract HyperTextBehavior build();
     
     public final void start(int wsPort, int httpPort, String websiteTitle) throws IOException
     {
