@@ -1,4 +1,4 @@
-package com.velocitypackage.storage.datatypes;
+package com.velocitypackage.database.datatypes;
 
 @SuppressWarnings("unused")
 public class Query
@@ -17,7 +17,7 @@ public class Query
     
     public String getQuery()
     {
-        return new String(query);
+        return new String(query).trim() + ";";
     }
     
     @Override
