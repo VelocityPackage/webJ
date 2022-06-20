@@ -15,7 +15,7 @@ public final class HyperTextElement implements Element
     /**
      *
      */
-    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Tuple<Attribute, String>[] attributes, Tuple<Style, String>[] styles)
+    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Tuple<Attribute, String>[] attributes, Tuple<Style, String>[] styles) //TODO
     {
         id = String.valueOf(this.hashCode());
         attributeMap = new HashMap<>();

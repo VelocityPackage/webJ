@@ -9,7 +9,7 @@ public class Button extends HyperTextBehavior
     public Button()
     {
         Tuple<Attribute, String> attributeStringTuple = new Tuple<>(Attribute.TYPE, "button");
-        Tuple[] arr = new Tuple[]{attributeStringTuple};
+        Tuple<Attribute, String>[] arr = new Tuple[]{attributeStringTuple};
         
         setContent(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, new Tuple[]{attributeStringTuple}, null));
     }
