@@ -20,17 +20,26 @@ public final class HyperTextElement implements Element
         id = String.valueOf(this.hashCode());
         attributeMap = new HashMap<>();
         this.tag = tag;
-        for (Bootstrap b : bootstraps)
+        if (bootstraps != null)
         {
-            this.addBootstrap(b);
+            for (Bootstrap b : bootstraps)
+            {
+                this.addBootstrap(b);
+            }
         }
-        for (Tuple<Attribute, String> a : attributes)
+        if (attributes != null)
         {
-            this.addAttribute(a.key, a.value);
+            for (Tuple<Attribute, String> a : attributes)
+            {
+                this.addAttribute(a.key, a.value);
+            }
         }
-        for (Tuple<Style, String> s : styles)
+        if (styles != null)
         {
-            this.addStyle(s.key, s.value);
+            for (Tuple<Style, String> s : styles)
+            {
+                this.addStyle(s.key, s.value);
+            }
         }
         this.addAttribute(Attribute.ID, this.id);
     }
