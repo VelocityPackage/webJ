@@ -76,6 +76,7 @@ public abstract class HyperTextBehavior
     
     public final String build()
     {
+        recompile(); //TODO fix caching
         return cache;
     }
     
