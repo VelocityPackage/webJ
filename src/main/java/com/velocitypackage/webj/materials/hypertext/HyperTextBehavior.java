@@ -42,21 +42,15 @@ public abstract class HyperTextBehavior
         if (content instanceof HyperTextElement)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("<").append(((HyperTextElement) content).getTag().name().toLowerCase());
+            stringBuilder.append("<").append(((HyperTextElement) content).getTag());
             stringBuilder.append(" ");
-            for (Attribute a : ((HyperTextElement) content).getAttributeMap().keySet())
-            {
-                stringBuilder.append(a.name().toLowerCase());
-                stringBuilder.append("=\"");
-                stringBuilder.append(((HyperTextElement) content).getAttributeMap().get(a));
-                stringBuilder.append("\" ");
-            }
+            stringBuilder.append(((HyperTextElement) content).getAttributes());
             stringBuilder.append(" >");
             for (HyperTextBehavior hyperTextBehavior : children)
             {
                 stringBuilder.append(hyperTextBehavior.build());
             }
-            stringBuilder.append("</").append(((HyperTextElement) content).getTag().name().toLowerCase()).append(">");
+            stringBuilder.append("</").append(((HyperTextElement) content).getTag()).append(">");
             cache = stringBuilder.toString();
         }
         if (parent != null)

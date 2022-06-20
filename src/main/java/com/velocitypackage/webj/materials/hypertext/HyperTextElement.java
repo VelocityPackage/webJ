@@ -14,7 +14,7 @@ public final class HyperTextElement implements Element
     /**
      * @param tag
      */
-    public HyperTextElement(Tag tag)
+    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Tuple<Attribute, String>[] attributes)
     {
         attributeMap = new HashMap<>();
         this.tag = tag;
@@ -82,17 +82,47 @@ public final class HyperTextElement implements Element
     /**
      * @return
      */
-    public Tag getTag()
+    public String getTag()
     {
-        return tag;
+        return tag.name().toLowerCase();
     }
     
     /**
      * @return
      */
-    public Map<Attribute, String> getAttributeMap()
+    public String getAttributes()
     {
-        return attributeMap;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Attribute a : attributeMap.keySet())
+        {
+            stringBuilder.append(a.name().toLowerCase());
+            stringBuilder.append("=\"");
+            stringBuilder.append(attributeMap.get(a));
+            stringBuilder.append("\" ");
+        }
+        return stringBuilder.toString();
+    }
+    
+    public class Tuple<K, V>
+    {
+        private final K key;
+        private final V value;
+        
+        public Tuple(K key, V value)
+        {
+            this.key = key;
+            this.value = value;
+        }
+        
+        public K getKey()
+        {
+            return key;
+        }
+        
+        public V getValue()
+        {
+            return value;
+        }
     }
     
 }
