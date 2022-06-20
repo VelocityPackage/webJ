@@ -95,7 +95,7 @@ public final class HyperTextElement implements Element
     }
     
     /**
-     * @return
+     *
      */
     public String getTag()
     {
@@ -103,7 +103,7 @@ public final class HyperTextElement implements Element
     }
     
     /**
-     * @return
+     *
      */
     public String getAttributes()
     {
