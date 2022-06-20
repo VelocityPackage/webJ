@@ -42,7 +42,33 @@ public abstract class HyperTextBehavior
     
     public final String build()
     {
-        return cache;
+        if (content instanceof TextElement)
+        {
+            return ((TextElement) content).getText();
+        }
+        if (content instanceof HyperTextElement)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("<").append(((HyperTextElement) content).getTag().name().toLowerCase());
+            stringBuilder.append(" ");
+            for (Attribute a : ((HyperTextElement) content).getAttributeMap().keySet())
+            {
+                stringBuilder.append(a.name().toLowerCase());
+                stringBuilder.append("=\"");
+                stringBuilder.append(((HyperTextElement) content).getAttributeMap().get(a));
+                stringBuilder.append("\" ");
+            }
+            stringBuilder.append(" >");
+            for (HyperTextBehavior hyperTextBehavior : children)
+            {
+                stringBuilder.append(" ").append(hyperTextBehavior.build());
+            }
+            stringBuilder.append("</").append(((HyperTextElement) content).getTag().name().toLowerCase()).append(">");
+            return stringBuilder.toString();
+        } else
+        {
+            return null;
+        }
     }
     
     public final void add(HyperTextBehavior hyperTextBehavior)

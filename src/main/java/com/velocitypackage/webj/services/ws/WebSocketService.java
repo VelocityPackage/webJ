@@ -1,7 +1,7 @@
 package com.velocitypackage.webj.services.ws;
 
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
-import com.velocitypackage.webj.tools.WebApplication;
+import com.velocitypackage.webj.tools.WebJApplication;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -13,9 +13,9 @@ import java.util.Map;
 public final class WebSocketService extends WebSocketServer
 {
     private Map<WebSocket, HyperTextBehavior> clientList;
-    private final WebApplication webApplication;
+    private final WebJApplication webApplication;
     
-    public WebSocketService(int port, WebApplication webApplication)
+    public WebSocketService(int port, WebJApplication webApplication)
     {
         super(new InetSocketAddress(port));
         this.webApplication = webApplication;
@@ -46,9 +46,17 @@ public final class WebSocketService extends WebSocketServer
         {
             //id:<id> inputs:{}
             //id:<id> inputs:{<inputID>??<value>;;...}
-            //TODO
-            
-            appRoot.onMessage("message", null);
+            String id = message.split(" ")[0].replace("id:", "").trim();
+            String[] inputs = message.split(" ")[1].replace("inputs:\\{", "").replace("\\}", "").split(";;");
+            Map<String, String> inputMap = new HashMap<>();
+            if (message.contains("??"))
+            {
+                for (String s : inputs)
+                {
+                    inputMap.put(s.split("\\?\\?")[0], s.split("\\?\\?")[1]);
+                }
+            }
+            appRoot.onMessage(id, inputMap);
             conn.send(appRoot.build());
         }
     }
