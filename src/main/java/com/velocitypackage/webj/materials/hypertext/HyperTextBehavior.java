@@ -10,14 +10,14 @@ import java.util.Map;
 public abstract class HyperTextBehavior
 {
     private final List<HyperTextBehavior> children;
-    private final Element content;
+    private Element content;
     private String id;
     private String cache;
     
-    public HyperTextBehavior(Element element)
+    public HyperTextBehavior()
     {
         children = new ArrayList<>();
-        content = element;
+        content = new TextElement("");
         id = this.toString();
         if (content instanceof HyperTextElement)
         {
@@ -26,25 +26,17 @@ public abstract class HyperTextBehavior
         cache = "";
     }
     
-    public final void onMessage(String id, Map<String, String> values)
+    public final void setContent(Element element)
     {
-        if (id.equals(this.id))
-        {
-            onInteract(values);
-        } else
-        {
-            for (HyperTextBehavior h : children)
-            {
-                h.onMessage(id, values);
-            }
-        }
+        content = element;
+        recompile();
     }
     
-    public final String build()
+    public final void recompile()
     {
         if (content instanceof TextElement)
         {
-            return ((TextElement) content).getText();
+            cache = ((TextElement) content).getText();
         }
         if (content instanceof HyperTextElement)
         {
@@ -64,19 +56,45 @@ public abstract class HyperTextBehavior
                 stringBuilder.append(" ").append(hyperTextBehavior.build());
             }
             stringBuilder.append("</").append(((HyperTextElement) content).getTag().name().toLowerCase()).append(">");
-            return stringBuilder.toString();
-        } else
-        {
-            return null;
+            cache = stringBuilder.toString();
         }
     }
     
-    public final void add(HyperTextBehavior hyperTextBehavior)
+    public final void onMessage(String id, Map<String, String> values)
+    {
+        if (id.equals(this.id))
+        {
+            onInteract(values);
+        } else
+        {
+            for (HyperTextBehavior h : children)
+            {
+                h.onMessage(id, values);
+            }
+        }
+    }
+    
+    public final String build()
+    {
+        return cache;
+    }
+    
+    public final void addChild(HyperTextBehavior hyperTextBehavior)
     {
         if (hyperTextBehavior != null)
         {
             children.add(hyperTextBehavior);
         }
+        recompile();
+    }
+    
+    public final void removeChild(HyperTextBehavior hyperTextBehavior)
+    {
+        if (hyperTextBehavior != null)
+        {
+            children.remove(hyperTextBehavior);
+        }
+        recompile();
     }
     
     public abstract void onInteract(Map<String, String> values);
