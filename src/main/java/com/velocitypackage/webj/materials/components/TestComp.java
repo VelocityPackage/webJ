@@ -1,5 +1,6 @@
 package com.velocitypackage.webj.materials.components;
 
+import com.velocitypackage.webj.materials.hypertext.Bootstrap;
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
 import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 import com.velocitypackage.webj.materials.hypertext.Tag;
@@ -10,7 +11,7 @@ public class TestComp extends HyperTextBehavior
 {
     public TestComp()
     {
-        setContent(new HyperTextElement(Tag.DIV, null, null, null));
+        setContent(new HyperTextElement(Tag.DIV, new Bootstrap[]{Bootstrap.BG_DARK}, null, null));
     }
     
     @Override

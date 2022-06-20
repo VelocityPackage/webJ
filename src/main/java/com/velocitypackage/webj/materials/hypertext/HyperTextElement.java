@@ -31,14 +31,14 @@ public final class HyperTextElement implements Element
         {
             for (Tuple<Attribute, String> a : attributes)
             {
-                this.addAttribute(a.key, a.value);
+                this.addAttribute(a.getKey(), a.getValue());
             }
         }
         if (styles != null)
         {
             for (Tuple<Style, String> s : styles)
             {
-                this.addStyle(s.key, s.value);
+                this.addStyle(s.getKey(), s.getValue());
             }
         }
         this.addAttribute(Attribute.ID, this.id);
@@ -132,16 +132,5 @@ public final class HyperTextElement implements Element
         return this.id;
     }
     
-    public static class Tuple<K, V>
-    {
-        private final K key;
-        private final V value;
-        
-        public Tuple(K key, V value)
-        {
-            this.key = key;
-            this.value = value;
-        }
-    }
     
 }
