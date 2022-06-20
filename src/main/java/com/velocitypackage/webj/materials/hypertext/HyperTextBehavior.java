@@ -11,14 +11,14 @@ public abstract class HyperTextBehavior
 {
     private final List<HyperTextBehavior> children;
     private Element content;
-    private String id;
+    private final String id;
     private String cache;
     
     public HyperTextBehavior()
     {
         children = new ArrayList<>();
         content = new TextElement("");
-        id = this.toString();
+        id = String.valueOf(this.hashCode());
         if (content instanceof HyperTextElement)
         {
             ((HyperTextElement) content).addAttribute(Attribute.ID, id);
@@ -53,7 +53,7 @@ public abstract class HyperTextBehavior
             stringBuilder.append(" >");
             for (HyperTextBehavior hyperTextBehavior : children)
             {
-                stringBuilder.append(" ").append(hyperTextBehavior.build());
+                stringBuilder.append(hyperTextBehavior.build());
             }
             stringBuilder.append("</").append(((HyperTextElement) content).getTag().name().toLowerCase()).append(">");
             cache = stringBuilder.toString();
