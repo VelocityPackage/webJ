@@ -1,13 +1,13 @@
-package com.velocitypackage.storage.services;
+package com.velocitypackage.database.services;
 
-import com.velocitypackage.storage.materials.exceptions.DependencyException;
+import com.velocitypackage.database.materials.exceptions.DependencyException;
 
 import java.sql.*;
 
 /**
  * @author maxmielchen
  */
-public final class MariaDB
+public final class MariaDB implements Database
 {
     private static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
     private Connection connection;
@@ -43,6 +43,7 @@ public final class MariaDB
      * @return the return of the query
      * @throws SQLException throws if the SQL String is incorrect
      */
+    @Override
     public ResultSet query(String query) throws SQLException
     {
         Statement statement;
@@ -62,6 +63,7 @@ public final class MariaDB
      * @deprecated it is deprecated, because it isn't tasted. Use: (*.query(query:string))
      */
     @Deprecated()
+    @Override
     public ResultSet secureQuery(String query) throws SQLException
     {
         String begin = "BEGIN TRANSACTION;";

@@ -1,4 +1,4 @@
-package com.velocitypackage.storage.materials.exceptions;
+package com.velocitypackage.database.materials.exceptions;
 
 /**
  * @author maxmielchen
