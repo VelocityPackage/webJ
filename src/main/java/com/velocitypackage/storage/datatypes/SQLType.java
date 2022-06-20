@@ -1,0 +1,10 @@
+package com.velocitypackage.storage.datatypes;
+
+/**
+ * @author maxmielchen
+ */
+@SuppressWarnings("unused")
+public enum SQLType
+{
+    CHAR, VARCHAR, BINARY, VARBINARY, TINYBLOB, TINYTEXT, TEXT, BLOB, MEDIUMTEXT, MEDIUMBLOB, LONGTEXT, LONGBLOB, ENUM, SET, BIT, TINYBIT, BOOL, BOOLEAN, SMALLINT, MEDIUMINT, INT, INTEGER, BIGINT, FLOAT, DOUBLE, DECIMAL, DEC, DATE, DATETIME, TIMESTAMP, TIME, YEAR,
+}

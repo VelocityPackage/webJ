@@ -37,7 +37,7 @@ public final class MariaDB
     
     /**
      * Sends a query to the SQL server.
-     * Important is that query has around it a commit
+     * When u. will use it without the possibility to inject query use recommend: (*.secureQuery(query:string))
      *
      * @param query the query as String
      * @return the return of the query
@@ -50,6 +50,32 @@ public final class MariaDB
         ResultSet resultSet = statement.executeQuery(query);
         statement.close();
         return resultSet;
+    }
+    
+    /**
+     * Sends a query to the SQL server.
+     * It is the way u. can save for injection
+     *
+     * @param query the query as String
+     * @return the return of the query
+     * @throws SQLException throws if the SQL String is incorrect
+     * @deprecated it is deprecated, because it isn't tasted. Use: (*.query(query:string))
+     */
+    @Deprecated()
+    public ResultSet secureQuery(String query) throws SQLException
+    {
+        String begin = "BEGIN TRANSACTION;";
+        String end = "COMMIT;";
+        query = query.trim();
+        if (! query.startsWith(begin))
+        {
+            query = begin + " " + query;
+        }
+        if (! query.endsWith(end))
+        {
+            query = query + " " + end;
+        }
+        return query(query);
     }
     
     /**

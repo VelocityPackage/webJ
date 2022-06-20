@@ -59,7 +59,7 @@ socket.onmessage = function(event) {
             const inputs = form.getElementsByTagName('input');
             var inputsAsString = "";
             for (const input of inputs) {
-                inputsAsString += input.id + "?#?" + input.value + ";#;";
+                inputsAsString += input.id + "??" + input.value + ";;";
             }
             var inputsAsString = "inputs:{" + inputsAsString + "}";
             socket.send("id:" + form.id + " " + inputsAsString);
