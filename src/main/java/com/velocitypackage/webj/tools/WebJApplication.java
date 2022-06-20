@@ -9,7 +9,7 @@ import com.velocitypackage.webj.services.ws.WebSocketService;
 import java.io.IOException;
 import java.net.InetAddress;
 
-public abstract class WebApplication
+public abstract class WebJApplication
 {
     public abstract HyperTextBehavior build();
     
