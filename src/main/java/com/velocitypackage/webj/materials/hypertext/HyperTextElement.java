@@ -10,14 +10,29 @@ public final class HyperTextElement implements Element
 {
     private final Tag tag;
     private final Map<Attribute, String> attributeMap;
+    private final String id;
     
     /**
-     * @param tag
+     *
      */
-    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Tuple<Attribute, String>[] attributes)
+    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Tuple<Attribute, String>[] attributes, Tuple<Style, String>[] styles)
     {
+        id = String.valueOf(this.hashCode());
         attributeMap = new HashMap<>();
         this.tag = tag;
+        for (Bootstrap b : bootstraps)
+        {
+            this.addBootstrap(b);
+        }
+        for (Tuple<Attribute, String> a : attributes)
+        {
+            this.addAttribute(a.key, a.value);
+        }
+        for (Tuple<Style, String> s : styles)
+        {
+            this.addStyle(s.key, s.value);
+        }
+        this.addAttribute(Attribute.ID, this.id);
     }
     
     /**
@@ -26,7 +41,7 @@ public final class HyperTextElement implements Element
      * @param attribute keyword of the attribute (can't be null)
      * @param value     and the attribute option (can be null)
      */
-    public void addAttribute(Attribute attribute, String value)
+    private void addAttribute(Attribute attribute, String value)
     {
         if (attribute == null)
         {
@@ -52,7 +67,7 @@ public final class HyperTextElement implements Element
      *
      * @param classList (can't be null)
      */
-    public void addBootstrap(Bootstrap... classList)
+    private void addBootstrap(Bootstrap... classList)
     {
         if (classList == null || classList.length == 0)
         {
@@ -70,7 +85,7 @@ public final class HyperTextElement implements Element
      * @param style the style option (can't be null)
      * @param value the value (can be null)
      */
-    public void addStyle(Style style, String value)
+    private void addStyle(Style style, String value)
     {
         if (style == null)
         {
@@ -103,7 +118,12 @@ public final class HyperTextElement implements Element
         return stringBuilder.toString();
     }
     
-    public class Tuple<K, V>
+    public String getId()
+    {
+        return this.id;
+    }
+    
+    public static class Tuple<K, V>
     {
         private final K key;
         private final V value;
@@ -112,16 +132,6 @@ public final class HyperTextElement implements Element
         {
             this.key = key;
             this.value = value;
-        }
-        
-        public K getKey()
-        {
-            return key;
-        }
-        
-        public V getValue()
-        {
-            return value;
         }
     }
     
