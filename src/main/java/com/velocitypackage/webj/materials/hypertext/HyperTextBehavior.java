@@ -10,6 +10,7 @@ import java.util.Map;
 public abstract class HyperTextBehavior
 {
     private final List<HyperTextBehavior> children;
+    private HyperTextBehavior parent;
     private Element content;
     private final String id;
     private String cache;
@@ -58,6 +59,10 @@ public abstract class HyperTextBehavior
             stringBuilder.append("</").append(((HyperTextElement) content).getTag().name().toLowerCase()).append(">");
             cache = stringBuilder.toString();
         }
+        if (parent != null)
+        {
+            parent.recompile();
+        }
     }
     
     public final void onMessage(String id, Map<String, String> values)
@@ -85,6 +90,7 @@ public abstract class HyperTextBehavior
         if (hyperTextBehavior != null)
         {
             children.add(hyperTextBehavior);
+            hyperTextBehavior.setParent(this);
         }
         recompile();
     }
@@ -99,4 +105,9 @@ public abstract class HyperTextBehavior
     }
     
     public abstract void onInteract(Map<String, String> values);
+    
+    public void setParent(HyperTextBehavior hyperTextBehavior)
+    {
+        parent = hyperTextBehavior;
+    }
 }
