@@ -5,6 +5,7 @@ import com.velocitypackage.database.materials.exceptions.DependencyException;
 import com.velocitypackage.database.services.Database;
 import com.velocitypackage.database.services.DatabaseSystem;
 import com.velocitypackage.database.services.MariaDB;
+import com.velocitypackage.database.services.MySQL;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,11 +20,32 @@ public class DatabaseManagement
         {
             switch (system)
             {
+                case MYSQL:
+                    database = new MySQL(host, user, passwd, "sys");
+                    break;
                 case MARIADB:
                     database = new MariaDB(host, user, passwd, "sys");
                     break;
                 default:
-                    database = new MariaDB(host, user, passwd, "sys");
+                    database = new Database()
+                    {
+                        @Override
+                        public ResultSet query(String query)
+                        {
+                            return null;
+                        }
+                        
+                        @Override
+                        public ResultSet secureQuery(String query)
+                        {
+                            return null;
+                        }
+                        
+                        @Override
+                        public void close()
+                        {
+                        }
+                    };
                     break;
             }
         } catch (DependencyException e)
