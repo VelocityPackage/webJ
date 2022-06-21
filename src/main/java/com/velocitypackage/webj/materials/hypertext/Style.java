@@ -2,6 +2,12 @@ package com.velocitypackage.webj.materials.hypertext;
 
 import java.util.Objects;
 
+/**
+ * Each instance of the style class represents an assignment of a value to one of the html style properties.
+ *
+ * @author marvinmielchen
+ * @author maxmielchen
+ */
 public class Style
 {
     

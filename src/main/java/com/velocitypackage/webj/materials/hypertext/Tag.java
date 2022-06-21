@@ -1,5 +1,8 @@
 package com.velocitypackage.webj.materials.hypertext;
 
+/**
+ * The tag enumeration contains all html tags.
+ */
 @SuppressWarnings("unused")
 public enum Tag
 {
