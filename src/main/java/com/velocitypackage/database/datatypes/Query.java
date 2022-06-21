@@ -56,7 +56,6 @@ public class Query
         return this;
     }
     
-    
     /**
      * Append the query with A
      * @return the object self
@@ -15750,5 +15749,4 @@ public class Query
         query.append("ZONE ").append(c).append(" ");
         return this;
     }
-    
 }
