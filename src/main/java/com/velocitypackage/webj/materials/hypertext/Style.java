@@ -2,12 +2,24 @@ package com.velocitypackage.webj.materials.hypertext;
 
 import java.util.Objects;
 
+/**
+ * Each instance of the style class represents an assignment of a value to one of the html style properties.
+ * Objects of the style class are immutable.
+ *
+ * @author marvinmielchen
+ * @author maxmielchen
+ */
 public class Style
 {
-    
     private final StyleIdentifier styleIdentifier;
     private final String value;
     
+    /**
+     * A constructor for the style class that generates a new style object from a given style attribute and a value.
+     *
+     * @param styleIdentifier the style attribute that the value is assigned to
+     * @param value           the value that is assigned to the given style attribute
+     */
     public Style(StyleIdentifier styleIdentifier, String value)
     {
         this.styleIdentifier = styleIdentifier;
