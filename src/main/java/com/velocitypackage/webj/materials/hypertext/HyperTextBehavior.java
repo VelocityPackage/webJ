@@ -23,7 +23,7 @@ public abstract class HyperTextBehavior
         cache = "";
     }
     
-    public final void setContent(HyperTextElement hyperTextElement)
+    public final void setHyperTextElement(HyperTextElement hyperTextElement)
     {
         this.hyperTextElement = hyperTextElement;
         this.id = hyperTextElement.getId();
