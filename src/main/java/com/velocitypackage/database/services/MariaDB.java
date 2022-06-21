@@ -16,14 +16,13 @@ public final class MariaDB implements Database
      * @param host     hostname of MariaDB instance
      * @param user     username, default -> "sa"
      * @param passwd   password, default -> "sa"
-     * @param database database, default -> "sys"
      * @throws DependencyException throws when the MariaDB not installed
      */
-    public MariaDB(String host, String user, String passwd, String database) throws DependencyException
+    public MariaDB(String host, String user, String passwd) throws DependencyException
     {
         try
         {
-            String databaseURL = "jdbc:mariadb://" + host + "/" + database;
+            String databaseURL = "jdbc:mariadb://" + host + "/";
             Class.forName(JDBC_DRIVER);
             connection = DriverManager.getConnection(databaseURL, user, passwd);
         } catch (SQLException e)

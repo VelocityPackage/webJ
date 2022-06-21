@@ -21,10 +21,10 @@ public class DatabaseManagement
             switch (system)
             {
                 case MYSQL:
-                    database = new MySQL(host, user, passwd, "sys");
+                    database = new MySQL(host, user, passwd);
                     break;
                 case MARIADB:
-                    database = new MariaDB(host, user, passwd, "sys");
+                    database = new MariaDB(host, user, passwd);
                     break;
                 default:
                     database = new Database()

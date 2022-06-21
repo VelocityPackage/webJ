@@ -12,14 +12,13 @@ public class MySQL implements Database
      * @param host     hostname of MySQL instance
      * @param user     username, default -> "sa"
      * @param passwd   password, default -> "sa"
-     * @param database database, default -> "sys"
      * @throws DependencyException throws when the MySQL not installed
      */
-    public MySQL(String host, String user, String passwd, String database) throws DependencyException
+    public MySQL(String host, String user, String passwd) throws DependencyException
     {
         try
         {
-            String databaseURL = "jdbc:mysql://" + host + "/" + database;
+            String databaseURL = "jdbc:mysql://" + host + "/";
             connection = DriverManager.getConnection(databaseURL, user, passwd);
         } catch (SQLException e)
         {
