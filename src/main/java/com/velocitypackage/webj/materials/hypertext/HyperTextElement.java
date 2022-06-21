@@ -1,6 +1,8 @@
 package com.velocitypackage.webj.materials.hypertext;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,16 +11,16 @@ import java.util.Map;
 public final class HyperTextElement implements Element
 {
     private final Tag tag;
-    private final Map<Attribute, String> attributeMap;
+    private final List<Attribute> attributeList;
     private final String id;
     
     /**
      *
      */
-    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Tuple<Attribute, String>[] attributes, Tuple<Style, String>[] styles) //TODO
+    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Attribute[] attributes)
     {
+        attributeList = new ArrayList<>();
         id = String.valueOf(this.hashCode());
-        attributeMap = new HashMap<>();
         this.tag = tag;
         if (bootstraps != null)
         {
@@ -29,53 +31,27 @@ public final class HyperTextElement implements Element
         }
         if (attributes != null)
         {
-            for (Tuple<Attribute, String> a : attributes)
+            for (Attribute a : attributes)
             {
-                this.addAttribute(a.getKey(), a.getValue());
+                this.addAttribute(a);
             }
         }
-        if (styles != null)
-        {
-            for (Tuple<Style, String> s : styles)
-            {
-                this.addStyle(s.getKey(), s.getValue());
-            }
-        }
-        this.addAttribute(Attribute.ID, this.id);
+        this.addAttribute(new Attribute(Attribute.AttributeName.ID, this.id));
     }
     
-    /**
-     * Write some attributes to the elements and when the attribute exist appends it to the existing.
-     *
-     * @param attribute keyword of the attribute (can't be null)
-     * @param value     and the attribute option (can be null)
-     */
-    private void addAttribute(Attribute attribute, String value)
+    private void addAttribute(Attribute attribute)
     {
         if (attribute == null)
         {
             return;
         }
-        if (value == null)
+        if (! attributeList.contains(attribute))
         {
-            value = "";
-        }
-        if (! attributeMap.containsKey(attribute))
-        {
-            attributeMap.put(attribute, value);
-            return;
-        }
-        if (! (attributeMap.get(attribute).contains(value)))
-        {
-            attributeMap.put(attribute, attributeMap.get(attribute) + " " + value);
+            attributeList.add(attribute);
         }
     }
     
-    /**
-     * Adds some classes as Bootstrap enum to the element.
-     *
-     * @param classList (can't be null)
-     */
+    
     private void addBootstrap(Bootstrap... classList)
     {
         if (classList == null || classList.length == 0)
@@ -84,23 +60,8 @@ public final class HyperTextElement implements Element
         }
         for (Bootstrap c : classList)
         {
-            addAttribute(Attribute.CLASS, c.name().toLowerCase().replaceAll("_", "-"));
+            addAttribute(new Attribute(Attribute.AttributeName.CLASS, c.name().replaceAll("_", "-").toLowerCase()));
         }
-    }
-    
-    /**
-     * Add a style option to the element or overwrite a style option.
-     *
-     * @param style the style option (can't be null)
-     * @param value the value (can be null)
-     */
-    private void addStyle(Style style, String value)
-    {
-        if (style == null)
-        {
-            return;
-        }
-        addAttribute(Attribute.STYLE, style.name().toLowerCase().replaceAll("_", "-") + ": " + value + ";");
     }
     
     /**
@@ -116,12 +77,24 @@ public final class HyperTextElement implements Element
      */
     public String getAttributes()
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Attribute a : attributeMap.keySet())
+        Map<Attribute.AttributeName, String> map = new HashMap<>();
+        for (Attribute a : attributeList)
         {
-            stringBuilder.append(a.name().toLowerCase());
+            if (! map.containsKey(a.getIdentifier()))
+            {
+                map.put(a.getIdentifier(), a.getValue());
+            } else if (! map.containsValue(a.getValue()))
+            {
+                map.put(a.getIdentifier(), map.get(a.getIdentifier()) + " " + a.getValue());
+            }
+        }
+        
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Attribute.AttributeName a : map.keySet())
+        {
+            stringBuilder.append(a.name().toLowerCase().replaceAll("_", "-"));
             stringBuilder.append("=\"");
-            stringBuilder.append(attributeMap.get(a));
+            stringBuilder.append(map.get(a));
             stringBuilder.append("\" ");
         }
         return stringBuilder.toString();
@@ -131,6 +104,4 @@ public final class HyperTextElement implements Element
     {
         return this.id;
     }
-    
-    
 }

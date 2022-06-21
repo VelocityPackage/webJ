@@ -1,4 +1,3 @@
-import com.velocitypackage.webj.materials.components.TestComp;
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
 import com.velocitypackage.webj.tools.WebJApplication;
 
