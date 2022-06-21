@@ -2,10 +2,7 @@ package com.velocitypackage.database.services;
 
 import com.velocitypackage.database.materials.exceptions.DependencyException;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class MySQL implements Database
 {
@@ -36,18 +33,28 @@ public class MySQL implements Database
     @Override
     public ResultSet query(String query) throws SQLException
     {
-        return null;
+        Statement statement;
+        statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        statement.close();
+        return resultSet;
     }
     
+    @Deprecated
     @Override
     public ResultSet secureQuery(String query) throws SQLException
     {
-        return null;
+        return query(query); // TODO: 21.06.22 query 
     }
     
     @Override
     public void close()
     {
-    
+        try
+        {
+            connection.close();
+        } catch (SQLException ignore)
+        {
+        }
     }
 }
