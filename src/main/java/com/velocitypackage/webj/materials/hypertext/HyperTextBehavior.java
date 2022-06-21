@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * @author marvinmielchen
  */
 public abstract class HyperTextBehavior
 {
