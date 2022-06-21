@@ -10,14 +10,38 @@ public final class HyperTextElement implements Element
 {
     private final Tag tag;
     private final Map<Attribute, String> attributeMap;
+    private final String id;
     
     /**
-     * @param tag
+     *
      */
-    public HyperTextElement(Tag tag)
+    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Tuple<Attribute, String>[] attributes, Tuple<Style, String>[] styles) //TODO
     {
+        id = String.valueOf(this.hashCode());
         attributeMap = new HashMap<>();
         this.tag = tag;
+        if (bootstraps != null)
+        {
+            for (Bootstrap b : bootstraps)
+            {
+                this.addBootstrap(b);
+            }
+        }
+        if (attributes != null)
+        {
+            for (Tuple<Attribute, String> a : attributes)
+            {
+                this.addAttribute(a.getKey(), a.getValue());
+            }
+        }
+        if (styles != null)
+        {
+            for (Tuple<Style, String> s : styles)
+            {
+                this.addStyle(s.getKey(), s.getValue());
+            }
+        }
+        this.addAttribute(Attribute.ID, this.id);
     }
     
     /**
@@ -26,7 +50,7 @@ public final class HyperTextElement implements Element
      * @param attribute keyword of the attribute (can't be null)
      * @param value     and the attribute option (can be null)
      */
-    public void addAttribute(Attribute attribute, String value)
+    private void addAttribute(Attribute attribute, String value)
     {
         if (attribute == null)
         {
@@ -52,7 +76,7 @@ public final class HyperTextElement implements Element
      *
      * @param classList (can't be null)
      */
-    public void addBootstrap(Bootstrap... classList)
+    private void addBootstrap(Bootstrap... classList)
     {
         if (classList == null || classList.length == 0)
         {
@@ -70,7 +94,7 @@ public final class HyperTextElement implements Element
      * @param style the style option (can't be null)
      * @param value the value (can be null)
      */
-    public void addStyle(Style style, String value)
+    private void addStyle(Style style, String value)
     {
         if (style == null)
         {
@@ -80,19 +104,33 @@ public final class HyperTextElement implements Element
     }
     
     /**
-     * @return
+     *
      */
-    public Tag getTag()
+    public String getTag()
     {
-        return tag;
+        return tag.name().toLowerCase();
     }
     
     /**
-     * @return
+     *
      */
-    public Map<Attribute, String> getAttributeMap()
+    public String getAttributes()
     {
-        return attributeMap;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Attribute a : attributeMap.keySet())
+        {
+            stringBuilder.append(a.name().toLowerCase());
+            stringBuilder.append("=\"");
+            stringBuilder.append(attributeMap.get(a));
+            stringBuilder.append("\" ");
+        }
+        return stringBuilder.toString();
     }
+    
+    public String getId()
+    {
+        return this.id;
+    }
+    
     
 }

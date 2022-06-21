@@ -12,24 +12,24 @@ public abstract class HyperTextBehavior
     private final List<HyperTextBehavior> children;
     private HyperTextBehavior parent;
     private Element content;
-    private final String id;
+    private String id;
     private String cache;
     
     public HyperTextBehavior()
     {
         children = new ArrayList<>();
         content = new TextElement("");
-        id = String.valueOf(this.hashCode());
-        if (content instanceof HyperTextElement)
-        {
-            ((HyperTextElement) content).addAttribute(Attribute.ID, id);
-        }
+        id = null;
         cache = "";
     }
     
     public final void setContent(Element element)
     {
         content = element;
+        if (element instanceof HyperTextElement)
+        {
+            id = ((HyperTextElement) element).getId();
+        }
         recompile();
     }
     
@@ -42,21 +42,15 @@ public abstract class HyperTextBehavior
         if (content instanceof HyperTextElement)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("<").append(((HyperTextElement) content).getTag().name().toLowerCase());
+            stringBuilder.append("<").append(((HyperTextElement) content).getTag());
             stringBuilder.append(" ");
-            for (Attribute a : ((HyperTextElement) content).getAttributeMap().keySet())
-            {
-                stringBuilder.append(a.name().toLowerCase());
-                stringBuilder.append("=\"");
-                stringBuilder.append(((HyperTextElement) content).getAttributeMap().get(a));
-                stringBuilder.append("\" ");
-            }
+            stringBuilder.append(((HyperTextElement) content).getAttributes());
             stringBuilder.append(" >");
             for (HyperTextBehavior hyperTextBehavior : children)
             {
                 stringBuilder.append(hyperTextBehavior.build());
             }
-            stringBuilder.append("</").append(((HyperTextElement) content).getTag().name().toLowerCase()).append(">");
+            stringBuilder.append("</").append(((HyperTextElement) content).getTag()).append(">");
             cache = stringBuilder.toString();
         }
         if (parent != null)
@@ -81,10 +75,10 @@ public abstract class HyperTextBehavior
     
     public final String build()
     {
-        recompile(); //TODO fix caching
         return cache;
     }
     
+    @SuppressWarnings("unused")
     public final void addChild(HyperTextBehavior hyperTextBehavior)
     {
         if (hyperTextBehavior != null)
@@ -95,6 +89,7 @@ public abstract class HyperTextBehavior
         recompile();
     }
     
+    @SuppressWarnings("unused")
     public final void removeChild(HyperTextBehavior hyperTextBehavior)
     {
         if (hyperTextBehavior != null)
