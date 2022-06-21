@@ -1,3 +1,4 @@
+import com.velocitypackage.webj.materials.components.Panel;
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
 import com.velocitypackage.webj.tools.WebJApplication;
 
@@ -8,7 +9,8 @@ public class TestApp extends WebJApplication
     @Override
     public HyperTextBehavior build()
     {
-        return null;
+        Panel panel = new Panel();
+        return panel;
     }
     
     public static void main(String[] args) throws IOException

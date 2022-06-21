@@ -1,5 +1,7 @@
 package com.velocitypackage.database.datatypes;
 
+import java.util.Map;
+
 @SuppressWarnings("unused")
 public class Query
 {
@@ -17,11 +19,54 @@ public class Query
     
     //Builder
     
-    public static Query createDatabase(String database) {
-        return null;
+    
+    public static class template
+    {
+        public static Query createDatabase(String database) {
+            return new Query().create().database(createString(database));
+        }
+    
+        public static Query createTable(String database, String table, Map<String, DataTyp>  columns) {
+            Query query = new Query();
+            query.create().table();
+            query.s(createString(database) + "." + createString(table));
+            query.s("(");
+            for (Map.Entry<String, DataTyp> column : columns.entrySet()) {
+                DataTyp dataTyp = column.getValue();
+                if (dataTyp.getSize() == null) {
+                    query.s(createString(column.getKey())).s(dataTyp.toString()).null_().s(",");
+                } else {
+                    query.s(createString(column.getKey())).s(dataTyp + "(" + dataTyp.getSize() +")").null_().s(",");
+                }
+            }
+            query.s("id").s(DataTyp.INT.toString()).auto_increment().not().null_().s(",");
+            query.primary().key().s("(id)");
+            query.s(")");
+            query.s("ENGINE=InnoDB");
+            query.default_("CHARSET=utf8mb4");
+            query.s("COLLATE=utf8mb4_general_ci");
+            return query;
+        }
+        
+        @Deprecated
+        public static Query insertData(String database, String table, Map<String, String> data) {
+            Query query = new Query();
+            query.insert().into();
+            query.s(createString(database) + "." + createString(table));
+            return null; // TODO: 21.06.22 MAX MIELCHEN do methode functionaly
+        }
     }
     
     //Builder
+    
+    /**
+     * Creates a Query_String with safe components like `*`
+     * @param string Query_String
+     * @return Query_String
+     */
+    public static String createString(String string) {
+        return "`" + string + "`";
+    }
     
     /**
      * Compiles and returns the query as String
