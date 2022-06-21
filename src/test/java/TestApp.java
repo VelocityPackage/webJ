@@ -8,9 +8,7 @@ public class TestApp extends WebJApplication
     @Override
     public HyperTextBehavior build()
     {
-        TestComp root = new TestComp();
-        root.addChild(new TestComp());
-        return root;
+        return null;
     }
     
     public static void main(String[] args) throws IOException

@@ -8,20 +8,22 @@ import java.util.Map;
 /**
  *
  */
-public final class HyperTextElement implements Element
+public final class HyperTextElement
 {
     private final Tag tag;
     private final List<Attribute> attributeList;
     private final String id;
+    private final String text;
     
     /**
      *
      */
     public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Attribute[] attributes)
     {
-        attributeList = new ArrayList<>();
-        id = String.valueOf(this.hashCode());
+        this.text = "";
         this.tag = tag;
+        this.attributeList = new ArrayList<>();
+        this.id = String.valueOf(this.hashCode());
         if (bootstraps != null)
         {
             for (Bootstrap b : bootstraps)
@@ -36,7 +38,15 @@ public final class HyperTextElement implements Element
                 this.addAttribute(a);
             }
         }
-        this.addAttribute(new Attribute(Attribute.AttributeName.ID, this.id));
+        this.addAttribute(new Attribute(Attribute.AttributeIdentifier.ID, this.id));
+    }
+    
+    public HyperTextElement(String text)
+    {
+        this.text = text;
+        this.tag = null;
+        this.attributeList = new ArrayList<>();
+        this.id = String.valueOf(this.hashCode());
     }
     
     private void addAttribute(Attribute attribute)
@@ -60,7 +70,7 @@ public final class HyperTextElement implements Element
         }
         for (Bootstrap c : classList)
         {
-            addAttribute(new Attribute(Attribute.AttributeName.CLASS, c.name().replaceAll("_", "-").toLowerCase()));
+            addAttribute(new Attribute(Attribute.AttributeIdentifier.CLASS, c.name().replaceAll("_", "-").toLowerCase()));
         }
     }
     
@@ -69,7 +79,11 @@ public final class HyperTextElement implements Element
      */
     public String getTag()
     {
-        return tag.name().toLowerCase();
+        if (tag == null)
+        {
+            return null;
+        }
+        return tag.name().replaceAll("_", "-").toLowerCase();
     }
     
     /**
@@ -77,7 +91,7 @@ public final class HyperTextElement implements Element
      */
     public String getAttributes()
     {
-        Map<Attribute.AttributeName, String> map = new HashMap<>();
+        Map<Attribute.AttributeIdentifier, String> map = new HashMap<>();
         for (Attribute a : attributeList)
         {
             if (! map.containsKey(a.getIdentifier()))
@@ -90,7 +104,7 @@ public final class HyperTextElement implements Element
         }
         
         StringBuilder stringBuilder = new StringBuilder();
-        for (Attribute.AttributeName a : map.keySet())
+        for (Attribute.AttributeIdentifier a : map.keySet())
         {
             stringBuilder.append(a.name().toLowerCase().replaceAll("_", "-"));
             stringBuilder.append("=\"");
@@ -103,5 +117,10 @@ public final class HyperTextElement implements Element
     public String getId()
     {
         return this.id;
+    }
+    
+    public String getText()
+    {
+        return text;
     }
 }
