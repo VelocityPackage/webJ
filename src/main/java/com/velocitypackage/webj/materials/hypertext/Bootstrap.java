@@ -1,5 +1,8 @@
 package com.velocitypackage.webj.materials.hypertext;
 
+/**
+ * The Bootstrap enumeration contains all bootstrap classes.
+ */
 @SuppressWarnings("unused")
 public enum Bootstrap
 {
