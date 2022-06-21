@@ -5,6 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Each instance of the HyperTextBehavior stores a HyperTextElement object and is responsible for generating its text representation and combining it with the text representation of its children.
+ * In addition to that a HyperTextBehavior object is responsible for managing the relation of its HyperTextElement object to its parent and child objects in the html structure.
+ * When an event occurs the HyperTextBehavior object will either execute its onInteract method or forward the event to its children.
+ * <p>
+ * To minimize the time it takes to get the text representation each HyperTextBehavior object stores the compiled text representation in a cache and will only recompile it when necessary.
+ *
  * @author marvinmielchen
  */
 public abstract class HyperTextBehavior
@@ -14,6 +20,7 @@ public abstract class HyperTextBehavior
     private HyperTextElement hyperTextElement;
     private String id;
     private String cache;
+    
     
     public HyperTextBehavior()
     {
@@ -40,7 +47,7 @@ public abstract class HyperTextBehavior
         stringBuilder.append(hyperTextElement.getText());
         for (HyperTextBehavior hyperTextBehavior : children)
         {
-            stringBuilder.append(hyperTextBehavior.build());
+            stringBuilder.append(hyperTextBehavior.getTextRepresentation());
         }
         stringBuilder.append("</").append(hyperTextElement.getTag()).append(">");
         cache = stringBuilder.toString();
@@ -64,7 +71,7 @@ public abstract class HyperTextBehavior
         }
     }
     
-    public final String build()
+    public final String getTextRepresentation()
     {
         return cache;
     }

@@ -25,7 +25,7 @@ public final class WebSocketService extends WebSocketServer
     public void onOpen(WebSocket conn, ClientHandshake handshake)
     {
         clientList.put(conn, webApplication.build());
-        conn.send(clientList.get(conn).build());
+        conn.send(clientList.get(conn).getTextRepresentation());
     }
     
     @Override
@@ -57,7 +57,7 @@ public final class WebSocketService extends WebSocketServer
                 }
             }
             appRoot.onMessage(id, inputMap);
-            conn.send(appRoot.build());
+            conn.send(appRoot.getTextRepresentation());
         }
     }
     
