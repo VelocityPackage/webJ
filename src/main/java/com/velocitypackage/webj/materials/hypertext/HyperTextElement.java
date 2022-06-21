@@ -18,24 +18,31 @@ public final class HyperTextElement
     /**
      *
      */
-    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Attribute[] attributes)
+    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Attribute[] attributes, Style[] styles)
     {
         this.text = "";
         this.tag = tag;
         this.attributeList = new ArrayList<>();
         this.id = String.valueOf(this.hashCode());
-        if (bootstraps != null)
-        {
-            for (Bootstrap b : bootstraps)
-            {
-                this.addBootstrap(b);
-            }
-        }
         if (attributes != null)
         {
             for (Attribute a : attributes)
             {
                 this.addAttribute(a);
+            }
+        }
+        if (bootstraps != null)
+        {
+            for (Bootstrap b : bootstraps)
+            {
+                this.addAttribute(new Attribute(Attribute.AttributeIdentifier.CLASS, b.name().replaceAll("_", "-").toLowerCase()));
+            }
+        }
+        if (styles != null)
+        {
+            for (Style s : styles)
+            {
+                this.addAttribute(new Attribute(Attribute.AttributeIdentifier.STYLE, s.getValue()));
             }
         }
         this.addAttribute(new Attribute(Attribute.AttributeIdentifier.ID, this.id));
@@ -58,19 +65,6 @@ public final class HyperTextElement
         if (! attributeList.contains(attribute))
         {
             attributeList.add(attribute);
-        }
-    }
-    
-    
-    private void addBootstrap(Bootstrap... classList)
-    {
-        if (classList == null || classList.length == 0)
-        {
-            return;
-        }
-        for (Bootstrap c : classList)
-        {
-            addAttribute(new Attribute(Attribute.AttributeIdentifier.CLASS, c.name().replaceAll("_", "-").toLowerCase()));
         }
     }
     

@@ -1,6 +1,5 @@
 package com.velocitypackage.webj.materials.hypertext;
 
-
 import java.util.Objects;
 
 public class Attribute
