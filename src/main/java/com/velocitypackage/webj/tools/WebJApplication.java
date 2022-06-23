@@ -33,7 +33,6 @@ public abstract class WebJApplication
             {
                 try
                 {
-                    //unter den teppich kehren (Aka mike sagte mal man muss alles kommentieren wenn man codet)
                     return FileService.getContentOfResource("frame.html").replaceFirst("%NAME%", websiteTitle);
                 } catch (IOException e)
                 {
