@@ -48,17 +48,11 @@ public final class MariaDB implements Database
     public ResultSet secureQuery(String query) throws SQLException
     {
         String begin = "BEGIN TRANSACTION;";
+        query(begin);
+        ResultSet resultSet = query(query);
         String end = "COMMIT;";
-        query = query.trim();
-        if (! query.startsWith(begin))
-        {
-            query = begin + " " + query;
-        }
-        if (! query.endsWith(end))
-        {
-            query = query + " " + end;
-        }
-        return query(query);
+        query(end);
+        return resultSet;
     }
     
     @Override

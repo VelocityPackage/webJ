@@ -51,7 +51,7 @@ public final class HyperTextElement
         {
             for (Style s : styles)
             {
-                this.addAttribute(new Attribute(Attribute.AttributeIdentifier.STYLE, s.getValue()));
+                this.addAttribute(new Attribute(Attribute.AttributeIdentifier.STYLE, s.getIdentifier().name().toLowerCase().replaceAll("_", "-") + ": " + s.getValue() + "; "));
             }
         }
         this.addAttribute(new Attribute(Attribute.AttributeIdentifier.ID, this.id));

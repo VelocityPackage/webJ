@@ -9,13 +9,19 @@ public class TestApp extends WebJApplication
     @Override
     public HyperTextBehavior build()
     {
-        Panel panel = new Panel();
-        return panel;
+        
+        new Panel(
+                new Panel(),
+                new Panel()
+        );
+        
+        
+        return new Panel();
     }
     
     public static void main(String[] args) throws IOException
     {
         TestApp testApp = new TestApp();
-        testApp.start(8080, 8081, "TEst");
+        testApp.start(8081, 8080, "Test");
     }
 }

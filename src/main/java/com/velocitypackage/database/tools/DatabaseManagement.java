@@ -59,7 +59,7 @@ public class DatabaseManagement
         // TODO: 20.06.22 secureQuery
         try
         {
-            return database.query(query.getQuery());
+            return database.secureQuery(query.getQuery());
         } catch (SQLException e)
         {
             return null;
