@@ -16,9 +16,9 @@ Component System
             - Heading
             - Paragraph
         - Image
-        - Button
+        - Button (also link)
             - ButtonGroup
-        - Form
+        - Forms
             - Text
             - Email
             - Color

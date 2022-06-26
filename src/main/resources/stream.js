@@ -34,7 +34,6 @@ update(
 );
 
 var socket = null;
-
 try {
 	socket = new WebSocket(path);
 }

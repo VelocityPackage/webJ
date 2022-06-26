@@ -9,13 +9,6 @@ public class TestApp extends WebJApplication
     @Override
     public HyperTextBehavior build()
     {
-        
-        new Panel(
-                new Panel(),
-                new Panel()
-        );
-        
-        
         return new Panel();
     }
     
