@@ -6,10 +6,32 @@ Query System
     - Query Delete (Ready)
     - Query Select (Ready)
 Component System
-    - Panel (content align)
+    - Panel (content align) (Ready)
     - Row
     - Collum
     - Items
+        - Icons
+            -
+        - Text
+            - Heading
+            - Paragraph
+        - Image
+        - Button
+            - ButtonGroup
+        - Form
+            - Text
+            - Email
+            - Color
+            - Select
+            - Telephone
+            - Date a. Time
+            - Number
+            - Range
+            - URL
+            - Password
+            - File
+            - Checkbox
+            - Textarea
 Test Website with Content Management
     - Rechtstexte
     - Impressum
