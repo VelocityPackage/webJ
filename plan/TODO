@@ -1,13 +1,12 @@
 WebJ
     - Robot.txt
 Query System
-    - MySQL Connection fix
-    - Prevent Injection Attack
-    - Query Update
-    - Query Delete
-    - Query Select
+    - Prevent Injection Attack (Ready)
+    - Query Update (Ready)
+    - Query Delete (Ready)
+    - Query Select (Ready)
 Component System
-    - Panel
+    - Panel (content align)
     - Row
     - Collum
     - Items

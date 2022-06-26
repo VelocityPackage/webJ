@@ -5,7 +5,6 @@ import com.velocitypackage.database.materials.exceptions.DependencyException;
 import com.velocitypackage.database.services.Database;
 import com.velocitypackage.database.services.DatabaseSystem;
 import com.velocitypackage.database.services.MariaDB;
-import com.velocitypackage.database.services.MySQL;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,9 +19,6 @@ public class DatabaseManagement
         {
             switch (system)
             {
-                case MYSQL:
-                    database = new MySQL(host, user, passwd);
-                    break;
                 case MARIADB:
                     database = new MariaDB(host, user, passwd);
                     break;
@@ -59,7 +55,7 @@ public class DatabaseManagement
         // TODO: 20.06.22 secureQuery
         try
         {
-            return database.secureQuery(query.getQuery());
+            return database.query(query.getQuery());
         } catch (SQLException e)
         {
             return null;

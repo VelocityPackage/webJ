@@ -13,11 +13,4 @@ class DatabaseManagementTest
         DatabaseManagement databaseManagement = new DatabaseManagement(DatabaseSystem.MARIADB, "192.168.178.13:7000", "root", "sa");
         databaseManagement.send(Query.template.createDatabase("Test"));
     }
-    
-    @Test
-    void MySQL()
-    {
-        DatabaseManagement databaseManagement = new DatabaseManagement(DatabaseSystem.MYSQL, "192.168.178.13:7002", "root", "sa");
-        databaseManagement.send(Query.template.createDatabase("Test"));
-    }
 }

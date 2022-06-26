@@ -44,15 +44,11 @@ public final class MariaDB implements Database
         return resultSet;
     }
     
+    @Deprecated
     @Override
     public ResultSet secureQuery(String query) throws SQLException
     {
-        String begin = "BEGIN TRANSACTION;";
-        query(begin);
-        ResultSet resultSet = query(query);
-        String end = "COMMIT;";
-        query(end);
-        return resultSet;
+        return query(query); // TODO: 25.06.22 query 
     }
     
     @Override

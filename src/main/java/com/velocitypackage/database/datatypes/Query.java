@@ -23,12 +23,26 @@ public class Query
     
     public static class template
     {
-        
+    
+        /**
+         * Creates a query which can creates a new database
+         *
+         * @param database the name of the database as string
+         * @return the query which can creates a new database
+         */
         public static Query createDatabase(String database)
         {
             return new Query().create().database(createString(database));
         }
-        
+    
+        /**
+         * Creates a query which can create d new table in a database
+         *
+         * @param database the name of an existing database
+         * @param table the name of the table
+         * @param columns a hashmap of the columns. The entrys must look like (name of column, datatype.size(size)) its important for some datatypes to set the size
+         * @return the query which can crates a new table
+         */
         public static Query createTable(String database, String table, Map<String, DataTyp> columns)
         {
             Query query = new Query();
@@ -54,7 +68,15 @@ public class Query
             query.s("COLLATE=utf8mb4_general_ci");
             return query;
         }
-        
+    
+        /**
+         * Insert in a spezific table a new dataset
+         *
+         * @param database the name of an existing database
+         * @param table the name of an existing table
+         * @param data a hashmap of the columns. The entrys must look like (name of column, value)
+         * @return the query which can insert data in a table
+         */
         public static Query insertData(String database, String table, Map<String, String> data)
         {
             Query query = new Query();
@@ -84,6 +106,76 @@ public class Query
             valuesAsString.deleteCharAt(valuesAsString.length() - 1);
             valuesAsString.append(")");
             query.s(new String(columnsAsString)).values(new String(valuesAsString));
+            return query;
+        }
+    
+        /**
+         * Create a query which can update an existing dataset
+         *
+         * @param database name of existing database
+         * @param table name of existing table
+         * @param where this entry must look like (name of column, value) its important to know in which row the new data must update
+         * @param data the new data. The data must look like (name of column, value)
+         * @return returns the query which can update a dataset
+         */
+        public static Query updateData(String database, String table, Map.Entry<String, String> where, Map<String, String> data)
+        {
+            Query query = new Query();
+            query.update();
+            query.s(createString(database) + "." + createString(table));
+            StringBuilder newValues = new StringBuilder();
+            for (Map.Entry<String, String> entry : data.entrySet())
+            {
+                newValues.append(entry.getKey()).append("=").append(createString(entry.getValue())).append(",");
+            }
+            newValues.deleteCharAt(newValues.length() - 1);
+            query.set(new String(newValues)).where(where.getKey() + "=" + where.getValue());
+            return query;
+        }
+    
+        /**
+         * Creates a new query which delete a dataset
+         *
+         * @param database name of existing database
+         * @param table name of existing table
+         * @param where this entry must look like (name of column, value) its important to know which row must be delete
+         * @return returns the query which can delete a dataset
+         */
+        public static Query deleteData(String database, String table, Map.Entry<String, String> where)
+        {
+            Query query = new Query();
+            query.delete().from();
+            query.s(createString(database) + "." + createString(table));
+            query.where(where.getKey() + "=" + where.getValue());
+            return query;
+        }
+    
+        /**
+         * Create a new query which can select all of an table
+         *
+         * @param database name of an existing database
+         * @param table name of existing table
+         * @return returns the query which can select all of a table
+         */
+        public static Query selectAll(String database, String table)
+        {
+            Query query = new Query();
+            query.select("*").from(createString(database) + "." + createString(table));
+            return query;
+        }
+    
+        /**
+         * Create a new query which can select all of an table
+         *
+         * @param database name of an existing database
+         * @param table name of existing table
+         * @param where this entry must look like (name of column, value) its important to know which row must be select
+         * @return returns the query which can select all of a table
+         */
+        public static Query selectAllWhere(String database, String table, Map.Entry<String, String> where)
+        {
+            Query query = new Query();
+            query.select("*").from(createString(database) + "." + createString(table)).where(where.getKey() + "=" + where.getValue());
             return query;
         }
     }
