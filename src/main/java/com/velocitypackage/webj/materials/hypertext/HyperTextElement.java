@@ -1,9 +1,6 @@
 package com.velocitypackage.webj.materials.hypertext;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Each instance of the HyperTextElement class represents a html element. It can be a html tag with html attributes or a simple text.
@@ -30,6 +27,45 @@ public final class HyperTextElement
     public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Attribute[] attributes, Style[] styles)
     {
         this.text = "";
+        this.tag = tag;
+        this.attributeList = new ArrayList<>();
+        this.id = String.valueOf(this.hashCode());
+        if (attributes != null)
+        {
+            for (Attribute a : attributes)
+            {
+                this.addAttribute(a);
+            }
+        }
+        if (bootstraps != null)
+        {
+            for (Bootstrap b : bootstraps)
+            {
+                this.addAttribute(new Attribute(Attribute.AttributeIdentifier.CLASS, b.name().replaceAll("_", "-").toLowerCase()));
+            }
+        }
+        if (styles != null)
+        {
+            for (Style s : styles)
+            {
+                this.addAttribute(new Attribute(Attribute.AttributeIdentifier.STYLE, s.getIdentifier().name().toLowerCase().replaceAll("_", "-") + ": " + s.getValue() + "; "));
+            }
+        }
+        this.addAttribute(new Attribute(Attribute.AttributeIdentifier.ID, this.id));
+    }
+    
+    /**
+     * A constructor for the HyperTextElement class that creates a new HyperTextElement object from the given tag, bootstrap classes, html attributes and style properties.
+     *
+     * @param tag        the tag of the new HyperTextElement object
+     * @param bootstraps the bootstrap classes of the new HyperTextElement object
+     * @param attributes the html attributes of the new HyperTextElement object
+     * @param styles     the style properties of the new HyperTextElement object
+     * @param text       the text of the new HyperTextElement object
+     */
+    public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Attribute[] attributes, Style[] styles, String text)
+    {
+        this.text = Objects.requireNonNullElse(text, "");
         this.tag = tag;
         this.attributeList = new ArrayList<>();
         this.id = String.valueOf(this.hashCode());

@@ -7,17 +7,17 @@ Query System
     - Query Select (Ready)
 Component System
     - Panel (content align) (Ready)
-    - Row
-    - Collum
+    - Row (Ready)
+    - Column (Ready)
     - Items
         - Icons
             -
         - Text
-            - Heading
-            - Paragraph
+            - Heading (Ready)
+            - Paragraph (Ready)
         - Image
-        - Button (also link)
-            - ButtonGroup
+        - Button (Ready)
+            - ButtonGroup (Ready)
         - Forms
             - Text
             - Email

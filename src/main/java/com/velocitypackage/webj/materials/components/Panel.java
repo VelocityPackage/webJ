@@ -34,9 +34,9 @@ public class Panel extends Component
         }
     }
     
-    public Panel(Color color, Component... children)
+    public Panel(Style[] styles, Component... children)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, new Style[]{new Style(Style.StyleIdentifier.BACKGROUND, color.getHex())}));
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, styles));
         if (children == null)
         {
             return;
@@ -47,9 +47,14 @@ public class Panel extends Component
         }
     }
     
-    public Panel(Color color, Align contentAlign, Component... children)
+    public Panel(Style[] styles, Align contentAlign, Component... children)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, new Style[]{new Style(Style.StyleIdentifier.BACKGROUND, color.getHex()), new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())}));
+        Style[] basic = new Style[]{new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())
+        };
+        Style[] combine = new Style[basic.length + styles.length];
+        System.arraycopy(basic, 0, combine, 0, basic.length);
+        System.arraycopy(styles, 0, combine, basic.length, styles.length);
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, combine));
         if (children == null)
         {
             return;
