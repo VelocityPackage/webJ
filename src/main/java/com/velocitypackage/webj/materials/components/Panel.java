@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class Panel extends Component
 {
+    
     public Panel(Component... children)
     {
         super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, null));
@@ -52,6 +53,33 @@ public class Panel extends Component
     {
         Style[] basic = new Style[]{new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())};
         super.setHyperTextElement(new HyperTextElement(Tag.DIV, bootstraps, null, basic));
+        if (children == null)
+        {
+            return;
+        }
+        for (Component child : children)
+        {
+            addChild(child);
+        }
+    }
+    
+    public Panel(Style[] styles, Component... children)
+    {
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, styles));
+        if (children == null)
+        {
+            return;
+        }
+        for (Component child : children)
+        {
+            addChild(child);
+        }
+    }
+    
+    public Panel(Style[] styles, Align contentAlign, Component... children)
+    {
+        Style[] basic = new Style[]{new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())};
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, combine(basic, styles)));
         if (children == null)
         {
             return;

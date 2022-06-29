@@ -25,6 +25,5 @@ public class Column extends Component
     @Override
     public void onInteract(Map<String, String> values)
     {
-    
     }
 }

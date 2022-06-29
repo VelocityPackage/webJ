@@ -9,6 +9,12 @@ import java.util.Map;
 
 public class Row extends Component
 {
+    
+    /**
+     * Creates a row and put all children side by side
+     *
+     * @param children Varargs of child Components
+     */
     public Row(Component... children)
     {
         super.setHyperTextElement(new HyperTextElement(Tag.DIV, new Bootstrap[]{Bootstrap.ROW}, null, new Style[]{new Style(Style.StyleIdentifier.__BS_GUTTER_X, "")}));
@@ -25,6 +31,5 @@ public class Row extends Component
     @Override
     public void onInteract(Map<String, String> values)
     {
-    
     }
 }

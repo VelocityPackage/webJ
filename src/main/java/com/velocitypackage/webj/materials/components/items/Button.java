@@ -2,6 +2,7 @@ package com.velocitypackage.webj.materials.components.items;
 
 import com.velocitypackage.webj.materials.hypertext.Bootstrap;
 import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
+import com.velocitypackage.webj.materials.hypertext.Style;
 import com.velocitypackage.webj.materials.hypertext.Tag;
 
 import java.util.Map;
@@ -45,6 +46,25 @@ public class Button extends Item
             buttonType = ButtonType.PRIMARY;
         }
         super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), null, null, text));
+        this.text = text;
+        this.runnable = r;
+        this.buttonType = buttonType;
+    }
+    
+    public Button(String text, Style[] styles , Runnable r)
+    {
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, styles, text));
+        this.text = text;
+        this.runnable = r;
+        this.buttonType = ButtonType.PRIMARY;
+    }
+    
+    public Button(String text, Style[] styles, ButtonType buttonType, Runnable r)
+    {
+        if (buttonType == null) {
+            buttonType = ButtonType.PRIMARY;
+        }
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, styles, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;
