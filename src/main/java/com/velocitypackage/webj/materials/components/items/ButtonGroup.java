@@ -18,6 +18,16 @@ public class ButtonGroup extends Item
         }
     }
     
+    public ButtonGroup(Bootstrap[] bootstraps, Button... buttons)
+    {
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, new Bootstrap[]{Bootstrap.BTN_GROUP}, null, styles()));
+        for (Button button : buttons)
+        {
+            button.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, button.buttonType.state}, bootstraps), null, null, button.text));
+            super.addChild(button);
+        }
+    }
+    
     @Override
     public void onInteract(Map<String, String> values)
     {

@@ -15,7 +15,7 @@ Component System
         - Text
             - Heading (Ready)
             - Paragraph (Ready)
-        - Image
+        - Image (Ready)
         - Button (Ready)
             - ButtonGroup (Ready)
         - Forms

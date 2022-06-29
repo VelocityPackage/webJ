@@ -22,11 +22,11 @@ public class Image extends Item
         }
     }
     
-    public Image (File image, Style... styles)
+    public Image (File image, Bootstrap... bootstraps)
     {
         try
         {
-            setHyperTextElement(new HyperTextElement(Tag.IMG, new Bootstrap[]{Bootstrap.IMG_FLUID}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.SRC, "data:image/webp;base64, " + toBase64(image))}, new Style[]{new Style(Style.StyleIdentifier.MAX_WIDTH, "100%"), new Style(Style.StyleIdentifier.HEIGHT, "auto")}));
+            setHyperTextElement(new HyperTextElement(Tag.IMG, super.combine(new Bootstrap[]{Bootstrap.IMG_FLUID}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.SRC, "data:image/webp;base64, " + toBase64(image))}, new Style[]{new Style(Style.StyleIdentifier.MAX_WIDTH, "100%"), new Style(Style.StyleIdentifier.HEIGHT, "auto")}));
         } catch (IOException e)
         {
             setHyperTextElement(new HyperTextElement(""));

@@ -31,6 +31,25 @@ public class Button extends Item
         this.buttonType = buttonType;
     }
     
+    public Button(String text, Bootstrap[] bootstraps , Runnable r)
+    {
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), null, null, text));
+        this.text = text;
+        this.runnable = r;
+        this.buttonType = ButtonType.PRIMARY;
+    }
+    
+    public Button(String text, Bootstrap[] bootstraps, ButtonType buttonType, Runnable r)
+    {
+        if (buttonType == null) {
+            buttonType = ButtonType.PRIMARY;
+        }
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), null, null, text));
+        this.text = text;
+        this.runnable = r;
+        this.buttonType = buttonType;
+    }
+    
     @Override
     public void onInteract(Map<String, String> values)
     {

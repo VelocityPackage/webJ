@@ -1,5 +1,6 @@
 package com.velocitypackage.webj.materials.components.items;
 
+import com.velocitypackage.webj.materials.hypertext.Bootstrap;
 import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 import com.velocitypackage.webj.materials.hypertext.Tag;
 
@@ -9,7 +10,12 @@ public class Paragraph extends Item
 {
     public Paragraph(String p)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, null, null, null, p));
+        super.setHyperTextElement(new HyperTextElement(Tag.P, null, null, styles(), p));
+    }
+    
+    public Paragraph(String p, Bootstrap... bootstraps)
+    {
+        super.setHyperTextElement(new HyperTextElement(Tag.P, bootstraps, null, null, p));
     }
     
     @Override

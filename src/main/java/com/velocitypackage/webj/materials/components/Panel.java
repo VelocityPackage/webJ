@@ -1,5 +1,6 @@
 package com.velocitypackage.webj.materials.components;
 
+import com.velocitypackage.webj.materials.hypertext.Bootstrap;
 import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 import com.velocitypackage.webj.materials.hypertext.Style;
 import com.velocitypackage.webj.materials.hypertext.Tag;
@@ -34,9 +35,9 @@ public class Panel extends Component
         }
     }
     
-    public Panel(Style[] styles, Component... children)
+    public Panel(Bootstrap[] bootstraps, Component... children)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, styles));
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, bootstraps, null, null));
         if (children == null)
         {
             return;
@@ -47,10 +48,10 @@ public class Panel extends Component
         }
     }
     
-    public Panel(Style[] styles, Align contentAlign, Component... children)
+    public Panel(Bootstrap[] bootstraps, Align contentAlign, Component... children)
     {
         Style[] basic = new Style[]{new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())};
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, super.combine(basic, styles)));
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, bootstraps, null, basic));
         if (children == null)
         {
             return;
