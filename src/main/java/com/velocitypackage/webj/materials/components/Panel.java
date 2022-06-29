@@ -49,12 +49,8 @@ public class Panel extends Component
     
     public Panel(Style[] styles, Align contentAlign, Component... children)
     {
-        Style[] basic = new Style[]{new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())
-        };
-        Style[] combine = new Style[basic.length + styles.length];
-        System.arraycopy(basic, 0, combine, 0, basic.length);
-        System.arraycopy(styles, 0, combine, basic.length, styles.length);
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, combine));
+        Style[] basic = new Style[]{new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())};
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, super.combine(basic, styles)));
         if (children == null)
         {
             return;

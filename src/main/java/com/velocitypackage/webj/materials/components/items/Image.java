@@ -22,6 +22,17 @@ public class Image extends Item
         }
     }
     
+    public Image (File image, Style... styles)
+    {
+        try
+        {
+            setHyperTextElement(new HyperTextElement(Tag.IMG, new Bootstrap[]{Bootstrap.IMG_FLUID}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.SRC, "data:image/webp;base64, " + toBase64(image))}, new Style[]{new Style(Style.StyleIdentifier.MAX_WIDTH, "100%"), new Style(Style.StyleIdentifier.HEIGHT, "auto")}));
+        } catch (IOException e)
+        {
+            setHyperTextElement(new HyperTextElement(""));
+        }
+    }
+    
     @Override
     public void onInteract(Map<String, String> values)
     {
