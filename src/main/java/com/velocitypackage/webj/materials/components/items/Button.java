@@ -34,7 +34,7 @@ public class Button extends Item
     
     public Button(String text, Bootstrap[] bootstraps , Runnable r)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), null, null, text));
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), null, styles(), text));
         this.text = text;
         this.runnable = r;
         this.buttonType = ButtonType.PRIMARY;
@@ -45,7 +45,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), null, null, text));
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), null, styles(), text));
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;
@@ -53,7 +53,7 @@ public class Button extends Item
     
     public Button(String text, Style[] styles , Runnable r)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, styles, text));
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, super.combine(styles, styles()), text));
         this.text = text;
         this.runnable = r;
         this.buttonType = ButtonType.PRIMARY;
@@ -64,7 +64,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, styles, text));
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, super.combine(styles, styles()), text));
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;
@@ -78,7 +78,7 @@ public class Button extends Item
     
     public enum ButtonType
     {
-        PRIMARY(Bootstrap.BTN_PRIMARY), SECONDARY(Bootstrap.BTN_SECONDARY), SUCCESS(Bootstrap.BTN_SUCCESS), DANGER(Bootstrap.BTN_DANGER), WARNING(Bootstrap.BTN_WARNING), INFO(Bootstrap.BTN_INFO), LIGHT(Bootstrap.BTN_LIGHT), DARK(Bootstrap.BTN_DARK), LINK(Bootstrap.BTN_LINK);
+        PRIMARY(Bootstrap.BTN_PRIMARY), SECONDARY(Bootstrap.BTN_SECONDARY), SUCCESS(Bootstrap.BTN_SUCCESS), DANGER(Bootstrap.BTN_DANGER), WARNING(Bootstrap.BTN_WARNING), INFO(Bootstrap.BTN_INFO), LIGHT(Bootstrap.BTN_LIGHT), DARK(Bootstrap.BTN_DARK), LINK(Bootstrap.BTN_LINK), NONE(Bootstrap.BTN);
         public final Bootstrap state;
         ButtonType(Bootstrap state)
         {

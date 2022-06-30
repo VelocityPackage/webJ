@@ -9,10 +9,12 @@ import java.util.Map;
 
 public class Panel extends Component
 {
+    private final Bootstrap[] d_flex = new Bootstrap[]{Bootstrap.D_FLEX};
+    private final Style[] styles = new Style[]{new Style(Style.StyleIdentifier.HEIGHT, "100%")};
     
     public Panel(Component... children)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, null));
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, this.styles));
         if (children == null)
         {
             return;
@@ -23,9 +25,9 @@ public class Panel extends Component
         }
     }
     
-    public Panel(Align contentAlign, Component... children)
+    public Panel(Align horizontal, Align vertical, Component... children)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, new Style[]{new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())}));
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, super.combine(d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), null, this.styles));
         if (children == null)
         {
             return;
@@ -38,7 +40,7 @@ public class Panel extends Component
     
     public Panel(Bootstrap[] bootstraps, Component... children)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, bootstraps, null, null));
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, bootstraps, null, this.styles));
         if (children == null)
         {
             return;
@@ -49,10 +51,9 @@ public class Panel extends Component
         }
     }
     
-    public Panel(Bootstrap[] bootstraps, Align contentAlign, Component... children)
+    public Panel(Bootstrap[] bootstraps, Align horizontal, Align vertical, Component... children)
     {
-        Style[] basic = new Style[]{new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())};
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, bootstraps, null, basic));
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, super.combine(super.combine(bootstraps, this.d_flex), new Bootstrap[]{horizontal.horizontal, vertical.vertical}), null, styles));
         if (children == null)
         {
             return;
@@ -65,7 +66,7 @@ public class Panel extends Component
     
     public Panel(Style[] styles, Component... children)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, styles));
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, super.combine(styles, this.styles)));
         if (children == null)
         {
             return;
@@ -76,10 +77,9 @@ public class Panel extends Component
         }
     }
     
-    public Panel(Style[] styles, Align contentAlign, Component... children)
+    public Panel(Style[] styles, Align horizontal, Align vertical, Component... children)
     {
-        Style[] basic = new Style[]{new Style(Style.StyleIdentifier.TEXT_ALIGN, contentAlign.name().toLowerCase())};
-        super.setHyperTextElement(new HyperTextElement(Tag.DIV, null, null, combine(basic, styles)));
+        super.setHyperTextElement(new HyperTextElement(Tag.DIV, super.combine(this.d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), null, combine(this.styles, styles)));
         if (children == null)
         {
             return;
