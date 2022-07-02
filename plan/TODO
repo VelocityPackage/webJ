@@ -1,4 +1,5 @@
 WebJ
+    - Website Icon (context with favicon.ico)
     - Robot.txt
 Query System
     - Prevent Injection Attack (Ready)
@@ -7,12 +8,15 @@ Query System
     - Query Select (Ready)
 Component System
     - Panel (content align) (Ready)
+    - ActionPanel extends Panel
+    - View (Ready)
     - Row (Ready)
     - Column (Ready)
+    - Stack (cancel) -> PanelWithBackground
+    - ScrollPanel
     - Items
-        - Icons
-            -
-        - Text
+        - Icons (Ready)
+        - Text (Ready) (Ideas with complex text -> in example with regex)
             - Heading (Ready)
             - Paragraph (Ready)
         - Image (Ready)

@@ -1,4 +1,6 @@
 import com.velocitypackage.webj.materials.components.*;
+import com.velocitypackage.webj.materials.components.icons.Icon;
+import com.velocitypackage.webj.materials.components.icons.IconKey;
 import com.velocitypackage.webj.materials.components.items.Button;
 import com.velocitypackage.webj.materials.components.items.Heading;
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
@@ -14,7 +16,15 @@ public class TestApp extends WebJApplication
     public HyperTextBehavior build()
     {
         return new Panel(
-            header()
+                header(),
+                new Panel(
+                        new Style[]{
+                                new Style(Style.StyleIdentifier.MARGIN, "10px"),
+                        }
+                ),
+                new Panel(
+                   new Heading("kaka")
+                )
         );
     }
     
@@ -27,7 +37,7 @@ public class TestApp extends WebJApplication
                         new Row(
                                 new Panel(
                                         Align.START, Align.MIDDLE,
-                                        new Heading("VelocityPackage",
+                                        new Heading("VelocityPackage", Heading.Type.H3,
                                                 new Style(Style.StyleIdentifier.COLOR, "white"),
                                                 new Style(Style.StyleIdentifier.MARGIN_TOP, "10px"),
                                                 new Style(Style.StyleIdentifier.MARGIN_LEFT, "10px")
@@ -56,7 +66,8 @@ public class TestApp extends WebJApplication
                                                 () -> {
                                                     System.out.println("Projects");
                                                 }
-                                        )
+                                        ),
+                                        new Icon(IconKey.SETTINGS, new Color(255, 255, 255))
                                 )
                         )
                 )
