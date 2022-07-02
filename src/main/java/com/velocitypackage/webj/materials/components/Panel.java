@@ -10,7 +10,7 @@ import java.util.Map;
 public class Panel extends Component
 {
     private final Bootstrap[] d_flex = new Bootstrap[]{Bootstrap.D_FLEX};
-    private final Style[] styles = new Style[]{new Style(Style.StyleIdentifier.HEIGHT, "100%")};
+    private final Style[] styles = new Style[]{};
     
     public Panel(Component... children)
     {

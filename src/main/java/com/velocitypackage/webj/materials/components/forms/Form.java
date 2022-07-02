@@ -2,6 +2,7 @@ package com.velocitypackage.webj.materials.components.forms;
 
 import com.velocitypackage.webj.materials.components.Align;
 import com.velocitypackage.webj.materials.components.Component;
+import com.velocitypackage.webj.materials.components.Panel;
 import com.velocitypackage.webj.materials.hypertext.*;
 
 import java.util.Map;
@@ -21,10 +22,7 @@ public class Form extends Component
         {
             return;
         }
-        for (Component child : children)
-        {
-            addChild(child);
-        }
+        addChild(new Panel(children));
     }
     
     public Form(FormEvent event, Align horizontal, Align vertical, Component... children)
@@ -35,10 +33,7 @@ public class Form extends Component
         {
             return;
         }
-        for (Component child : children)
-        {
-            addChild(child);
-        }
+        addChild(new Panel(children));
     }
     
     public Form(FormEvent event, Bootstrap[] bootstraps, Component... children)
@@ -49,10 +44,7 @@ public class Form extends Component
         {
             return;
         }
-        for (Component child : children)
-        {
-            addChild(child);
-        }
+        addChild(new Panel(children));
     }
     
     public Form(FormEvent event, Bootstrap[] bootstraps, Align horizontal, Align vertical, Component... children)
@@ -63,10 +55,7 @@ public class Form extends Component
         {
             return;
         }
-        for (Component child : children)
-        {
-            addChild(child);
-        }
+        addChild(new Panel(children));
     }
     
     public Form(FormEvent event, Style[] styles, Component... children)
@@ -77,10 +66,7 @@ public class Form extends Component
         {
             return;
         }
-        for (Component child : children)
-        {
-            addChild(child);
-        }
+        addChild(new Panel(children));
     }
     
     public Form(FormEvent event, Style[] styles, Align horizontal, Align vertical, Component... children)
@@ -91,10 +77,7 @@ public class Form extends Component
         {
             return;
         }
-        for (Component child : children)
-        {
-            addChild(child);
-        }
+        addChild(new Panel(children));
     }
     
     @Override

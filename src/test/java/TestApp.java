@@ -7,10 +7,12 @@ import com.velocitypackage.webj.materials.components.icons.Icon;
 import com.velocitypackage.webj.materials.components.icons.IconKey;
 import com.velocitypackage.webj.materials.components.items.Button;
 import com.velocitypackage.webj.materials.components.items.Heading;
+import com.velocitypackage.webj.materials.components.items.Image;
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
 import com.velocitypackage.webj.materials.hypertext.Style;
 import com.velocitypackage.webj.tools.WebJApplication;
 
+import java.io.File;
 import java.io.IOException;
 
 public class TestApp extends WebJApplication
@@ -27,17 +29,9 @@ public class TestApp extends WebJApplication
                         }
                 ),
                 new View(
-                        new Form(new FormEvent()
-                        {
-                            @Override
-                            public void run()
-                            {
-                                System.out.println("It works");
-                            }
-                        },
-                                new Input(
-                                        InputType.SUBMIT, "Blabla", null
-                                )
+                        new Row(
+                                image(),
+                                form()
                         )
                 )
         );
@@ -86,6 +80,30 @@ public class TestApp extends WebJApplication
                                 )
                         )
                 )
+        );
+    }
+    
+    public Component image()
+    {
+        return new Image(new File("img.png"), new Style(Style.StyleIdentifier.BORDER_RADIUS, "10px"));
+    }
+    
+    public Component form()
+    {
+        Input name = new Input(InputType.TEXT, null, "Name");
+        Input thirdName = new Input(InputType.TEXT, null, "Third name");
+        return new Form(new FormEvent()
+        {
+            @Override
+            public void run()
+            {
+                System.out.println("New user: " + getInput(name) + " " + getInput(thirdName));
+            }
+        },
+                new Heading("Create user: ", Heading.Type.H5),
+                name,
+                thirdName,
+                new Input(InputType.SUBMIT, "Submit", null)
         );
     }
     
