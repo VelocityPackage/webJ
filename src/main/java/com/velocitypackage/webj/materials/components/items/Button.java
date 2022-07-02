@@ -15,7 +15,7 @@ public class Button extends Item
     
     public Button(String text, Runnable r)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, styles(), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, null, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = ButtonType.PRIMARY;
@@ -26,7 +26,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, styles(), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, null, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;
@@ -34,7 +34,7 @@ public class Button extends Item
     
     public Button(String text, Bootstrap[] bootstraps , Runnable r)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), null, styles(), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), null, null, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = ButtonType.PRIMARY;
@@ -45,7 +45,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), null, styles(), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), null, null, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;
@@ -53,7 +53,7 @@ public class Button extends Item
     
     public Button(String text, Style[] styles , Runnable r)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, super.combine(styles, styles()), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, styles, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = ButtonType.PRIMARY;
@@ -64,7 +64,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, super.combine(styles, styles()), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, styles, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;

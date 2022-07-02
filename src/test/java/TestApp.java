@@ -23,11 +23,6 @@ public class TestApp extends WebJApplication
     {
         return new Panel(
                 header(),
-                new Panel(
-                        new Style[]{
-                                new Style(Style.StyleIdentifier.MARGIN, "10px"),
-                        }
-                ),
                 new View(
                         new Row(
                                 image(),
@@ -37,7 +32,8 @@ public class TestApp extends WebJApplication
         );
     }
     
-    public Component header() {
+    public Component header()
+    {
         return new Panel(
                 new Style[]{
                         new Style(Style.StyleIdentifier.BACKGROUND, "#202020"),
@@ -85,13 +81,16 @@ public class TestApp extends WebJApplication
     
     public Component image()
     {
-        return new Image(new File("img.png"), new Style(Style.StyleIdentifier.BORDER_RADIUS, "10px"));
+        return new Margin(
+                new Image(new File("img.png"), new Style(Style.StyleIdentifier.BORDER_RADIUS, "10px"))
+        );
     }
     
     public Component form()
     {
         Input name = new Input(InputType.TEXT, null, "Name");
         Input thirdName = new Input(InputType.TEXT, null, "Third name");
+        
         return new Form(new FormEvent()
         {
             @Override

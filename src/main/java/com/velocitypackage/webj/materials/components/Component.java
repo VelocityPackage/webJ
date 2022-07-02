@@ -2,10 +2,26 @@ package com.velocitypackage.webj.materials.components;
 
 import com.velocitypackage.webj.materials.hypertext.Bootstrap;
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
+import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 import com.velocitypackage.webj.materials.hypertext.Style;
+
+import java.util.Map;
 
 public abstract class Component extends HyperTextBehavior
 {
+    public static Component fromElement(HyperTextElement hyperTextElement)
+    {
+        Component component = new Component()
+        {
+            @Override
+            public void onInteract(Map<String, String> values)
+            {
+            }
+        };
+        component.setHyperTextElement(hyperTextElement);
+        return component;
+    }
+    
     public Style[] combine(Style[] styles1, Style[] styles2)
     {
         Style[] combine = new Style[styles1.length + styles2.length];

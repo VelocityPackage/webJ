@@ -7,7 +7,7 @@ Query System
     - Query Delete (Ready)
     - Query Select (Ready)
 Component System
-    - Margin Bug
+    - Margin Bug (Bootstrap abstand bei items) (Ready)
     - Panel (content align) (Ready)
     - ActionPanel extends Panel
     - View (Ready)

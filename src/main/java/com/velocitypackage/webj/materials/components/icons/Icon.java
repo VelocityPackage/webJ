@@ -1,7 +1,7 @@
 package com.velocitypackage.webj.materials.components.icons;
 
 import com.velocitypackage.webj.materials.components.Color;
-import com.velocitypackage.webj.materials.components.items.Item;
+import com.velocitypackage.webj.materials.components.Component;
 import com.velocitypackage.webj.materials.hypertext.Attribute;
 import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 import com.velocitypackage.webj.materials.hypertext.Style;
@@ -13,7 +13,7 @@ import java.util.Map;
  * Click to see all Icons and how they look ->
  * <a href="https://fonts.google.com/icons">Icons</a>
  */
-public class Icon extends Item
+public class Icon extends Component
 {
     public Icon(IconKey key) {
         super.setHyperTextElement(new HyperTextElement(Tag.SPAN, null, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.CLASS, "material-symbols-outlined")}, null, key.name().toLowerCase()));
