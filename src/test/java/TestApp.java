@@ -1,4 +1,8 @@
 import com.velocitypackage.webj.materials.components.*;
+import com.velocitypackage.webj.materials.components.forms.Form;
+import com.velocitypackage.webj.materials.components.forms.FormEvent;
+import com.velocitypackage.webj.materials.components.forms.Input;
+import com.velocitypackage.webj.materials.components.forms.InputType;
 import com.velocitypackage.webj.materials.components.icons.Icon;
 import com.velocitypackage.webj.materials.components.icons.IconKey;
 import com.velocitypackage.webj.materials.components.items.Button;
@@ -22,8 +26,19 @@ public class TestApp extends WebJApplication
                                 new Style(Style.StyleIdentifier.MARGIN, "10px"),
                         }
                 ),
-                new Panel(
-                   new Heading("kaka")
+                new View(
+                        new Form(new FormEvent()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                System.out.println("It works");
+                            }
+                        },
+                                new Input(
+                                        InputType.SUBMIT, "Blabla", null
+                                )
+                        )
                 )
         );
     }

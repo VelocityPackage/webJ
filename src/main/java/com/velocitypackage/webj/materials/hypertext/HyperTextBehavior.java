@@ -17,7 +17,7 @@ public abstract class HyperTextBehavior
     private final List<HyperTextBehavior> children;
     private HyperTextBehavior parent;
     private HyperTextElement hyperTextElement;
-    private String id;
+    public String id;
     private String cache;
     
     /**
