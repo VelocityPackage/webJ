@@ -15,7 +15,7 @@ Component System
     - Column (Ready)
     - Stack (cancel) -> PanelWithBackground
     - ScrollPanel
-    - Items
+    - Items (Ready)
         - Icons (Ready)
         - Text (Ready) (Ideas with complex text -> in example with regex)
             - Heading (Ready)
@@ -23,20 +23,20 @@ Component System
         - Image (Ready)
         - Button (Ready)
             - ButtonGroup (Ready)
-        - Forms
-            - Text
-            - Email
-            - Color
-            - Select
-            - Telephone
-            - Date a. Time
-            - Number
-            - Range
-            - URL
-            - Password
-            - File
-            - Checkbox
-            - Textarea
+        - Forms (Ready)
+            - Text (Ready)
+            - Email (Ready)
+            - Color (Ready)
+            - Select (Ready)
+            - Telephone (Ready)
+            - Date a. Time (Ready)
+            - Number (Ready)
+            - Range (Ready)
+            - URL (Ready)
+            - Password (Ready)
+            - File (Ready)
+            - Checkbox (Ready)
+            - Textarea (Ready)
 Test Website with Content Management
     - Rechtstexte
     - Impressum
