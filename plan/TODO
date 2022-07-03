@@ -1,4 +1,5 @@
 WebJ
+    - Website Icon (context with favicon.ico)
     - Robot.txt
 Query System
     - Prevent Injection Attack (Ready)
@@ -6,32 +7,37 @@ Query System
     - Query Delete (Ready)
     - Query Select (Ready)
 Component System
+    - Window
+    - Margin Bug (Bootstrap abstand bei items) (Ready)
     - Panel (content align) (Ready)
+    - ActionPanel extends Panel (Ready)
+    - View (Ready)
     - Row (Ready)
     - Column (Ready)
-    - Items
-        - Icons
-            -
-        - Text
+    - Stack (cancel) -> PanelWithBackground
+    - ScrollPanel (Ready)
+    - Items (Ready)
+        - Icons (Ready)
+        - Text (Ready) (Ideas with complex text -> in example with regex)
             - Heading (Ready)
             - Paragraph (Ready)
         - Image (Ready)
         - Button (Ready)
             - ButtonGroup (Ready)
-        - Forms
-            - Text
-            - Email
-            - Color
-            - Select
-            - Telephone
-            - Date a. Time
-            - Number
-            - Range
-            - URL
-            - Password
-            - File
-            - Checkbox
-            - Textarea
+        - Forms (Ready)
+            - Text (Ready)
+            - Email (Ready)
+            - Color (Ready)
+            - Select (Ready)
+            - Telephone (Ready)
+            - Date a. Time (Ready)
+            - Number (Ready)
+            - Range (Ready)
+            - URL (Ready)
+            - Password (Ready)
+            - File (Ready)
+            - Checkbox (Ready)
+            - Textarea (Ready)
 Test Website with Content Management
     - Rechtstexte
     - Impressum

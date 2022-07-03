@@ -11,32 +11,32 @@ public class Heading extends Item
 {
     public Heading(String h)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, styles(), h));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, null, h));
     }
     
     public Heading(String h, Type type)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, styles(), h));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, null, h));
     }
     
     public Heading(String h, Bootstrap... bootstraps)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{Bootstrap.H3}, bootstraps), null, null, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{Bootstrap.H3}, bootstraps), null, null, h));
     }
     
     public Heading(String h, Type type, Bootstrap... bootstraps)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{type.bootstrap}, bootstraps), null, null, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{type.bootstrap}, bootstraps), null, null, h));
     }
     
     public Heading(String h, Style... styles)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, styles, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, styles, h));
     }
     
     public Heading(String h, Type type, Style... styles)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, styles, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, styles, h));
     }
     
     @Override

@@ -17,7 +17,7 @@ public abstract class HyperTextBehavior
     private final List<HyperTextBehavior> children;
     private HyperTextBehavior parent;
     private HyperTextElement hyperTextElement;
-    private String id;
+    public String id;
     private String cache;
     
     /**
@@ -32,11 +32,27 @@ public abstract class HyperTextBehavior
     }
     
     /**
+     * A constructor for the HyperTextBehavior class that creates a new HyperTextBehavior object but with a specific Hypertext Element.
+     */
+    public static HyperTextBehavior fromElement(HyperTextElement hyperTextElement)
+    {
+        HyperTextBehavior hyperTextBehavior = new HyperTextBehavior()
+        {
+            @Override
+            public void onInteract(Map<String, String> values)
+            {
+            }
+        };
+        hyperTextBehavior.setHyperTextElement(hyperTextElement);
+        return hyperTextBehavior;
+    }
+    
+    /**
      * Assigns the given HyperTextElement object to this HyperTextBehavior object.
      *
      * @param hyperTextElement the new HyperTextElement object of this HyperTextBehavior object
      */
-    public final void setHyperTextElement(HyperTextElement hyperTextElement)
+    public void setHyperTextElement(HyperTextElement hyperTextElement)
     {
         this.hyperTextElement = hyperTextElement;
         this.id = hyperTextElement.getId();

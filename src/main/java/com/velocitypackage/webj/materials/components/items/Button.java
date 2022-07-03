@@ -1,5 +1,6 @@
 package com.velocitypackage.webj.materials.components.items;
 
+import com.velocitypackage.webj.materials.components.Component;
 import com.velocitypackage.webj.materials.hypertext.Bootstrap;
 import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 import com.velocitypackage.webj.materials.hypertext.Style;
@@ -15,7 +16,7 @@ public class Button extends Item
     
     public Button(String text, Runnable r)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, styles(), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, null, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = ButtonType.PRIMARY;
@@ -26,7 +27,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, styles(), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, null, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;
@@ -34,7 +35,7 @@ public class Button extends Item
     
     public Button(String text, Bootstrap[] bootstraps , Runnable r)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), null, styles(), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), null, null, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = ButtonType.PRIMARY;
@@ -45,7 +46,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), null, styles(), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), null, null, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;
@@ -53,7 +54,7 @@ public class Button extends Item
     
     public Button(String text, Style[] styles , Runnable r)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, super.combine(styles, styles()), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, styles, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = ButtonType.PRIMARY;
@@ -64,10 +65,24 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, super.combine(styles, styles()), text));
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, styles, text));
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;
+    }
+    
+    public static Component convertButtonGroup(Button button)
+    {
+        Component component = new Component()
+        {
+            @Override
+            public void onInteract(Map<String, String> values)
+            {
+                button.runnable.run();
+            }
+        };
+        component.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, button.buttonType.state}, null, null, button.text));
+        return component;
     }
     
     @Override

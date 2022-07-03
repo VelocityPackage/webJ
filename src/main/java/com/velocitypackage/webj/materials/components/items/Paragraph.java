@@ -11,17 +11,17 @@ public class Paragraph extends Item
 {
     public Paragraph(String p)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, null, null, styles(), p));
+        setHyperTextElement(new HyperTextElement(Tag.P, null, null, null, p));
     }
     
     public Paragraph(String p, Bootstrap... bootstraps)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, bootstraps, null, null, p));
+        setHyperTextElement(new HyperTextElement(Tag.P, bootstraps, null, null, p));
     }
     
     public Paragraph(String p, Style... styles)
     {
-        super.setHyperTextElement(new HyperTextElement(Tag.P, null, null, styles, p));
+        setHyperTextElement(new HyperTextElement(Tag.P, null, null, styles, p));
     }
     
     @Override

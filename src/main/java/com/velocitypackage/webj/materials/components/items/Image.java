@@ -1,5 +1,6 @@
 package com.velocitypackage.webj.materials.components.items;
 
+import com.velocitypackage.webj.materials.components.Component;
 import com.velocitypackage.webj.materials.hypertext.*;
 
 import java.io.ByteArrayOutputStream;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Map;
 
-public class Image extends Item
+public class Image extends Component
 {
     public Image (File image)
     {

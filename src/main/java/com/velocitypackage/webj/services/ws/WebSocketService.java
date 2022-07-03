@@ -46,8 +46,8 @@ public final class WebSocketService extends WebSocketServer
         {
             //id:<id> inputs:{}
             //id:<id> inputs:{<inputID>??<value>;;...}
-            String id = message.split(" ")[0].replace("id:", "").trim();
-            String[] inputs = message.split(" ")[1].replace("inputs:\\{", "").replace("\\}", "").split(";;");
+            String id = message.split(" ")[0].trim().replaceAll("id:", "").trim();
+            String[] inputs = message.split(" ")[1].trim().replaceAll("inputs:\\{", "").replaceAll("}", "").split(";;");
             Map<String, String> inputMap = new HashMap<>();
             if (message.contains("??"))
             {
