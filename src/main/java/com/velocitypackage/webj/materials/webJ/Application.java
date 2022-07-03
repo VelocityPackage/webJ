@@ -60,7 +60,7 @@ public abstract class Application implements Cloneable
             return this.getClass().getDeclaredConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
         {
-            throw new RuntimeException(e);
+            throw new CloneNotSupportedException();
         }
     }
 }
