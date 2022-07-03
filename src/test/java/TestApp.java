@@ -31,7 +31,12 @@ public class TestApp extends WebJApplication
                                 dox()
                         ),
                         new Row(
-                                new Panel(),
+                                new Panel(
+                                        dox(),
+                                        dox(),
+                                        dox(),
+                                        dox()
+                                ),
                                 action()
                         )
                 )
@@ -132,7 +137,7 @@ public class TestApp extends WebJApplication
     
     public Component dox()
     {
-        return new Panel(
+        return new TextField(
                 new Heading("Heading"),
                 new Paragraph("lorem ipsum asdfadf asd lbasd fkjasd öflbaöslkd fölkasd öflkjad öflkansd fölkjas döflkjas dfölkjasd fölkad fölkjad fölkas df")
         );
