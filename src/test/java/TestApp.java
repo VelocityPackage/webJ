@@ -29,6 +29,10 @@ public class TestApp extends WebJApplication
                         new Row(
                                 controller(),
                                 dox()
+                        ),
+                        new Row(
+                                new Panel(),
+                                action()
                         )
                 )
         );
@@ -131,6 +135,17 @@ public class TestApp extends WebJApplication
         return new Panel(
                 new Heading("Heading"),
                 new Paragraph("lorem ipsum asdfadf asd lbasd fkjasd öflbaöslkd fölkasd öflkjad öflkansd fölkjas döflkjas dfölkjasd fölkad fölkjad fölkas df")
+        );
+    }
+    
+    public Component action()
+    {
+        return new ActionPanel(
+                () -> {
+                    System.out.println("Action");
+                },
+                new Heading("ActionPanel"),
+                image()
         );
     }
     

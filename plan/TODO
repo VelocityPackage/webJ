@@ -9,7 +9,7 @@ Query System
 Component System
     - Margin Bug (Bootstrap abstand bei items) (Ready)
     - Panel (content align) (Ready)
-    - ActionPanel extends Panel
+    - ActionPanel extends Panel (Ready)
     - View (Ready)
     - Row (Ready)
     - Column (Ready)
