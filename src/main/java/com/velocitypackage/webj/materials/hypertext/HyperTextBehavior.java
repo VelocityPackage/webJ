@@ -32,22 +32,6 @@ public abstract class HyperTextBehavior
     }
     
     /**
-     * A constructor for the HyperTextBehavior class that creates a new HyperTextBehavior object but with a specific Hypertext Element.
-     */
-    public static HyperTextBehavior fromElement(HyperTextElement hyperTextElement)
-    {
-        HyperTextBehavior hyperTextBehavior = new HyperTextBehavior()
-        {
-            @Override
-            public void onInteract(Map<String, String> values)
-            {
-            }
-        };
-        hyperTextBehavior.setHyperTextElement(hyperTextElement);
-        return hyperTextBehavior;
-    }
-    
-    /**
      * Assigns the given HyperTextElement object to this HyperTextBehavior object.
      *
      * @param hyperTextElement the new HyperTextElement object of this HyperTextBehavior object
