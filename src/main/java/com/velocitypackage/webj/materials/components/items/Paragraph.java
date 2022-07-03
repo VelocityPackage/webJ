@@ -9,19 +9,33 @@ import java.util.Map;
 
 public class Paragraph extends Item
 {
-    public Paragraph(String p)
+    /**
+     * Creates a new paragraph
+     * @param text the paragraph text content
+     */
+    public Paragraph(String text)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, null, null, null, p));
+        setHyperTextElement(new HyperTextElement(Tag.P, null, null, null, text));
     }
     
-    public Paragraph(String p, Bootstrap... bootstraps)
+    /**
+     * Creates a new paragraph
+     * @param text the paragraph text content
+     * @param bootstraps bootstrap options
+     */
+    public Paragraph(String text, Bootstrap... bootstraps)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, bootstraps, null, null, p));
+        setHyperTextElement(new HyperTextElement(Tag.P, bootstraps, null, null, text));
     }
     
-    public Paragraph(String p, Style... styles)
+    /**
+     * Creates a new paragraph
+     * @param text the paragraph text content
+     * @param styles style options
+     */
+    public Paragraph(String text, Style... styles)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, null, null, styles, p));
+        setHyperTextElement(new HyperTextElement(Tag.P, null, null, styles, text));
     }
     
     @Override

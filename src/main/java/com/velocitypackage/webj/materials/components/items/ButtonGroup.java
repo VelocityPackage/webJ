@@ -8,8 +8,16 @@ import com.velocitypackage.webj.materials.hypertext.Tag;
 
 import java.util.Map;
 
+/**
+ * @author maxmielchen
+ */
 public class ButtonGroup extends Component
 {
+    
+    /**
+     * holder of a button toolbar / group
+     * @param buttons buttons (not convert)
+     */
     public ButtonGroup(Button... buttons)
     {
         super.setHyperTextElement(new HyperTextElement(Tag.DIV, new Bootstrap[]{Bootstrap.BTN_GROUP}, null, new Style[]{new Style(Style.StyleIdentifier.MARGIN, "10px")}));
@@ -19,6 +27,11 @@ public class ButtonGroup extends Component
         }
     }
     
+    /**
+     * holder of a button toolbar / group
+     * @param bootstraps boostrap options
+     * @param buttons buttons (not convert)
+     */
     public ButtonGroup(Bootstrap[] bootstraps, Button... buttons)
     {
         super.setHyperTextElement(new HyperTextElement(Tag.DIV, combine(new Bootstrap[]{Bootstrap.BTN_GROUP}, bootstraps), null, new Style[]{new Style(Style.StyleIdentifier.MARGIN, "10px")}));
@@ -28,6 +41,11 @@ public class ButtonGroup extends Component
         }
     }
     
+    /**
+     * holder of a button toolbar / group
+     * @param styles style options
+     * @param buttons buttons (not convert)
+     */
     public ButtonGroup(Style[] styles, Button... buttons)
     {
         super.setHyperTextElement(new HyperTextElement(Tag.DIV, new Bootstrap[]{Bootstrap.BTN_GROUP}, null, combine(new Style[]{new Style(Style.StyleIdentifier.MARGIN, "10px")}, styles)));

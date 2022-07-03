@@ -26,6 +26,13 @@ public final class Manager
     
     private String frameHtmlResource, streamJsResource;
     
+    /**
+     * Creates a Server service management system for a specific application
+     * @param httpPort http port
+     * @param wsPort websocket port (not the same as http port)
+     * @param application the application
+     * @throws IOException throws the port is the same
+     */
     public Manager(int httpPort, int wsPort, Application application) throws IOException
     {
         this.connections = new HashMap<>();
@@ -36,6 +43,10 @@ public final class Manager
         this.webSocketServiceSetup();
     }
     
+    /**
+     * starts all services
+     * @throws UnknownHostException throws the port is the same
+     */
     public void start() throws UnknownHostException
     {
         httpService.start();

@@ -7,8 +7,16 @@ import com.velocitypackage.webj.materials.hypertext.Style;
 
 import java.util.Map;
 
+/**
+ * @author maxmielchen
+ */
 public abstract class Component extends HyperTextBehavior
 {
+    /**
+     * Creates a component out of a hypertext element
+     * @param hyperTextElement hyper text element
+     * @return return the new instance of a component
+     */
     public static Component fromElement(HyperTextElement hyperTextElement)
     {
         Component component = new Component()
@@ -22,6 +30,12 @@ public abstract class Component extends HyperTextBehavior
         return component;
     }
     
+    /**
+     * Combines two style arrays
+     * @param styles1 style array 1
+     * @param styles2 style  array 2
+     * @return combined version of this two arrays
+     */
     public static Style[] combine(Style[] styles1, Style[] styles2)
     {
         Style[] combine = new Style[styles1.length + styles2.length];
@@ -30,6 +44,12 @@ public abstract class Component extends HyperTextBehavior
         return combine;
     }
     
+    /**
+     * Combines two bootstrap arrays
+     * @param bootstraps1 bootstrap array 1
+     * @param bootstraps2 bootstrap  array 2
+     * @return combined version of this two arrays
+     */
     public static Bootstrap[] combine(Bootstrap[] bootstraps1, Bootstrap[] bootstraps2)
     {
         Bootstrap[] combine = new Bootstrap[bootstraps1.length + bootstraps2.length];

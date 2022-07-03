@@ -6,8 +6,16 @@ import com.velocitypackage.webj.materials.hypertext.Tag;
 
 import java.util.Map;
 
+/**
+ * @author maxmielchen
+ */
 public class View extends Component
 {
+    
+    /**
+     * Creates a panel with x margin responsive bootstraps:(container)
+     * @param children child components
+     */
     public View(Component... children)
     {
         super.setHyperTextElement(new HyperTextElement(Tag.DIV, new Bootstrap[]{Bootstrap.CONTAINER}, null, null));

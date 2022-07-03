@@ -2,6 +2,10 @@ package com.velocitypackage.webj.materials.components;
 
 import com.velocitypackage.webj.materials.hypertext.Bootstrap;
 
+/**
+ * Creates an interpretation for alignment horizontal / vertical
+ * @author maxmielchen
+ */
 @SuppressWarnings("unused")
 public enum Align
 {

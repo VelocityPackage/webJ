@@ -8,12 +8,21 @@ import com.velocitypackage.webj.materials.hypertext.Tag;
 
 import java.util.Map;
 
+/**
+ * @author maxmielchen
+ */
 public class Button extends Item
 {
     public final String text;
     public final Runnable runnable;
     public final ButtonType buttonType;
     
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button´
+     * @param r runnable when the button is pressed
+     */
     public Button(String text, Runnable r)
     {
         setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, null, text));
@@ -22,6 +31,13 @@ public class Button extends Item
         this.buttonType = ButtonType.PRIMARY;
     }
     
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param buttonType bootstrap type of button
+     * @param r runnable when the button is pressed
+     */
     public Button(String text, ButtonType buttonType, Runnable r)
     {
         if (buttonType == null) {
@@ -33,6 +49,13 @@ public class Button extends Item
         this.buttonType = buttonType;
     }
     
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param bootstraps bootstrap option of the button
+     * @param r runnable when the button is pressed
+     */
     public Button(String text, Bootstrap[] bootstraps , Runnable r)
     {
         setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), null, null, text));
@@ -41,6 +64,14 @@ public class Button extends Item
         this.buttonType = ButtonType.PRIMARY;
     }
     
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param bootstraps bootstrap option of the button
+     * @param buttonType bootstrap type of button
+     * @param r runnable when the button is pressed
+     */
     public Button(String text, Bootstrap[] bootstraps, ButtonType buttonType, Runnable r)
     {
         if (buttonType == null) {
@@ -52,6 +83,13 @@ public class Button extends Item
         this.buttonType = buttonType;
     }
     
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param styles style option of the button
+     * @param r runnable when the button is pressed
+     */
     public Button(String text, Style[] styles , Runnable r)
     {
         setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, styles, text));
@@ -60,6 +98,14 @@ public class Button extends Item
         this.buttonType = ButtonType.PRIMARY;
     }
     
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param styles style option of the button
+     * @param buttonType bootstrap type of button
+     * @param r runnable when the button is pressed
+     */
     public Button(String text, Style[] styles, ButtonType buttonType, Runnable r)
     {
         if (buttonType == null) {
@@ -71,6 +117,12 @@ public class Button extends Item
         this.buttonType = buttonType;
     }
     
+    /**
+     * Convert the button to a button usable in a button group.
+     *
+     * @param button the button reference
+     * @return the new button for the button group
+     */
     public static Component convertButtonGroup(Button button)
     {
         Component component = new Component()

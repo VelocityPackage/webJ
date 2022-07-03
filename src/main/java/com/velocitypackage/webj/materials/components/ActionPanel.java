@@ -7,6 +7,9 @@ import com.velocitypackage.webj.materials.hypertext.Tag;
 
 import java.util.Map;
 
+/**
+ * @author maxmielchen
+ */
 public class ActionPanel extends Component
 {
     private final Bootstrap[] d_flex = new Bootstrap[]{Bootstrap.D_FLEX};
@@ -14,6 +17,11 @@ public class ActionPanel extends Component
     
     private final Runnable runnable;
     
+    /**
+     * Creates a Panel that reacts on a click
+     * @param r runnable that execute on a click
+     * @param children child components
+     */
     public ActionPanel(Runnable r, Component... children)
     {
         this.runnable = r;
@@ -28,10 +36,17 @@ public class ActionPanel extends Component
         }
     }
     
+    /**
+     * Creates a Panel that reacts on a click
+     * @param r runnable that execute on a click
+     * @param horizontal alignment
+     * @param vertical alignment
+     * @param children child components
+     */
     public ActionPanel(Runnable r, Align horizontal, Align vertical, Component... children)
     {
         this.runnable = r;
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, super.combine(d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), null, this.styles));
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), null, this.styles));
         if (children == null)
         {
             return;
@@ -42,6 +57,12 @@ public class ActionPanel extends Component
         }
     }
     
+    /**
+     * Creates a Panel that reacts on a click
+     * @param r runnable that execute on a click
+     * @param bootstraps bootstrap options
+     * @param children child components
+     */
     public ActionPanel(Runnable r, Bootstrap[] bootstraps, Component... children)
     {
         this.runnable = r;
@@ -56,10 +77,18 @@ public class ActionPanel extends Component
         }
     }
     
+    /**
+     * Creates a Panel that reacts on a click
+     * @param r runnable that execute on a click
+     * @param bootstraps bootstrap options
+     * @param horizontal alignment
+     * @param vertical alignment
+     * @param children child components
+     */
     public ActionPanel(Runnable r, Bootstrap[] bootstraps, Align horizontal, Align vertical, Component... children)
     {
         this.runnable = r;
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, super.combine(super.combine(bootstraps, this.d_flex), new Bootstrap[]{horizontal.horizontal, vertical.vertical}), null, styles));
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(combine(bootstraps, this.d_flex), new Bootstrap[]{horizontal.horizontal, vertical.vertical}), null, styles));
         if (children == null)
         {
             return;
@@ -70,10 +99,16 @@ public class ActionPanel extends Component
         }
     }
     
+    /**
+     * Creates a Panel that reacts on a click
+     * @param r runnable that execute on a click
+     * @param styles style options
+     * @param children child components
+     */
     public ActionPanel(Runnable r, Style[] styles, Component... children)
     {
         this.runnable = r;
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, null, null, super.combine(styles, this.styles)));
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, null, null, combine(styles, this.styles)));
         if (children == null)
         {
             return;
@@ -84,10 +119,18 @@ public class ActionPanel extends Component
         }
     }
     
+    /**
+     * Creates a Panel that reacts on a click
+     * @param r runnable that execute on a click
+     * @param styles style options
+     * @param horizontal alignment
+     * @param vertical alignment
+     * @param children child components
+     */
     public ActionPanel(Runnable r, Style[] styles, Align horizontal, Align vertical, Component... children)
     {
         this.runnable = r;
-        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, super.combine(this.d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), null, combine(this.styles, styles)));
+        super.setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(this.d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), null, combine(this.styles, styles)));
         if (children == null)
         {
             return;

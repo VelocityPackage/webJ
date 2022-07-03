@@ -10,8 +10,15 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Map;
 
+/**
+ * @author maxmielchen
+ */
 public class Image extends Component
 {
+    /**
+     * Creates a basic image
+     * @param image image path / file reference
+     */
     public Image (File image)
     {
         try
@@ -23,22 +30,32 @@ public class Image extends Component
         }
     }
     
+    /**
+     * Creates a basic image
+     * @param image image path / file reference
+     * @param bootstraps bootstrap options
+     */
     public Image (File image, Bootstrap... bootstraps)
     {
         try
         {
-            setHyperTextElement(new HyperTextElement(Tag.IMG, super.combine(new Bootstrap[]{Bootstrap.IMG_FLUID}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.SRC, "data:image/webp;base64, " + toBase64(image))}, new Style[]{new Style(Style.StyleIdentifier.MAX_WIDTH, "100%"), new Style(Style.StyleIdentifier.HEIGHT, "auto")}));
+            setHyperTextElement(new HyperTextElement(Tag.IMG, combine(new Bootstrap[]{Bootstrap.IMG_FLUID}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.SRC, "data:image/webp;base64, " + toBase64(image))}, new Style[]{new Style(Style.StyleIdentifier.MAX_WIDTH, "100%"), new Style(Style.StyleIdentifier.HEIGHT, "auto")}));
         } catch (IOException e)
         {
             setHyperTextElement(new HyperTextElement(""));
         }
     }
     
+    /**
+     * Creates a basic image
+     * @param image image path / file reference
+     * @param styles style options
+     */
     public Image (File image, Style... styles)
     {
         try
         {
-            setHyperTextElement(new HyperTextElement(Tag.IMG, new Bootstrap[]{Bootstrap.IMG_FLUID}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.SRC, "data:image/webp;base64, " + toBase64(image))}, super.combine(new Style[]{new Style(Style.StyleIdentifier.MAX_WIDTH, "100%"), new Style(Style.StyleIdentifier.HEIGHT, "auto")}, styles)));
+            setHyperTextElement(new HyperTextElement(Tag.IMG, new Bootstrap[]{Bootstrap.IMG_FLUID}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.SRC, "data:image/webp;base64, " + toBase64(image))}, combine(new Style[]{new Style(Style.StyleIdentifier.MAX_WIDTH, "100%"), new Style(Style.StyleIdentifier.HEIGHT, "auto")}, styles)));
         } catch (IOException e)
         {
             setHyperTextElement(new HyperTextElement(""));
@@ -50,6 +67,12 @@ public class Image extends Component
     {
     }
     
+    /**
+     * convert a file into a image base64 interpretation
+     * @param image file of image
+     * @return the base64 version
+     * @throws IOException throws if the image didn't exist
+     */
     private String toBase64(File image) throws IOException
     {
         FileInputStream stream = new FileInputStream(image);

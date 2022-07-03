@@ -3,6 +3,7 @@ package com.velocitypackage.webj.materials.components.icons;
 /**
  * Click to see all Icons and how they look ->
  * <a href="https://fonts.google.com/icons">Icons</a>
+ * @author maxmielchen
  */
 public enum IconKey
 {

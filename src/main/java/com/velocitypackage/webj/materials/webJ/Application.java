@@ -6,31 +6,55 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * IMPORTANT -> constructor parameter always overwrite with null
+ * @author maxmielchen
+ */
 public abstract class Application implements Cloneable
 {
     private HyperTextBehavior hyperTextBehavior;
     private String applicationName;
     
+    /**
+     * sets the current page main
+     * @param behavior the page main
+     */
     public final void setRootBehavior(HyperTextBehavior behavior)
     {
         this.hyperTextBehavior = behavior;
     }
     
+    /**
+     * sets the application name
+     * @param name the application name
+     */
     public final void setApplicationName(String name)
     {
         this.applicationName = name;
     }
     
+    /**
+     * Returns an interpretation of all components as html
+     * @return string as html
+     */
     public final String getTextRepresentation()
     {
         return this.hyperTextBehavior.getTextRepresentation();
     }
     
+    /**
+     * returns the application name
+     * @return application name
+     */
     public final String getApplicationName()
     {
         return this.applicationName;
     }
     
+    /**
+     * onMessage
+     * @param message the message as string
+     */
     public final void onMessage(String message)
     {
         //id:<id> inputs:{}

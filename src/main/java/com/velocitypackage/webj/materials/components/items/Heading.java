@@ -7,36 +7,70 @@ import com.velocitypackage.webj.materials.hypertext.Tag;
 
 import java.util.Map;
 
+/**
+ * @author maxmielchen
+ */
 public class Heading extends Item
 {
-    public Heading(String h)
+    /**
+     * Creates a new Heading
+     * @param text the heading text
+     */
+    public Heading(String text)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, null, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, null, text));
     }
     
-    public Heading(String h, Type type)
+    /**
+     * Creates a new Heading
+     * @param text the heading text
+     * @param type heading size type
+     */
+    public Heading(String text, Type type)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, null, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, null, text));
     }
     
-    public Heading(String h, Bootstrap... bootstraps)
+    /**
+     * Creates a new Heading
+     * @param text the heading text
+     * @param bootstraps bootstrap options
+     */
+    public Heading(String text, Bootstrap... bootstraps)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{Bootstrap.H3}, bootstraps), null, null, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{Bootstrap.H3}, bootstraps), null, null, text));
     }
     
-    public Heading(String h, Type type, Bootstrap... bootstraps)
+    /**
+     * Creates a new Heading
+     * @param text the heading text
+     * @param type heading size type
+     * @param bootstraps bootstrap options
+     */
+    public Heading(String text, Type type, Bootstrap... bootstraps)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{type.bootstrap}, bootstraps), null, null, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{type.bootstrap}, bootstraps), null, null, text));
     }
     
-    public Heading(String h, Style... styles)
+    /**
+     * Creates a new Heading
+     * @param text the heading text
+     * @param styles style options
+     */
+    public Heading(String text, Style... styles)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, styles, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, styles, text));
     }
     
-    public Heading(String h, Type type, Style... styles)
+    /**
+     * Creates a new Heading
+     * @param text the heading text
+     * @param type heading size type
+     * @param styles style options
+     */
+    public Heading(String text, Type type, Style... styles)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, styles, h));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, styles, text));
     }
     
     @Override
@@ -44,6 +78,9 @@ public class Heading extends Item
     {
     }
     
+    /**
+     * Heading type size
+     */
     public enum Type
     {
         H1(Bootstrap.H1), H2(Bootstrap.H2), H3(Bootstrap.H3), H4(Bootstrap.H4), H5(Bootstrap.H5), H6(Bootstrap.H6);

@@ -18,6 +18,10 @@ public abstract class Item extends Component
         addChild(Component.fromElement(hyperTextElement));
     }
     
+    /**
+     * Basic item style options
+     * @return a basic array of item style options
+     */
     public Style[] styles()
     {
         return new Style[]{new Style(Style.StyleIdentifier.MARGIN, "10px")};

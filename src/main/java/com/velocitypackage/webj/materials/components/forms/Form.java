@@ -7,6 +7,9 @@ import com.velocitypackage.webj.materials.hypertext.*;
 
 import java.util.Map;
 
+/**
+ * @author maxmielchen
+ */
 public class Form extends Component
 {
     private final Attribute[] attributes = new Attribute[]{new Attribute(Attribute.AttributeIdentifier.ACTION, "javascript:void(0);")};
@@ -14,6 +17,11 @@ public class Form extends Component
     private final Style[] styles = new Style[]{new Style(Style.StyleIdentifier.HEIGHT, "100%")};
     private final FormEvent formEvent;
     
+    /**
+     * Creates a holder for a form
+     * @param event form event when the form submits
+     * @param children child components
+     */
     public Form(FormEvent event, Component... children)
     {
         formEvent = event;
@@ -25,6 +33,13 @@ public class Form extends Component
         addChild(new Panel(children));
     }
     
+    /**
+     * Creates a holder for a form
+     * @param event form event when the form submits
+     * @param horizontal alignment horizontal
+     * @param vertical alignment vertical
+     * @param children child components
+     */
     public Form(FormEvent event, Align horizontal, Align vertical, Component... children)
     {
         formEvent = event;
@@ -36,6 +51,12 @@ public class Form extends Component
         addChild(new Panel(children));
     }
     
+    /**
+     * Creates a holder for a form
+     * @param event form event when the form submits
+     * @param bootstraps bootstrap options
+     * @param children child components
+     */
     public Form(FormEvent event, Bootstrap[] bootstraps, Component... children)
     {
         formEvent = event;
@@ -47,6 +68,14 @@ public class Form extends Component
         addChild(new Panel(children));
     }
     
+    /**
+     * Creates a holder for a form
+     * @param event form event when the form submits
+     * @param bootstraps bootstrap options
+     * @param horizontal alignment horizontal
+     * @param vertical alignment vertical
+     * @param children child components
+     */
     public Form(FormEvent event, Bootstrap[] bootstraps, Align horizontal, Align vertical, Component... children)
     {
         formEvent = event;
@@ -58,6 +87,12 @@ public class Form extends Component
         addChild(new Panel(children));
     }
     
+    /**
+     * Creates a holder for a form
+     * @param event form event when the form submits
+     * @param styles style options
+     * @param children child components
+     */
     public Form(FormEvent event, Style[] styles, Component... children)
     {
         formEvent = event;
@@ -69,6 +104,14 @@ public class Form extends Component
         addChild(new Panel(children));
     }
     
+    /**
+     * Creates a holder for a form
+     * @param event form event when the form submits
+     * @param styles style options
+     * @param horizontal alignment horizontal
+     * @param vertical alignment vertical
+     * @param children child components
+     */
     public Form(FormEvent event, Style[] styles, Align horizontal, Align vertical, Component... children)
     {
         formEvent = event;

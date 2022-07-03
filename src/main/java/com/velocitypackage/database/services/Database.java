@@ -3,6 +3,9 @@ package com.velocitypackage.database.services;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author maxmielchen
+ */
 public interface Database
 {
     
