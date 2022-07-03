@@ -1,6 +1,6 @@
-package com.velocitypackage.webj.materials.components.items;
+package com.velocitypackage.webj.materials.components;
 
-import com.velocitypackage.webj.materials.components.Component;
+import com.velocitypackage.webj.materials.components.items.Item;
 import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 import com.velocitypackage.webj.materials.hypertext.Tag;
 
