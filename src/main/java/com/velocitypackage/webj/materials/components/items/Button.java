@@ -1,5 +1,6 @@
 package com.velocitypackage.webj.materials.components.items;
 
+import com.velocitypackage.webj.materials.components.Component;
 import com.velocitypackage.webj.materials.hypertext.Bootstrap;
 import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 import com.velocitypackage.webj.materials.hypertext.Style;
@@ -68,6 +69,20 @@ public class Button extends Item
         this.text = text;
         this.runnable = r;
         this.buttonType = buttonType;
+    }
+    
+    public static Component convertButtonGroup(Button button)
+    {
+        Component component = new Component()
+        {
+            @Override
+            public void onInteract(Map<String, String> values)
+            {
+                button.runnable.run();
+            }
+        };
+        component.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, button.buttonType.state}, null, null, button.text));
+        return component;
     }
     
     @Override

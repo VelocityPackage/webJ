@@ -8,12 +8,14 @@ import com.velocitypackage.webj.materials.hypertext.Tag;
 
 public abstract class Item extends Component
 {
+    
     @Override
     public void setHyperTextElement(HyperTextElement hyperTextElement)
     {
         super.setHyperTextElement(
                 new HyperTextElement(Tag.DIV, null, null, styles())
         );
+        super.id = hyperTextElement.getId();
         addChild(HyperTextBehavior.fromElement(hyperTextElement));
     }
     

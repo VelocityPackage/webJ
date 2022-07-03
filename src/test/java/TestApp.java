@@ -5,9 +5,7 @@ import com.velocitypackage.webj.materials.components.forms.Input;
 import com.velocitypackage.webj.materials.components.forms.InputType;
 import com.velocitypackage.webj.materials.components.icons.Icon;
 import com.velocitypackage.webj.materials.components.icons.IconKey;
-import com.velocitypackage.webj.materials.components.items.Button;
-import com.velocitypackage.webj.materials.components.items.Heading;
-import com.velocitypackage.webj.materials.components.items.Image;
+import com.velocitypackage.webj.materials.components.items.*;
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
 import com.velocitypackage.webj.materials.hypertext.Style;
 import com.velocitypackage.webj.tools.WebJApplication;
@@ -27,6 +25,10 @@ public class TestApp extends WebJApplication
                         new Row(
                                 image(),
                                 form()
+                        ),
+                        new Row(
+                                controller(),
+                                dox()
                         )
                 )
         );
@@ -43,9 +45,7 @@ public class TestApp extends WebJApplication
                                 new Panel(
                                         Align.START, Align.MIDDLE,
                                         new Heading("VelocityPackage", Heading.Type.H3,
-                                                new Style(Style.StyleIdentifier.COLOR, "white"),
-                                                new Style(Style.StyleIdentifier.MARGIN_TOP, "10px"),
-                                                new Style(Style.StyleIdentifier.MARGIN_LEFT, "10px")
+                                                new Style(Style.StyleIdentifier.COLOR, "white")
                                         )
                                 ),
                                 new Panel(
@@ -103,6 +103,34 @@ public class TestApp extends WebJApplication
                 name,
                 thirdName,
                 new Input(InputType.SUBMIT, "Submit", null)
+        );
+    }
+    
+    public Component controller()
+    {
+        return new Panel(
+                new Button(
+                        "I / O", Button.ButtonType.DANGER, () -> System.out.println("on")
+                ),
+                new ButtonGroup(
+                        new Button(
+                                "Off", Button.ButtonType.SECONDARY, () -> System.out.println("on")
+                        ),
+                        new Button(
+                                "On", Button.ButtonType.PRIMARY, () -> System.out.println("on")
+                        ),
+                        new Button(
+                                "All off", Button.ButtonType.WARNING, () -> System.out.println("on")
+                        )
+                )
+        );
+    }
+    
+    public Component dox()
+    {
+        return new Panel(
+                new Heading("Heading"),
+                new Paragraph("lorem ipsum asdfadf asd lbasd fkjasd öflbaöslkd fölkasd öflkjad öflkansd fölkjas döflkjas dfölkjasd fölkad fölkjad fölkas df")
         );
     }
     
