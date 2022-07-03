@@ -28,7 +28,7 @@ public class Form extends Component
     public Form(FormEvent event, Align horizontal, Align vertical, Component... children)
     {
         formEvent = event;
-        super.setHyperTextElement(new HyperTextElement(Tag.FORM, super.combine(d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), attributes, this.styles));
+        super.setHyperTextElement(new HyperTextElement(Tag.FORM, combine(d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), attributes, this.styles));
         if (children == null)
         {
             return;
@@ -50,7 +50,7 @@ public class Form extends Component
     public Form(FormEvent event, Bootstrap[] bootstraps, Align horizontal, Align vertical, Component... children)
     {
         formEvent = event;
-        super.setHyperTextElement(new HyperTextElement(Tag.FORM, super.combine(super.combine(bootstraps, this.d_flex), new Bootstrap[]{horizontal.horizontal, vertical.vertical}), attributes, styles));
+        super.setHyperTextElement(new HyperTextElement(Tag.FORM, combine(combine(bootstraps, this.d_flex), new Bootstrap[]{horizontal.horizontal, vertical.vertical}), attributes, styles));
         if (children == null)
         {
             return;
@@ -61,7 +61,7 @@ public class Form extends Component
     public Form(FormEvent event, Style[] styles, Component... children)
     {
         formEvent = event;
-        super.setHyperTextElement(new HyperTextElement(Tag.FORM, null, attributes, super.combine(styles, this.styles)));
+        super.setHyperTextElement(new HyperTextElement(Tag.FORM, null, attributes, combine(styles, this.styles)));
         if (children == null)
         {
             return;
@@ -72,7 +72,7 @@ public class Form extends Component
     public Form(FormEvent event, Style[] styles, Align horizontal, Align vertical, Component... children)
     {
         formEvent = event;
-        super.setHyperTextElement(new HyperTextElement(Tag.FORM, super.combine(this.d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), attributes, combine(this.styles, styles)));
+        super.setHyperTextElement(new HyperTextElement(Tag.FORM, combine(this.d_flex, new Bootstrap[]{horizontal.horizontal, vertical.vertical}), attributes, combine(this.styles, styles)));
         if (children == null)
         {
             return;

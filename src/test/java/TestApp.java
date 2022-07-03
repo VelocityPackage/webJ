@@ -16,10 +16,15 @@ import java.io.IOException;
 public class TestApp extends WebJApplication
 {
     
+    Component component;
+    
     @Override
     public HyperTextBehavior build()
     {
-        return new Panel(
+        Component component = new Panel(
+                this.component
+        );
+        this.component = new Panel(
                 header(),
                 new View(
                         new Row(
@@ -41,6 +46,7 @@ public class TestApp extends WebJApplication
                         )
                 )
         );
+        return component;
     }
     
     public Component header()
@@ -79,6 +85,9 @@ public class TestApp extends WebJApplication
                                                 Button.ButtonType.LINK,
                                                 () -> {
                                                     System.out.println("Projects");
+                                                    component = new Panel(
+                                                            header()
+                                                    );
                                                 }
                                         ),
                                         new Icon(IconKey.SETTINGS, new Color(255, 255, 255))
