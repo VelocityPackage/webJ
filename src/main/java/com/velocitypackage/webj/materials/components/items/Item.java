@@ -1,7 +1,6 @@
 package com.velocitypackage.webj.materials.components.items;
 
 import com.velocitypackage.webj.materials.components.Component;
-import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
 import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
 import com.velocitypackage.webj.materials.hypertext.Style;
 import com.velocitypackage.webj.materials.hypertext.Tag;
@@ -16,7 +15,7 @@ public abstract class Item extends Component
                 new HyperTextElement(Tag.DIV, null, null, styles())
         );
         super.id = hyperTextElement.getId();
-        addChild(HyperTextBehavior.fromElement(hyperTextElement));
+        addChild(Component.fromElement(hyperTextElement));
     }
     
     public Style[] styles()

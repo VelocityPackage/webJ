@@ -4,7 +4,6 @@ import com.velocitypackage.webj.materials.components.Panel;
 import com.velocitypackage.webj.materials.components.Row;
 import com.velocitypackage.webj.materials.components.items.Image;
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
-import com.velocitypackage.webj.tools.WebJApplication;
 
 import java.io.File;
 import java.io.IOException;

@@ -2,7 +2,6 @@ import com.velocitypackage.webj.materials.components.Component;
 import com.velocitypackage.webj.materials.components.Panel;
 import com.velocitypackage.webj.materials.components.items.Button;
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
-import com.velocitypackage.webj.tools.WebJApplication;
 
 import java.io.IOException;
 
