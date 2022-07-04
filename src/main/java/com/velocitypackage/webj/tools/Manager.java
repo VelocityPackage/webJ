@@ -24,7 +24,7 @@ public final class Manager
     private final int httpPort, wsPort;
     private final Application application;
     
-    private String frameHtmlResource, streamJsResource;
+    private String frameHtmlResource, streamJsResource, robotsTxtResource;
     
     /**
      * Creates a Server service management system for a specific application
@@ -63,6 +63,7 @@ public final class Manager
         httpService = new HttpService(httpPort);
         frameHtmlResource = FileService.getContentOfResource("frame.html").replaceFirst("%NAME%", application.getApplicationName());
         streamJsResource = FileService.getContentOfResource("stream.js").replaceFirst("%WSPORT%", "" + wsPort);
+        robotsTxtResource = FileService.getContentOfResource("robots.txt");
         httpService.add(new HttpContext()
         {
             @Override
@@ -89,6 +90,20 @@ public final class Manager
             public String content()
             {
                 return streamJsResource;
+            }
+        });
+        httpService.add(new HttpContext()
+        {
+            @Override
+            public boolean acceptPath(String path)
+            {
+                return path.equals("/robots.txt");
+            }
+    
+            @Override
+            public String content()
+            {
+                return robotsTxtResource;
             }
         });
     }
