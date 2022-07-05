@@ -1,9 +1,7 @@
 package com.velocitypackage.webj.services.file;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.Base64;
 
 /**
  * This is the utility for files
@@ -46,6 +44,53 @@ public class FileService
         } catch (Exception e)
         {
             throw new IOException("File did not exist");
+        }
+    }
+    
+    /**
+     * Convert a file into a image base64 interpretation
+     * @param image file of image
+     * @return the base64 version
+     * @throws IOException throws if the image didn't exist
+     */
+    public static String toBase64(File image) throws IOException
+    {
+        FileInputStream stream = new FileInputStream(image);
+        int bufLength = 2048;
+        byte[] buffer = new byte[2048];
+        byte[] data;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        int readLength;
+        while ((readLength = stream.read(buffer, 0, bufLength)) != - 1)
+        {
+            out.write(buffer, 0, readLength);
+        }
+        data = out.toByteArray();
+        String imageString = Base64.getEncoder().withoutPadding().encodeToString(data);
+        out.close();
+        stream.close();
+        return imageString;
+    }
+    
+    /**
+     * A stable methode to read a file
+     *
+     * @param file the file
+     * @return file content
+     */
+    public static String readString(File file) {
+        try
+        {
+            StringBuilder content = new StringBuilder();
+            BufferedReader fileBufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String line;
+            while ((line = fileBufferedReader.readLine()) != null) {
+                content.append(line);
+            }
+            fileBufferedReader.close();
+            return new String(content);
+        } catch (Exception e) {
+            return "";
         }
     }
 }

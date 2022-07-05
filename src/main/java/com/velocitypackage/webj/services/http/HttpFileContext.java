@@ -1,11 +1,8 @@
 package com.velocitypackage.webj.services.http;
 
-/**
- * HttpContext like "/index" or "/home"
- *
- * @author maxmielchen
- */
-public interface HttpContext
+import java.io.File;
+
+public interface HttpFileContext
 {
     /**
      * gives the path as param and can decide
@@ -27,5 +24,5 @@ public interface HttpContext
      *
      * @return content
      */
-    String content();
+    File content();
 }

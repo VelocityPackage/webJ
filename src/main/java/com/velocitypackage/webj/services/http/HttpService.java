@@ -5,8 +5,9 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Service for http contexts
@@ -18,7 +19,8 @@ public class HttpService
 {
     private final HttpServer server;
     
-    private final List<HttpContext> httpContexts = new ArrayList<>();
+    private final Set<HttpContext> httpContexts = new HashSet<>();
+    private final Set<HttpFileContext> httpFileContexts = new HashSet<>();
     
     /**
      * Constructor for Webservice
@@ -66,13 +68,31 @@ public class HttpService
     }
     
     /**
-     * remove context with index
+     * Adds a new context
      *
-     * @param index position of context
+     * @param httpFileContext context self
      */
-    public void remove(int index)
+    public void add(HttpFileContext httpFileContext)
     {
-        httpContexts.remove(index);
+        if (httpFileContext == null)
+        {
+            return;
+        }
+        httpFileContexts.add(httpFileContext);
+    }
+    
+    /**
+     * remove specific context
+     *
+     * @param httpFileContext context self
+     */
+    public void remove(HttpFileContext httpFileContext)
+    {
+        if (httpFileContext == null)
+        {
+            return;
+        }
+        httpFileContexts.remove(httpFileContext);
     }
     
     /**
@@ -91,22 +111,44 @@ public class HttpService
         server.createContext("/", exchange ->
         {
             String path = exchange.getRequestURI().getPath();
+            
             boolean isNull = true;
-            for (HttpContext httpContext : httpContexts)
-            {
-                if (httpContext.acceptPath(path))
+            if (isNull) {
+                for (HttpContext httpContext : httpContexts)
                 {
-                    isNull = false;
-                    String content = httpContext.content();
-                    
-                    //NEXT FOR UPDATES ->
-                    //content = content.replaceAll("\n", " ").replaceAll("\t", " ").trim();
-                    
-                    exchange.sendResponseHeaders(200, content.getBytes().length);
-                    OutputStream output = exchange.getResponseBody();
-                    output.write(content.getBytes());
-                    output.flush();
-                    output.close();
+                    if (httpContext.acceptPath(path))
+                    {
+                        isNull = false;
+                        String content = httpContext.content();
+            
+                        //NEXT FOR UPDATES ->
+                        //content = content.replaceAll("\n", " ").replaceAll("\t", " ").trim();
+    
+                        exchange.getResponseHeaders().add("Content-Type", httpContext.contentType());
+                        exchange.sendResponseHeaders(200, content.getBytes().length);
+                        OutputStream output = exchange.getResponseBody();
+                        output.write(content.getBytes());
+                        output.flush();
+                        output.close();
+                        break;
+                    }
+                }
+            }
+            if (isNull) {
+                for (HttpFileContext httpFileContext : httpFileContexts)
+                {
+                    if (httpFileContext.acceptPath(path))
+                    {
+                        isNull = false;
+                        byte[] content = Files.readAllBytes(httpFileContext.content().toPath());
+                        exchange.getResponseHeaders().add("Content-Type", httpFileContext.contentType());
+                        exchange.sendResponseHeaders(200, content.length);
+                        OutputStream output = exchange.getResponseBody();
+                        output.write(content);
+                        output.flush();
+                        output.close();
+                        break;
+                    }
                 }
             }
             if (! isNull)
