@@ -84,7 +84,7 @@ public final class Manager
             }
     
             @Override
-            public String content()
+            public String content(String path)
             {
                 return frameHtmlResource;
             }
@@ -104,7 +104,7 @@ public final class Manager
             }
     
             @Override
-            public String content()
+            public String content(String path)
             {
                 return streamJsResource;
             }
@@ -124,7 +124,7 @@ public final class Manager
             }
     
             @Override
-            public String content()
+            public String content(String path)
             {
                 return robotsTxtResource;
             }
@@ -144,7 +144,7 @@ public final class Manager
             }
     
             @Override
-            public File content()
+            public File content(String path)
             {
                 return application.getFavicon();
             }

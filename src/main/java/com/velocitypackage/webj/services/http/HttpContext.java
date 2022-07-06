@@ -27,5 +27,5 @@ public interface HttpContext
      *
      * @return content
      */
-    String content();
+    String content(String path);
 }

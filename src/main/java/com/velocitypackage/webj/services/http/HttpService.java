@@ -119,7 +119,7 @@ public class HttpService
                     if (httpContext.acceptPath(path))
                     {
                         isNull = false;
-                        String content = httpContext.content();
+                        String content = httpContext.content(path);
             
                         //NEXT FOR UPDATES ->
                         //content = content.replaceAll("\n", " ").replaceAll("\t", " ").trim();
@@ -140,7 +140,7 @@ public class HttpService
                     if (httpFileContext.acceptPath(path))
                     {
                         isNull = false;
-                        byte[] content = Files.readAllBytes(httpFileContext.content().toPath());
+                        byte[] content = Files.readAllBytes(httpFileContext.content(path).toPath());
                         exchange.getResponseHeaders().add("Content-Type", httpFileContext.contentType());
                         exchange.sendResponseHeaders(200, content.length);
                         OutputStream output = exchange.getResponseBody();

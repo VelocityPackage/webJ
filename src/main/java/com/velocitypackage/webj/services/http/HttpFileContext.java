@@ -24,5 +24,5 @@ public interface HttpFileContext
      *
      * @return content
      */
-    File content();
+    File content(String path);
 }
