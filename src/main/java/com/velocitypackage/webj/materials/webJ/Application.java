@@ -2,6 +2,7 @@ package com.velocitypackage.webj.materials.webJ;
 
 import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ public abstract class Application implements Cloneable
 {
     private HyperTextBehavior hyperTextBehavior;
     private String applicationName;
+    private File favicon;
     
     /**
      * sets the current page main
@@ -34,6 +36,15 @@ public abstract class Application implements Cloneable
     }
     
     /**
+     * sets the application icon
+     * @param favicon the application icon
+     */
+    public void setFavicon(File favicon)
+    {
+        this.favicon = favicon;
+    }
+    
+    /**
      * Returns an interpretation of all components as html
      * @return string as html
      */
@@ -49,6 +60,15 @@ public abstract class Application implements Cloneable
     public final String getApplicationName()
     {
         return this.applicationName;
+    }
+    
+    /**
+     * returns the application favicon
+     * @return application favicon
+     */
+    public File getFavicon()
+    {
+        return favicon;
     }
     
     /**

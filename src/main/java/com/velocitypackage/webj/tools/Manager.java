@@ -24,7 +24,6 @@ public final class Manager
     private final Map<WebSocket, Application> connections;
     
     private final int httpPort, wsPort;
-    private final File favicon;
     private final Application application;
     
     private String frameHtmlResource, streamJsResource, robotsTxtResource;
@@ -33,19 +32,14 @@ public final class Manager
      * Creates a Server service management system for a specific application
      * @param httpPort http port
      * @param wsPort websocket port (not the same as http port)
-     * @param favicon is the new page icon (only *.ico supported)
      * @param application the application
      * @throws IOException throws the port is the same
      */
-    public Manager(int httpPort, int wsPort, File favicon, Application application) throws IOException
+    public Manager(int httpPort, int wsPort, Application application) throws IOException
     {
         this.connections = new HashMap<>();
         this.httpPort = httpPort;
         this.wsPort = wsPort;
-        this.favicon = favicon;
-        if (!this.favicon.getName().endsWith(".ico")) {
-            throw new IOException("Favicon not supported...");
-        }
         this.application = application;
         this.httpServiceSetup();
         this.webSocketServiceSetup();
@@ -152,7 +146,7 @@ public final class Manager
             @Override
             public File content()
             {
-                return favicon;
+                return application.getFavicon();
             }
         });
     }
