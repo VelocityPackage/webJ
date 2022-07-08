@@ -21,7 +21,7 @@ Component System
     - ScrollPanel (Ready)
     - Items (Ready)
         - Icons (Ready)
-        - Text (Ready) (Ideas with complex text -> in example with regex)
+        - Text (Ready) (Ideas with complex text -> in example with regex) (Ready)
             - Heading (Ready)
             - Paragraph (Ready)
         - Image (Ready)
@@ -71,4 +71,4 @@ Produkt Überlegungen
 Kostenüberschlag
     - 1€ pro Monat pro Website Hosting
     - 100€ pro Monat Strom
-    - 50€ pro Monat Wlan
+    - 50€ pro Monat Internet
