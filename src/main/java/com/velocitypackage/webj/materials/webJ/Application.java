@@ -17,11 +17,13 @@ public abstract class Application implements Cloneable
     private String applicationName;
     private File favicon;
     
+    private Runnable onForceUpdate;
+    
     /**
      * sets the current page main
      * @param behavior the page main
      */
-    public final void setRootBehavior(HyperTextBehavior behavior)
+    public final void setCurrentBehavior(HyperTextBehavior behavior)
     {
         this.hyperTextBehavior = behavior;
     }
@@ -42,6 +44,15 @@ public abstract class Application implements Cloneable
     public void setFavicon(File favicon)
     {
         this.favicon = favicon;
+    }
+    
+    /**
+     * Sets the force update
+     * @param runnable force update methode
+     */
+    public void setForceUpdate(Runnable runnable)
+    {
+        this.onForceUpdate = runnable;
     }
     
     /**
@@ -69,6 +80,14 @@ public abstract class Application implements Cloneable
     public File getFavicon()
     {
         return favicon;
+    }
+    
+    /**
+     * update the UI
+     */
+    public void forceUpdate()
+    {
+        onForceUpdate.run(); //force update
     }
     
     /**

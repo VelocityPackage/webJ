@@ -166,6 +166,7 @@ public final class Manager
                     e.printStackTrace();
                 }
                 conn.send(connections.get(conn).getTextRepresentation());
+                connections.get(conn).setForceUpdate(() -> conn.send(connections.get(conn).getTextRepresentation())); //force update
             }
     
             @Override
