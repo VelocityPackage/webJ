@@ -1,10 +1,7 @@
 package com.velocitypackage.webj.materials.components.items;
 
 import com.velocitypackage.webj.materials.components.Component;
-import com.velocitypackage.webj.materials.hypertext.Bootstrap;
-import com.velocitypackage.webj.materials.hypertext.HyperTextElement;
-import com.velocitypackage.webj.materials.hypertext.Style;
-import com.velocitypackage.webj.materials.hypertext.Tag;
+import com.velocitypackage.webj.materials.hypertext.*;
 
 import java.util.Map;
 
@@ -14,8 +11,11 @@ import java.util.Map;
 public class Button extends Item
 {
     public final String text;
-    public final Runnable runnable;
     public final ButtonType buttonType;
+    
+    public final InteractType interactType;
+    public Runnable runnable;
+    public String href;
     
     /**
      * Creates a button
@@ -25,6 +25,7 @@ public class Button extends Item
      */
     public Button(String text, Runnable r)
     {
+        this.interactType = InteractType.RUNNABLE;
         setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, null, text));
         this.text = text;
         this.runnable = r;
@@ -40,6 +41,7 @@ public class Button extends Item
      */
     public Button(String text, ButtonType buttonType, Runnable r)
     {
+        this.interactType = InteractType.RUNNABLE;
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
@@ -58,6 +60,7 @@ public class Button extends Item
      */
     public Button(String text, Bootstrap[] bootstraps , Runnable r)
     {
+        this.interactType = InteractType.RUNNABLE;
         setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), null, null, text));
         this.text = text;
         this.runnable = r;
@@ -74,6 +77,7 @@ public class Button extends Item
      */
     public Button(String text, Bootstrap[] bootstraps, ButtonType buttonType, Runnable r)
     {
+        this.interactType = InteractType.RUNNABLE;
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
@@ -92,6 +96,7 @@ public class Button extends Item
      */
     public Button(String text, Style[] styles , Runnable r)
     {
+        this.interactType = InteractType.RUNNABLE;
         setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, null, styles, text));
         this.text = text;
         this.runnable = r;
@@ -108,12 +113,213 @@ public class Button extends Item
      */
     public Button(String text, Style[] styles, ButtonType buttonType, Runnable r)
     {
+        this.interactType = InteractType.RUNNABLE;
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
         setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, null, styles, text));
         this.text = text;
         this.runnable = r;
+        this.buttonType = buttonType;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button´
+     */
+    public Button(String text, HyperTextPage page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page.getPath();
+        setHyperTextElement(new HyperTextElement(Tag.A, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page.getPath())}, null, text));
+        this.text = text;
+        this.buttonType = ButtonType.PRIMARY;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param buttonType bootstrap type of button
+     */
+    public Button(String text, ButtonType buttonType, HyperTextPage page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page.getPath();
+        if (buttonType == null) {
+            buttonType = ButtonType.PRIMARY;
+        }
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page.getPath())}, null, text));
+        this.text = text;
+        this.buttonType = buttonType;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param bootstraps bootstrap option of the button
+     */
+    public Button(String text, Bootstrap[] bootstraps , HyperTextPage page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page.getPath();
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page.getPath())}, null, text));
+        this.text = text;
+        this.buttonType = ButtonType.PRIMARY;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param bootstraps bootstrap option of the button
+     * @param buttonType bootstrap type of button
+     */
+    public Button(String text, Bootstrap[] bootstraps, ButtonType buttonType, HyperTextPage page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page.getPath();
+        if (buttonType == null) {
+            buttonType = ButtonType.PRIMARY;
+        }
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page.getPath())}, null, text));
+        this.text = text;
+        this.buttonType = buttonType;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param styles style option of the button
+     */
+    public Button(String text, Style[] styles , HyperTextPage page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page.getPath();
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page.getPath())}, styles, text));
+        this.text = text;
+        this.buttonType = ButtonType.PRIMARY;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param styles style option of the button
+     * @param buttonType bootstrap type of button
+     */
+    public Button(String text, Style[] styles, ButtonType buttonType, HyperTextPage page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page.getPath();
+        if (buttonType == null) {
+            buttonType = ButtonType.PRIMARY;
+        }
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page.getPath())}, styles, text));
+        this.text = text;
+        this.buttonType = buttonType;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button´
+     */
+    public Button(String text, String page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page;
+        setHyperTextElement(new HyperTextElement(Tag.A, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
+        this.text = text;
+        this.buttonType = ButtonType.PRIMARY;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param buttonType bootstrap type of button
+     */
+    public Button(String text, ButtonType buttonType, String page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page;
+        if (buttonType == null) {
+            buttonType = ButtonType.PRIMARY;
+        }
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
+        this.text = text;
+        this.buttonType = buttonType;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param bootstraps bootstrap option of the button
+     */
+    public Button(String text, Bootstrap[] bootstraps , String page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page;
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
+        this.text = text;
+        this.buttonType = ButtonType.PRIMARY;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param bootstraps bootstrap option of the button
+     * @param buttonType bootstrap type of button
+     */
+    public Button(String text, Bootstrap[] bootstraps, ButtonType buttonType, String page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page;
+        if (buttonType == null) {
+            buttonType = ButtonType.PRIMARY;
+        }
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
+        this.text = text;
+        this.buttonType = buttonType;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param styles style option of the button
+     */
+    public Button(String text, Style[] styles, String page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page;
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, styles, text));
+        this.text = text;
+        this.buttonType = ButtonType.PRIMARY;
+    }
+    
+    /**
+     * Creates a button
+     *
+     * @param text inner text of button
+     * @param styles style option of the button
+     * @param buttonType bootstrap type of button
+     */
+    public Button(String text, Style[] styles, ButtonType buttonType, String page)
+    {
+        this.interactType = InteractType.HREF;
+        this.href = page;
+        if (buttonType == null) {
+            buttonType = ButtonType.PRIMARY;
+        }
+        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, styles, text));
+        this.text = text;
         this.buttonType = buttonType;
     }
     
@@ -125,22 +331,53 @@ public class Button extends Item
      */
     public static Component convertButtonGroup(Button button)
     {
-        Component component = new Component()
+        switch (button.interactType)
+        {
+            case RUNNABLE:
+                Component runnableComponent = new Component()
+                {
+                    @Override
+                    public void onInteract(Map<String, String> values)
+                    {
+                        button.runnable.run();
+                    }
+                };
+                runnableComponent.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, button.buttonType.state}, null, null, button.text));
+                return runnableComponent;
+            case HREF:
+                Component hrefComponent = new Component()
+                {
+                    @Override
+                    public void onInteract(Map<String, String> values)
+                    {
+                    }
+                };
+                hrefComponent.setHyperTextElement(new HyperTextElement(Tag.A, new Bootstrap[]{Bootstrap.BTN, button.buttonType.state}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, button.href)}, null, button.text));
+                return hrefComponent;
+        }
+        Component NULL = new Component()
         {
             @Override
             public void onInteract(Map<String, String> values)
             {
-                button.runnable.run();
+        
             }
         };
-        component.setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, button.buttonType.state}, null, null, button.text));
-        return component;
+        NULL.setHyperTextElement(new HyperTextElement(""));
+        return NULL;
     }
     
     @Override
     public void onInteract(Map<String, String> values)
     {
-        runnable.run();
+        if (interactType == InteractType.RUNNABLE)
+        {
+            runnable.run();
+        }
+    }
+    
+    private enum InteractType{
+        RUNNABLE, HREF
     }
     
     public enum ButtonType
