@@ -14,6 +14,7 @@ import java.util.Set;
  *
  * @author maxmielchen
  */
+@Deprecated
 @SuppressWarnings("unused")
 public class HttpService
 {
