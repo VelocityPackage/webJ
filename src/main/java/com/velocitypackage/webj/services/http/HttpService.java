@@ -151,7 +151,7 @@ public class HttpService
                     }
                 }
             }
-            if (! isNull)
+            if (isNull)
             {
                 exchange.sendResponseHeaders(405, - 1);
             }

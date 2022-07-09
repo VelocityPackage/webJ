@@ -5,70 +5,81 @@ import com.velocitypackage.webj.materials.webJ.NotSupportedMessageFormat;
 import com.velocitypackage.webj.services.file.FileService;
 import com.velocitypackage.webj.services.http.HttpContext;
 import com.velocitypackage.webj.services.http.HttpFileContext;
-import com.velocitypackage.webj.services.http.HttpService;
-import org.java_websocket.WebSocket;
-import org.java_websocket.handshake.ClientHandshake;
-import org.java_websocket.server.WebSocketServer;
+import com.velocitypackage.webj.services.http.HttpServiceHandler;
+import com.velocitypackage.webj.services.ws.WebSocketServiceHandler;
+import org.webbitserver.WebServer;
+import org.webbitserver.WebServers;
+import org.webbitserver.WebSocketConnection;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
 public final class Manager
 {
-    private HttpService httpService;
-    private WebSocketServer webSocketServer;
-    private final Map<WebSocket, Application> connections;
+    private HttpServiceHandler httpService;
+    private WebSocketServiceHandler webSocketService;
+    private final WebServer webServer;
     
-    private final int httpPort, wsPort;
+    private final Map<WebSocketConnection, Application> connections;
+    
+    private final int port;
     private final Application application;
     
     private String frameHtmlResource, streamJsResource, robotsTxtResource;
     
+    private final InetAddress localhost;
+    
     /**
      * Creates a Server service management system for a specific application
-     * @param httpPort http port
-     * @param wsPort websocket port (not the same as http port)
+     * @param port port of webpage
      * @param application the application
      * @throws IOException throws the port is the same
      */
-    public Manager(int httpPort, int wsPort, Application application) throws IOException
+    public Manager(int port, Application application) throws IOException
     {
         this.connections = new HashMap<>();
-        this.httpPort = httpPort;
-        this.wsPort = wsPort;
+        this.port = port;
         this.application = application;
+        this.webServer = WebServers.createWebServer(this.port);
+        this.localhost = InetAddress.getLocalHost();
         this.httpServiceSetup();
         this.webSocketServiceSetup();
+        this.webServer.add(httpService);
+        this.webServer.add("/socket", webSocketService);
     }
     
     /**
      * starts all services
-     * @throws UnknownHostException throws the port is the same
      */
-    public void start() throws UnknownHostException
+    public void start()
     {
-        httpService.start();
-        System.out.println("HTTP server listening on port " + httpPort);
-        System.out.println("http://localhost:" + httpPort);
-        System.out.println("http://" + InetAddress.getLocalHost().getHostAddress() + ":" + httpPort);
-        System.out.println("http://" + InetAddress.getLocalHost().getHostName() + ":" + httpPort);
-        webSocketServer.start();
-        System.out.println("WebSocket server listening on port " + wsPort);
-        System.out.println("ws://localhost:" + wsPort);
-        System.out.println("ws://" + InetAddress.getLocalHost().getHostAddress() + ":" + wsPort);
-        System.out.println("ws://" + InetAddress.getLocalHost().getHostName() + ":" + wsPort);
+        webServer.start();
+        System.out.println("Webserver listening on port " + webServer.getPort());
+        System.out.println("http://localhost:" + port);
+        try
+        {
+            System.out.println("http://" + localhost.getHostAddress() + ":" + port);
+            System.out.println("http://" + localhost.getHostName() + ":" + port);
+        } catch (Exception ignore) {}
+    }
+    
+    /**
+     * stops all services
+     */
+    public void stop()
+    {
+        webServer.stop();
+        System.out.println("Server was successfully closed...");
     }
     
     private void httpServiceSetup() throws IOException
     {
-        httpService = new HttpService(httpPort);
+        httpService = new HttpServiceHandler();
         frameHtmlResource = FileService.getContentOfResource("frame.html").replaceFirst("%NAME%", application.getApplicationName());
-        streamJsResource = FileService.getContentOfResource("stream.js").replaceFirst("%WSPORT%", "" + wsPort);
+        streamJsResource = FileService.getContentOfResource("stream.js").replaceFirst("%WSPORT%", "" + port);
         robotsTxtResource = FileService.getContentOfResource("robots.txt");
         httpService.add(new HttpContext()
         {
@@ -154,51 +165,40 @@ public final class Manager
     
     private void webSocketServiceSetup()
     {
-        webSocketServer = new WebSocketServer(new InetSocketAddress(wsPort))
+        webSocketService = new WebSocketServiceHandler()
         {
             @Override
-            public void onOpen(WebSocket conn, ClientHandshake handshake)
+            public void onOpen(WebSocketConnection connection)
             {
                 try
                 {
-                    connections.put(conn, application.clone());
+                    connections.put(connection, application.clone());
                 } catch (CloneNotSupportedException e)
                 {
                     e.printStackTrace();
                 }
-                conn.send(connections.get(conn).getTextRepresentation());
-                connections.get(conn).setForceUpdate(() -> conn.send(connections.get(conn).getTextRepresentation())); //force update
+                connection.send(connections.get(connection).getTextRepresentation());
+                connections.get(connection).setForceUpdate(() -> connection.send(connections.get(connection).getTextRepresentation())); //force update
             }
     
             @Override
-            public void onClose(WebSocket conn, int code, String reason, boolean remote)
+            public void onClose(WebSocketConnection connection)
             {
-                connections.remove(conn);
+                connections.remove(connection);
             }
     
             @Override
-            public void onMessage(WebSocket conn, String message)
+            public void onMessage(WebSocketConnection connection, String message)
             {
                 try
                 {
-                    connections.get(conn).onMessage(message);
+                    connections.get(connection).onMessage(message);
                 } catch (NotSupportedMessageFormat e)
                 {
                     e.printStackTrace();
                 }
-                conn.send(connections.get(conn).getTextRepresentation());
-            }
-    
-            @Override
-            public void onError(WebSocket conn, Exception ex)
-            {
-            }
-    
-            @Override
-            public void onStart()
-            {
+                connection.send(connections.get(connection).getTextRepresentation());
             }
         };
-        webSocketServer.setReuseAddr(true);
     }
 }
