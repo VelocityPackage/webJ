@@ -1,6 +1,7 @@
 package com.velocitypackage.webj.tools;
 
 import com.velocitypackage.webj.materials.webJ.Application;
+import com.velocitypackage.webj.materials.webJ.NotSupportedMessageFormat;
 import com.velocitypackage.webj.services.file.FileService;
 import com.velocitypackage.webj.services.http.HttpContext;
 import com.velocitypackage.webj.services.http.HttpFileContext;
@@ -178,7 +179,13 @@ public final class Manager
             @Override
             public void onMessage(WebSocket conn, String message)
             {
-                connections.get(conn).onMessage(message);
+                try
+                {
+                    connections.get(conn).onMessage(message);
+                } catch (NotSupportedMessageFormat e)
+                {
+                    e.printStackTrace();
+                }
                 conn.send(connections.get(conn).getTextRepresentation());
             }
     

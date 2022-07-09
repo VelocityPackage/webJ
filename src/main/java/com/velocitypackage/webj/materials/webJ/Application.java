@@ -87,6 +87,10 @@ public abstract class Application implements Cloneable
      */
     public void forceUpdate()
     {
+        if (onForceUpdate == null)
+        {
+            return;
+        }
         onForceUpdate.run(); //force update
     }
     
@@ -94,7 +98,7 @@ public abstract class Application implements Cloneable
      * onMessage
      * @param message the message as string
      */
-    public final void onMessage(String message)
+    public final void onMessage(String message) throws NotSupportedMessageFormat
     {
         //id:<id> inputs:{}
         //id:<id> inputs:{<inputID>??<value>;;...}
@@ -112,7 +116,9 @@ public abstract class Application implements Cloneable
             }
             hyperTextBehavior.onMessage(id, inputMap);
         } catch (Exception ignore)
-        {}
+        {
+            throw new NotSupportedMessageFormat("id:<id> inputs:{}", "id:<id> inputs:{<inputID>??<value>;;...}");
+        }
     }
     
     @Override
@@ -123,7 +129,7 @@ public abstract class Application implements Cloneable
             return this.getClass().getDeclaredConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
         {
-            throw new CloneNotSupportedException();
+            throw new CloneNotSupportedException("Async Application Clients isn't working...");
         }
     }
 }
