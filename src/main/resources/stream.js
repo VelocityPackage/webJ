@@ -41,6 +41,11 @@ catch(err) {
 	window.location.reload();
 }
 
+socket.onopen = function(event)
+{
+    socket.send("path:" + window.location.pathname);
+}
+
 socket.onerror = function(event)
 {
 	update(

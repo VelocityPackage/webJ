@@ -1,11 +1,13 @@
 package com.velocitypackage.webj.materials.webJ;
 
-import com.velocitypackage.webj.materials.hypertext.HyperTextBehavior;
+import com.velocitypackage.webj.materials.hypertext.HyperTextPage;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * IMPORTANT -> constructor parameter always overwrite with null
@@ -13,19 +15,20 @@ import java.util.Map;
  */
 public abstract class Application implements Cloneable
 {
-    private HyperTextBehavior hyperTextBehavior;
+    private final Set<HyperTextPage> pages = new HashSet<>();
+    private String currentPath = "/";
     private String applicationName;
     private File favicon;
     
     private Runnable onForceUpdate;
     
     /**
-     * sets the current page main
-     * @param behavior the page main
+     * Adds a new Page
+     * @param page the page
      */
-    public final void setCurrentBehavior(HyperTextBehavior behavior)
+    public final void addPage(HyperTextPage page)
     {
-        this.hyperTextBehavior = behavior;
+        this.pages.add(page);
     }
     
     /**
@@ -61,7 +64,12 @@ public abstract class Application implements Cloneable
      */
     public final String getTextRepresentation()
     {
-        return this.hyperTextBehavior.getTextRepresentation();
+        for (HyperTextPage hyperTextPage : pages) {
+            if (hyperTextPage.getPath().equals(currentPath)) {
+                return hyperTextPage.getTextRepresentation();
+            }
+        }
+        return "<div class=\"text-center d-block vh-100 position-fixed vw-100\"><hr /><h3 class=\"text-center\">Page not found!</h3><p class=\"text-center\">This page did&#39;t exist...</p><hr /></div>";
     }
     
     /**
@@ -82,6 +90,11 @@ public abstract class Application implements Cloneable
         return favicon;
     }
     
+    public String getCurrentPath()
+    {
+        return this.currentPath;
+    }
+    
     /**
      * update the UI
      */
@@ -100,6 +113,10 @@ public abstract class Application implements Cloneable
      */
     public final void onMessage(String message) throws NotSupportedMessageFormat
     {
+        if (message.trim().startsWith("path:")) {
+            currentPath = message.replaceAll("path:", "").trim();
+            return;
+        }
         //id:<id> inputs:{}
         //id:<id> inputs:{<inputID>??<value>;;...}
         try
@@ -114,7 +131,12 @@ public abstract class Application implements Cloneable
                     inputMap.put(s.split("\\?\\?")[0], s.split("\\?\\?")[1]);
                 }
             }
-            hyperTextBehavior.onMessage(id, inputMap);
+            for (HyperTextPage hyperTextPage : pages)
+            {
+                if (hyperTextPage.getPath().equals(currentPath)) {
+                    hyperTextPage.onMessage(id, inputMap);
+                }
+            }
         } catch (Exception ignore)
         {
             throw new NotSupportedMessageFormat("id:<id> inputs:{}", "id:<id> inputs:{<inputID>??<value>;;...}");

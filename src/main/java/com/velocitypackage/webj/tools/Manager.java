@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public final class Manager
 {
@@ -86,7 +87,14 @@ public final class Manager
             @Override
             public boolean acceptPath(String path)
             {
-                return path.equals("/");
+                for (String notAllowed : new String[]{"/stream", "/robots.txt", "favicon.ico", "/socket"})
+                {
+                    if (Objects.equals(path, notAllowed))
+                    {
+                        return false;
+                    }
+                }
+                return true;
             }
     
             @Override
@@ -177,8 +185,8 @@ public final class Manager
                 {
                     e.printStackTrace();
                 }
-                connection.send(connections.get(connection).getTextRepresentation());
                 connections.get(connection).setForceUpdate(() -> connection.send(connections.get(connection).getTextRepresentation())); //force update
+                //connection.send(connections.get(connection).getTextRepresentation());
             }
     
             @Override
