@@ -8,7 +8,7 @@ Query System
     - Query Select (Ready)
 Component System
     - LowLevel
-        - HyperTextPage
+        - HyperTextPage (Ready)
 
     - Popup (Ready)
     - Margin Bug (Bootstrap abstand bei items) (Ready)
