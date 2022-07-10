@@ -3,7 +3,7 @@ package com.velocitypackage.webj.services.ws;
 import org.webbitserver.BaseWebSocketHandler;
 import org.webbitserver.WebSocketConnection;
 
-public abstract class WebSocketServiceHandler extends BaseWebSocketHandler
+public abstract class WebSocketService extends BaseWebSocketHandler
 {
     @Override
     public abstract void onOpen(WebSocketConnection connection);

@@ -18,7 +18,7 @@ public class Heading extends Item
      */
     public Heading(String text)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, null, text));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, zeroMargin(), text));
     }
     
     /**
@@ -28,7 +28,7 @@ public class Heading extends Item
      */
     public Heading(String text, Type type)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, null, text));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, zeroMargin(), text));
     }
     
     /**
@@ -38,7 +38,7 @@ public class Heading extends Item
      */
     public Heading(String text, Bootstrap... bootstraps)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{Bootstrap.H3}, bootstraps), null, null, text));
+        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{Bootstrap.H3}, bootstraps), null, zeroMargin(), text));
     }
     
     /**
@@ -49,7 +49,7 @@ public class Heading extends Item
      */
     public Heading(String text, Type type, Bootstrap... bootstraps)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{type.bootstrap}, bootstraps), null, null, text));
+        setHyperTextElement(new HyperTextElement(Tag.P, combine(new Bootstrap[]{type.bootstrap}, bootstraps), null, zeroMargin(), text));
     }
     
     /**
@@ -59,7 +59,7 @@ public class Heading extends Item
      */
     public Heading(String text, Style... styles)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, styles, text));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{Bootstrap.H3}, null, combine(styles, zeroMargin()), text));
     }
     
     /**
@@ -70,7 +70,7 @@ public class Heading extends Item
      */
     public Heading(String text, Type type, Style... styles)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, styles, text));
+        setHyperTextElement(new HyperTextElement(Tag.P, new Bootstrap[]{type.bootstrap}, null, combine(styles, zeroMargin()), text));
     }
     
     @Override

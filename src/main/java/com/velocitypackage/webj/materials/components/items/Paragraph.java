@@ -15,7 +15,7 @@ public class Paragraph extends Item
      */
     public Paragraph(String text)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, null, null, null, text));
+        setHyperTextElement(new HyperTextElement(Tag.P, null, null, zeroMargin(), text));
     }
     
     /**
@@ -25,7 +25,7 @@ public class Paragraph extends Item
      */
     public Paragraph(String text, Bootstrap... bootstraps)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, bootstraps, null, null, text));
+        setHyperTextElement(new HyperTextElement(Tag.P, bootstraps, null, zeroMargin(), text));
     }
     
     /**
@@ -35,7 +35,7 @@ public class Paragraph extends Item
      */
     public Paragraph(String text, Style... styles)
     {
-        setHyperTextElement(new HyperTextElement(Tag.P, null, null, styles, text));
+        setHyperTextElement(new HyperTextElement(Tag.P, null, null, combine(styles, zeroMargin()), text));
     }
     
     @Override

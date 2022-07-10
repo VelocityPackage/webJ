@@ -69,7 +69,7 @@ public abstract class Application implements Cloneable
                 return hyperTextPage.getTextRepresentation();
             }
         }
-        return "<div class=\"text-center d-block vh-100 position-fixed vw-100\"><hr /><h3 class=\"text-center\">Page not found!</h3><p class=\"text-center\">This page did&#39;t exist...</p><hr /></div>";
+        return "<div class=\"text-center d-block vh-100 position-fixed vw-100\"><hr /><h3 class=\"text-center\">404</h3><p class=\"text-center\">This page doesn't exist...</p><hr /></div>";
     }
     
     /**
@@ -88,11 +88,6 @@ public abstract class Application implements Cloneable
     public File getFavicon()
     {
         return favicon;
-    }
-    
-    public String getCurrentPath()
-    {
-        return this.currentPath;
     }
     
     /**
@@ -121,8 +116,8 @@ public abstract class Application implements Cloneable
         //id:<id> inputs:{<inputID>??<value>;;...}
         try
         {
-            String id = message.split(" ")[0].trim().replaceAll("id:", "").trim();
-            String[] inputs = message.split(" ")[1].trim().replaceAll("inputs:\\{", "").replaceAll("}", "").split(";;");
+            String id = message.split(" ", 2)[0].trim().replaceAll("id:", "").trim();
+            String[] inputs = message.split(" ", 2)[1].trim().replaceAll("inputs:\\{", "").replaceAll("}", "").split(";;");
             Map<String, String> inputMap = new HashMap<>();
             if (message.contains("??"))
             {

@@ -5,8 +5,8 @@ import com.velocitypackage.webj.materials.webJ.NotSupportedMessageFormat;
 import com.velocitypackage.webj.services.file.FileService;
 import com.velocitypackage.webj.services.http.HttpContext;
 import com.velocitypackage.webj.services.http.HttpFileContext;
-import com.velocitypackage.webj.services.http.HttpServiceHandler;
-import com.velocitypackage.webj.services.ws.WebSocketServiceHandler;
+import com.velocitypackage.webj.services.http.HttpService;
+import com.velocitypackage.webj.services.ws.WebSocketService;
 import org.webbitserver.WebServer;
 import org.webbitserver.WebServers;
 import org.webbitserver.WebSocketConnection;
@@ -18,10 +18,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public final class Manager
+public final class WebManager
 {
-    private HttpServiceHandler httpService;
-    private WebSocketServiceHandler webSocketService;
+    private HttpService httpService;
+    private WebSocketService webSocketService;
     private final WebServer webServer;
     
     private final Map<WebSocketConnection, Application> connections;
@@ -39,7 +39,7 @@ public final class Manager
      * @param application the application
      * @throws IOException throws the port is the same
      */
-    public Manager(int port, Application application) throws IOException
+    public WebManager(int port, Application application) throws IOException
     {
         this.connections = new HashMap<>();
         this.port = port;
@@ -78,7 +78,7 @@ public final class Manager
     
     private void httpServiceSetup() throws IOException
     {
-        httpService = new HttpServiceHandler();
+        httpService = new HttpService();
         frameHtmlResource = FileService.getContentOfResource("frame.html").replaceFirst("%NAME%", application.getApplicationName());
         streamJsResource = FileService.getContentOfResource("stream.js").replaceFirst("%WSPORT%", "" + port);
         robotsTxtResource = FileService.getContentOfResource("robots.txt");
@@ -173,7 +173,7 @@ public final class Manager
     
     private void webSocketServiceSetup()
     {
-        webSocketService = new WebSocketServiceHandler()
+        webSocketService = new WebSocketService()
         {
             @Override
             public void onOpen(WebSocketConnection connection)

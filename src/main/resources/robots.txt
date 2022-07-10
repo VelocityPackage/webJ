@@ -1,3 +1,4 @@
-User-agent: googlebot
-Disallow: /stream/
-Disallow: /favicon.ico/
+User-agent: *
+Disallow: /socket
+Disallow: /stream
+Disallow: /favicon.ico

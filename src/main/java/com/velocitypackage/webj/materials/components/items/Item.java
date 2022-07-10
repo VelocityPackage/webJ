@@ -26,4 +26,8 @@ public abstract class Item extends Component
     {
         return new Style[]{new Style(Style.StyleIdentifier.MARGIN, "10px")};
     }
+    
+    public Style[] zeroMargin() {
+        return new Style[]{new Style(Style.StyleIdentifier.MARGIN, "0px")};
+    }
 }

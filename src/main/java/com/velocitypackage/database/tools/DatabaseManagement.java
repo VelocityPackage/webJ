@@ -65,7 +65,7 @@ public class DatabaseManagement
      * @param query the query self (not null)
      * @return null = if the query is null || the result set
      */
-    public ResultSet send(Query query)
+    public synchronized ResultSet send(Query query)
     {
         if (query == null)
         {
