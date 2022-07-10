@@ -250,7 +250,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
+        setHyperTextElement(new HyperTextElement(Tag.A, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
         this.text = text;
         this.buttonType = buttonType;
     }
@@ -265,7 +265,7 @@ public class Button extends Item
     {
         this.interactType = InteractType.HREF;
         this.href = page;
-        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
+        setHyperTextElement(new HyperTextElement(Tag.A, combine(new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
         this.text = text;
         this.buttonType = ButtonType.PRIMARY;
     }
@@ -284,7 +284,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        setHyperTextElement(new HyperTextElement(Tag.BUTTON, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
+        setHyperTextElement(new HyperTextElement(Tag.A, combine(new Bootstrap[]{Bootstrap.BTN, buttonType.state}, bootstraps), new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, null, text));
         this.text = text;
         this.buttonType = buttonType;
     }
@@ -299,7 +299,7 @@ public class Button extends Item
     {
         this.interactType = InteractType.HREF;
         this.href = page;
-        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, styles, text));
+        setHyperTextElement(new HyperTextElement(Tag.A, new Bootstrap[]{Bootstrap.BTN, Bootstrap.BTN_PRIMARY}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, styles, text));
         this.text = text;
         this.buttonType = ButtonType.PRIMARY;
     }
@@ -318,7 +318,7 @@ public class Button extends Item
         if (buttonType == null) {
             buttonType = ButtonType.PRIMARY;
         }
-        setHyperTextElement(new HyperTextElement(Tag.BUTTON, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, styles, text));
+        setHyperTextElement(new HyperTextElement(Tag.A, new Bootstrap[]{Bootstrap.BTN, buttonType.state}, new Attribute[]{new Attribute(Attribute.AttributeIdentifier.HREF, page)}, styles, text));
         this.text = text;
         this.buttonType = buttonType;
     }

@@ -91,6 +91,17 @@ public abstract class Application implements Cloneable
     }
     
     /**
+     * get all pages
+     * @return array of pages
+     */
+    public HyperTextPage[] getPages()
+    {
+        HyperTextPage[] pages = new HyperTextPage[this.pages.size()];
+        this.pages.toArray(pages);
+        return pages;
+    }
+    
+    /**
      * update the UI
      */
     public void forceUpdate()
