@@ -87,7 +87,7 @@ public final class WebManager
             @Override
             public boolean acceptPath(String path)
             {
-                for (String notAllowed : new String[]{"/stream", "/robots.txt", "favicon.ico", "/socket"})
+                for (String notAllowed : new String[]{"/stream", "/robots.txt", "/favicon.ico", "/socket"})
                 {
                     if (Objects.equals(path, notAllowed))
                     {
