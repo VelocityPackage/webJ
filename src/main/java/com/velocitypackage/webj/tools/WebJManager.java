@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public final class WebManager
+public final class WebJManager
 {
     private HttpService httpService;
     private WebSocketService webSocketService;
@@ -39,7 +39,7 @@ public final class WebManager
      * @param application the application
      * @throws IOException throws the port is the same
      */
-    public WebManager(int port, Application application) throws IOException
+    public WebJManager(int port, Application application) throws IOException
     {
         this.connections = new HashMap<>();
         this.port = port;

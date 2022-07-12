@@ -1,6 +1,5 @@
-package com.velocitypackage.webj.tools.testing;
+package com.velocitypackage.webj.tools.test;
 
-import com.sun.net.httpserver.HttpServer;
 import com.velocitypackage.webj.services.http.HttpContext;
 import com.velocitypackage.webj.services.http.HttpFileContext;
 
@@ -11,9 +10,9 @@ import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.Set;
 
-public class HttpUnitServer
+public class HttpServer
 {
-    private final HttpServer server;
+    private final com.sun.net.httpserver.HttpServer server;
     
     private final Set<HttpContext> httpContexts = new HashSet<>();
     private final Set<HttpFileContext> httpFileContexts = new HashSet<>();
@@ -24,11 +23,11 @@ public class HttpUnitServer
      * @param port with them, you can connect to the HttpService
      * @throws IOException if the port is already in usage
      */
-    public HttpUnitServer(int port) throws IOException
+    public HttpServer(int port) throws IOException
     {
         try
         {
-            server = HttpServer.create(new InetSocketAddress(port), 0);
+            server = com.sun.net.httpserver.HttpServer.create(new InetSocketAddress(port), 0);
         } catch (IOException ignored)
         {
             throw new IOException("Port is already in use");

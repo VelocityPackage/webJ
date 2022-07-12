@@ -1,4 +1,4 @@
-package com.velocitypackage.webj.tools.testing;
+package com.velocitypackage.webj.tools.test;
 
 import com.velocitypackage.webj.materials.hypertext.HyperTextPage;
 import com.velocitypackage.webj.materials.webJ.Application;
@@ -7,17 +7,17 @@ import com.velocitypackage.webj.services.http.HttpContext;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class WebUnit
+public class ApplicationTestTool
 {
-    private final HttpUnitServer httpUnitServer;
+    private final HttpServer httpServer;
     
-    public WebUnit(int port, Application application) throws IOException
+    public ApplicationTestTool(int port, Application application) throws IOException
     {
-        httpUnitServer = new HttpUnitServer(port);
+        httpServer = new HttpServer(port);
         for (HyperTextPage hyperTextPage : application.getPages())
         {
             hyperTextPage.onMessage("", new HashMap<>());
-            httpUnitServer.add(new HttpContext()
+            httpServer.add(new HttpContext()
             {
                 @Override
                 public boolean acceptPath(String path)
@@ -55,7 +55,7 @@ public class WebUnit
     
     public void start()
     {
-        httpUnitServer.start();
+        httpServer.start();
         System.out.println("Testing Server was started");
     }
 }
