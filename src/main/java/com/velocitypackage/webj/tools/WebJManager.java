@@ -11,9 +11,9 @@ import org.webbitserver.WebServer;
 import org.webbitserver.WebServers;
 import org.webbitserver.WebSocketConnection;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -30,8 +30,7 @@ public final class WebJManager
     private final Application application;
     
     private String frameHtmlResource, streamJsResource, robotsTxtResource;
-    
-    private final InetAddress localhost;
+    private byte[] faviconIco;
     
     /**
      * Creates a Server service management system for a specific application
@@ -45,7 +44,6 @@ public final class WebJManager
         this.port = port;
         this.application = application;
         this.webServer = WebServers.createWebServer(this.port);
-        this.localhost = InetAddress.getLocalHost();
         this.httpServiceSetup();
         this.webSocketServiceSetup();
         this.webServer.add(httpService);
@@ -62,6 +60,7 @@ public final class WebJManager
         System.out.println("http://localhost:" + port);
         try
         {
+            InetAddress localhost = InetAddress.getLocalHost();
             System.out.println("http://" + localhost.getHostAddress() + ":" + port);
             System.out.println("http://" + localhost.getHostName() + ":" + port);
         } catch (Exception ignore) {}
@@ -79,9 +78,12 @@ public final class WebJManager
     private void httpServiceSetup() throws IOException
     {
         httpService = new HttpService();
-        frameHtmlResource = FileService.getContentOfResource("frame.html").replaceFirst("%NAME%", application.getApplicationName());
-        streamJsResource = FileService.getContentOfResource("stream.js").replaceFirst("%WSPORT%", "" + port);
+        frameHtmlResource = FileService.getContentOfResource("frame.html")
+                .replaceFirst("%NAME%", application.getApplicationName())
+                .replaceFirst("%FAVICON%", FileService.toBase64(application.getFavicon()));
+        streamJsResource = FileService.getContentOfResource("stream.js");
         robotsTxtResource = FileService.getContentOfResource("robots.txt");
+        faviconIco = Files.readAllBytes(application.getFavicon().toPath());
         httpService.add(new HttpContext()
         {
             @Override
@@ -164,9 +166,9 @@ public final class WebJManager
             }
     
             @Override
-            public File content(String path)
+            public byte[] content(String path)
             {
-                return application.getFavicon();
+                return faviconIco;
             }
         });
     }
@@ -186,7 +188,6 @@ public final class WebJManager
                     e.printStackTrace();
                 }
                 connections.get(connection).setForceUpdate(() -> connection.send(connections.get(connection).getTextRepresentation())); //force update
-                //connection.send(connections.get(connection).getTextRepresentation());
             }
     
             @Override

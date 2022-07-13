@@ -5,7 +5,6 @@ import org.webbitserver.HttpHandler;
 import org.webbitserver.HttpRequest;
 import org.webbitserver.HttpResponse;
 
-import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -100,7 +99,7 @@ public class HttpService implements HttpHandler
                 if (httpFileContext.acceptPath(path))
                 {
                     isNull = false;
-                    byte[] content = Files.readAllBytes(httpFileContext.content(path).toPath());
+                    byte[] content = httpFileContext.content(path);
                     response.header("Content-Type", httpFileContext.contentType())
                             .content(content)
                             .end();

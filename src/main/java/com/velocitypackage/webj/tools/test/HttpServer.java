@@ -6,7 +6,6 @@ import com.velocitypackage.webj.services.http.HttpFileContext;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -135,7 +134,7 @@ public class HttpServer
                     if (httpFileContext.acceptPath(path))
                     {
                         isNull = false;
-                        byte[] content = Files.readAllBytes(httpFileContext.content(path).toPath());
+                        byte[] content = httpFileContext.content(path);
                         exchange.getResponseHeaders().add("Content-Type", httpFileContext.contentType());
                         exchange.sendResponseHeaders(200, content.length);
                         OutputStream output = exchange.getResponseBody();

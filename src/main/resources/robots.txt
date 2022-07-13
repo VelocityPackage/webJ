@@ -2,4 +2,3 @@ User-agent: *
 Disallow: /socket
 Disallow: /stream
 Disallow: /favicon.ico
-Disallow: /favicon.png

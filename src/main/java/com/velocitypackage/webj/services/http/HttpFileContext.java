@@ -1,7 +1,5 @@
 package com.velocitypackage.webj.services.http;
 
-import java.io.File;
-
 public interface HttpFileContext
 {
     /**
@@ -24,5 +22,5 @@ public interface HttpFileContext
      *
      * @return content
      */
-    File content(String path);
+    byte[] content(String path);
 }

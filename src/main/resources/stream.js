@@ -1,11 +1,7 @@
-var relativePath = "/socket";
-var port = "%WSPORT%";
-
-var path = 
+var path =
 	"ws://" + 
 	location.hostname + 
-	":" + port + "" +
-	relativePath;
+	":" + location.port + "/socket";
 
 var load = document.createElement('div');
 load.classList.add("load");
