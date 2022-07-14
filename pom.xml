@@ -6,7 +6,7 @@
 
     <groupId>com.velocitypackage</groupId>
     <artifactId>WebJ</artifactId>
-    <version>0.1.0</version>
+    <version>0.0.2</version>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
