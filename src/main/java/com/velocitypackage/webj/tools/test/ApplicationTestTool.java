@@ -7,10 +7,17 @@ import com.velocitypackage.webj.services.http.HttpContext;
 import java.io.IOException;
 import java.util.HashMap;
 
+@SuppressWarnings("unused")
 public class ApplicationTestTool
 {
     private final HttpServer httpServer;
     
+    /**
+     *
+     * @param port the test Port.
+     * @param application The application to test.
+     * @throws IOException If an error occurs.
+     */
     public ApplicationTestTool(int port, Application application) throws IOException
     {
         httpServer = new HttpServer(port);
@@ -53,6 +60,9 @@ public class ApplicationTestTool
         }
     }
     
+    /**
+     * Starts the ApplicationTestTool
+     */
     public void start()
     {
         httpServer.start();

@@ -9,6 +9,7 @@ import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class HttpServer
 {
     private final com.sun.net.httpserver.HttpServer server;
@@ -105,7 +106,6 @@ public class HttpServer
         server.createContext("/", exchange ->
         {
             String path = exchange.getRequestURI().getPath();
-            
             boolean isNull = true;
             if (isNull) {
                 for (HttpContext httpContext : httpContexts)

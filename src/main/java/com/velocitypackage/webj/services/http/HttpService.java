@@ -8,6 +8,7 @@ import org.webbitserver.HttpResponse;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class HttpService implements HttpHandler
 {
     private final Set<HttpContext> httpContexts = new HashSet<>();

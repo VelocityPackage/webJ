@@ -78,6 +78,7 @@ public class FileService
      * @param file the file
      * @return file content
      */
+    @SuppressWarnings("unused")
     public static String readString(File file) {
         try
         {

@@ -36,6 +36,7 @@ public abstract class HyperTextBehavior
      *
      * @param hyperTextElement the new HyperTextElement object of this HyperTextBehavior object
      */
+    @SuppressWarnings("unused")
     public void setHyperTextElement(HyperTextElement hyperTextElement)
     {
         this.hyperTextElement = hyperTextElement;
