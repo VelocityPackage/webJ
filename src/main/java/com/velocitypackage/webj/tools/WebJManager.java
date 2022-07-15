@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public final class WebJManager
 {
     private HttpService httpService;
@@ -53,6 +54,7 @@ public final class WebJManager
     /**
      * starts all services
      */
+    @SuppressWarnings("unused")
     public void start()
     {
         webServer.start();
@@ -69,12 +71,16 @@ public final class WebJManager
     /**
      * stops all services
      */
+    @SuppressWarnings("unused")
     public void stop()
     {
         webServer.stop();
         System.out.println("Server was successfully closed...");
     }
     
+    /**
+     * sets up the http service
+     */
     private void httpServiceSetup() throws IOException
     {
         httpService = new HttpService();
@@ -82,10 +88,10 @@ public final class WebJManager
                 .replaceFirst("%NAME%", application.getApplicationName());
         if (application.getFavicon() != null)
         {
-            frameHtmlResource.replaceFirst("%FAVICON%", FileService.toBase64(application.getFavicon()));
+            frameHtmlResource = frameHtmlResource.replaceFirst("%FAVICON%", FileService.toBase64(application.getFavicon()));
         } else
         {
-            frameHtmlResource.replaceFirst("%FAVICON%", "");
+            frameHtmlResource = frameHtmlResource.replaceFirst("%FAVICON%", "");
         }
         httpService.add(new HttpContext()
         {
@@ -182,6 +188,9 @@ public final class WebJManager
         }
     }
     
+    /**
+     * sets up the web socket service
+     */
     private void webSocketServiceSetup()
     {
         webSocketService = new WebSocketService()

@@ -13,6 +13,7 @@ import java.util.Set;
  * IMPORTANT -> constructor parameter always overwrite with null
  * @author maxmielchen
  */
+@SuppressWarnings("unused")
 public abstract class Application implements Cloneable
 {
     private final Set<HyperTextPage> pages = new HashSet<>();

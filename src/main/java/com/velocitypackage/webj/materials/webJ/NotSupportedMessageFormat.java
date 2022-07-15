@@ -2,6 +2,7 @@ package com.velocitypackage.webj.materials.webJ;
 
 import java.util.Arrays;
 
+@SuppressWarnings("unused")
 public class NotSupportedMessageFormat extends Exception
 {
     public NotSupportedMessageFormat()
