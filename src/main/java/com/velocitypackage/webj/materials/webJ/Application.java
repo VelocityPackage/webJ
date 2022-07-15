@@ -46,6 +46,10 @@ public abstract class Application implements Cloneable
      */
     public void setFavicon(File favicon)
     {
+        if (favicon == null)
+        {
+            return;
+        }
         this.favicon = favicon;
     }
     
