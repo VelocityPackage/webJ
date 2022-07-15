@@ -82,10 +82,10 @@ public final class WebJManager
                 .replaceFirst("%NAME%", application.getApplicationName());
         if (application.getFavicon() != null)
         {
-            frameHtmlResource.replaceFirst("%FAVICON%", FileService.toBase64(application.getFavicon()));
+            frameHtmlResource = frameHtmlResource.replaceFirst("%FAVICON%", FileService.toBase64(application.getFavicon()));
         } else
         {
-            frameHtmlResource.replaceFirst("%FAVICON%", "");
+            frameHtmlResource = frameHtmlResource.replaceFirst("%FAVICON%", "");
         }
         httpService.add(new HttpContext()
         {
