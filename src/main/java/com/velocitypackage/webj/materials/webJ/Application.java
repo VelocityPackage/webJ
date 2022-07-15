@@ -43,15 +43,22 @@ public abstract class Application implements Cloneable
     
     /**
      * sets the application icon
-     * @param favicon the application icon
+     * @param favicon the application icon (only *.ico)
+     * @throws IllegalArgumentException if the file is not a valid image or null
      */
-    public void setFavicon(File favicon)
+    public void setFavicon(File favicon) throws IllegalArgumentException
     {
-        if (favicon == null)
+        if(favicon == null)
         {
-            return;
+            throw new IllegalArgumentException("favicon cannot be null");
         }
-        this.favicon = favicon;
+        if (favicon.getName().endsWith(".ico"))
+        {
+            this.favicon = favicon;
+        } else
+        {
+            throw new IllegalArgumentException("favicon must be an ico file");
+        }
     }
     
     /**
