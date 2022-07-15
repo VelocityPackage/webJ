@@ -28,7 +28,7 @@ UI behavior add child element
 
 ```Java
 HyperTextBehavior hyperTextBehavior2 = new HyperTextBehavior(){};
-hyperTextBehavior.setHyperTextElement(
+hyperTextBehavior2.setHyperTextElement(
         hyperTextElement
         );
         
