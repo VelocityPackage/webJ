@@ -79,11 +79,14 @@ public final class WebJManager
     {
         httpService = new HttpService();
         frameHtmlResource = FileService.getContentOfResource("frame.html")
-                .replaceFirst("%NAME%", application.getApplicationName())
-                .replaceFirst("%FAVICON%", FileService.toBase64(application.getFavicon()));
-        streamJsResource = FileService.getContentOfResource("stream.js");
-        robotsTxtResource = FileService.getContentOfResource("robots.txt");
-        faviconIco = Files.readAllBytes(application.getFavicon().toPath());
+                .replaceFirst("%NAME%", application.getApplicationName());
+        if (application.getFavicon() != null)
+        {
+            frameHtmlResource.replaceFirst("%FAVICON%", FileService.toBase64(application.getFavicon()));
+        } else
+        {
+            frameHtmlResource.replaceFirst("%FAVICON%", "");
+        }
         httpService.add(new HttpContext()
         {
             @Override
@@ -111,6 +114,7 @@ public final class WebJManager
                 return frameHtmlResource;
             }
         });
+        streamJsResource = FileService.getContentOfResource("stream.js");
         httpService.add(new HttpContext()
         {
             @Override
@@ -131,6 +135,7 @@ public final class WebJManager
                 return streamJsResource;
             }
         });
+        robotsTxtResource = FileService.getContentOfResource("robots.txt");
         httpService.add(new HttpContext()
         {
             @Override
@@ -151,26 +156,30 @@ public final class WebJManager
                 return robotsTxtResource;
             }
         });
-        httpService.add(new HttpFileContext()
+        if (application.getFavicon() != null)
         {
-            @Override
-            public boolean acceptPath(String path)
+            faviconIco = Files.readAllBytes(application.getFavicon().toPath());
+            httpService.add(new HttpFileContext()
             {
-                return path.equals("/favicon.ico");
-            }
-    
-            @Override
-            public String contentType()
-            {
-                return "image/x-icon";
-            }
-    
-            @Override
-            public byte[] content(String path)
-            {
-                return faviconIco;
-            }
-        });
+                @Override
+                public boolean acceptPath(String path)
+                {
+                    return path.equals("/favicon.ico");
+                }
+        
+                @Override
+                public String contentType()
+                {
+                    return "image/x-icon";
+                }
+        
+                @Override
+                public byte[] content(String path)
+                {
+                    return faviconIco;
+                }
+            });
+        }
     }
     
     private void webSocketServiceSetup()
