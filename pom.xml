@@ -50,8 +50,8 @@
             <url>https://jitpack.io</url>
         </repository>
         <repository>
-            <id>vp_central</id>
-            <name>VelocityPackage Central</name>
+            <id>package</id>
+            <name>VelocityPackage Maven Repository</name>
             <url>https://central.velocitypackage.com/repository/package</url>
         </repository>
     </repositories>
@@ -59,12 +59,12 @@
     <distributionManagement>
         <repository>
             <id>archiva.internal</id>
-            <name>Internal Release Repository</name>
+            <name>VelocityPackage Maven Repository</name>
             <url>https://central.velocitypackage.com/repository/package</url>
         </repository>
         <snapshotRepository>
             <id>archiva.snapshots</id>
-            <name>Internal Snapshot Repository</name>
+            <name>VelocityPackage Maven Repository</name>
             <url>https://central.velocitypackage.com/repository/package</url>
         </snapshotRepository>
     </distributionManagement>
