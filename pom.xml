@@ -46,10 +46,6 @@
     <!-- VelocityPackage Central -->
     <repositories>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
             <id>package</id>
             <name>VelocityPackage Maven Repository</name>
             <url>https://central.velocitypackage.com/repository/package</url>
