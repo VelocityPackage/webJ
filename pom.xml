@@ -4,21 +4,71 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- INFO -->
     <groupId>com.velocitypackage</groupId>
     <artifactId>WebJ</artifactId>
-    <version>0.0.2</version>
+    <version>v0.0.2</version>
+    <packaging>jar</packaging>
 
-    <properties>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
-    </properties>
+    <name>Java Web library</name>
+    <description>WebJ is a framework for building webpages.</description>
+    <url>https://github.com/VelocityPackage/WebJ</url>
+    <!-- INFO -->
 
+    <!-- LICENCE -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Max Mielchen</name>
+            <organization>VelocityPackage</organization>
+        </developer>
+        <developer>
+            <name>Marvin Mielchen</name>
+            <organization>VelocityPackage</organization>
+        </developer>
+    </developers>
+    <!-- LICENCE -->
+
+    <!-- SourceControl -->
+    <scm>
+        <connection>scm:git:git://github.com/VelocityPackage/WebJ</connection>
+        <developerConnection>scm:git:ssh://github.com:VelocityPackage/WebJ</developerConnection>
+        <url>https://github.com/VelocityPackage/WebJ</url>
+    </scm>
+    <!-- SourceControl -->
+
+    <!-- VelocityPackage Central -->
     <repositories>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>vp_central</id>
+            <name>VelocityPackage Central</name>
+            <url>https://central.velocitypackage.com/maven2</url>
+        </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>archiva.internal</id>
+            <name>Internal Release Repository</name>
+            <url>https://central.velocitypackage.com/repository/internal/</url>
+        </repository>
+        <snapshotRepository>
+            <id>archiva.snapshots</id>
+            <name>Internal Snapshot Repository</name>
+            <url>https://central.velocitypackage.com/repository/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <!-- VelocityPackage Central -->
 
     <dependencies>
         <dependency>
@@ -41,5 +91,48 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <!-- Deploy -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>15</source>
+                    <target>15</target>
+                    <encoding>utf8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- Deploy -->
 
 </project>
