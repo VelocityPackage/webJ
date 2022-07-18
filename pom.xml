@@ -52,7 +52,7 @@
         <repository>
             <id>vp_central</id>
             <name>VelocityPackage Central</name>
-            <url>https://central.velocitypackage.com/maven2</url>
+            <url>https://central.velocitypackage.com/repository/package</url>
         </repository>
     </repositories>
 
@@ -60,12 +60,12 @@
         <repository>
             <id>archiva.internal</id>
             <name>Internal Release Repository</name>
-            <url>https://central.velocitypackage.com/repository/internal/</url>
+            <url>https://central.velocitypackage.com/repository/package</url>
         </repository>
         <snapshotRepository>
             <id>archiva.snapshots</id>
             <name>Internal Snapshot Repository</name>
-            <url>https://central.velocitypackage.com/repository/snapshots/</url>
+            <url>https://central.velocitypackage.com/repository/package</url>
         </snapshotRepository>
     </distributionManagement>
     <!-- VelocityPackage Central -->
