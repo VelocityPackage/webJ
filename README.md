@@ -1,4 +1,4 @@
-# WebJ
+# webJ
 > Framework for Java based webpages.
 
 ### LowLevelUI
