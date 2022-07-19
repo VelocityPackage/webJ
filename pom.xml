@@ -6,13 +6,13 @@
 
     <!-- INFO -->
     <groupId>com.velocitypackage</groupId>
-    <artifactId>WebJ</artifactId>
+    <artifactId>webJ</artifactId>
     <version>v0.0.2</version>
     <packaging>jar</packaging>
 
     <name>Java Web library</name>
     <description>WebJ is a framework for building webpages.</description>
-    <url>https://github.com/VelocityPackage/WebJ</url>
+    <url>https://github.com/VelocityPackage/webJ</url>
     <!-- INFO -->
 
     <!-- LICENCE -->
@@ -37,9 +37,9 @@
 
     <!-- SourceControl -->
     <scm>
-        <connection>scm:git:git://github.com/VelocityPackage/WebJ</connection>
-        <developerConnection>scm:git:ssh://github.com:VelocityPackage/WebJ</developerConnection>
-        <url>https://github.com/VelocityPackage/WebJ</url>
+        <connection>scm:git:git://github.com/VelocityPackage/webJ</connection>
+        <developerConnection>scm:git:ssh://github.com:VelocityPackage/webJ</developerConnection>
+        <url>https://github.com/VelocityPackage/webJ</url>
     </scm>
     <!-- SourceControl -->
 
