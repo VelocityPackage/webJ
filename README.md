@@ -1,5 +1,5 @@
 # webJ
-> Framework for Java based webpages.
+> Low level web application framework.
 
 ### LowLevelUI
 
