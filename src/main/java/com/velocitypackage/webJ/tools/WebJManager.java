@@ -1,12 +1,12 @@
-package com.velocitypackage.webj.tools;
+package com.velocitypackage.webJ.tools;
 
-import com.velocitypackage.webj.materials.webJ.Application;
-import com.velocitypackage.webj.materials.webJ.NotSupportedMessageFormat;
-import com.velocitypackage.webj.services.file.FileService;
-import com.velocitypackage.webj.services.http.HttpContext;
-import com.velocitypackage.webj.services.http.HttpFileContext;
-import com.velocitypackage.webj.services.http.HttpService;
-import com.velocitypackage.webj.services.ws.WebSocketService;
+import com.velocitypackage.webJ.materials.webJ.Application;
+import com.velocitypackage.webJ.materials.webJ.NotSupportedMessageFormat;
+import com.velocitypackage.webJ.services.file.FileService;
+import com.velocitypackage.webJ.services.http.HttpContext;
+import com.velocitypackage.webJ.services.http.HttpFileContext;
+import com.velocitypackage.webJ.services.http.HttpService;
+import com.velocitypackage.webJ.services.ws.WebSocketService;
 import org.webbitserver.WebServer;
 import org.webbitserver.WebServers;
 import org.webbitserver.WebSocketConnection;

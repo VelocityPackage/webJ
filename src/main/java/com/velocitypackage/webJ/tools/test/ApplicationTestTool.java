@@ -1,8 +1,8 @@
-package com.velocitypackage.webj.tools.test;
+package com.velocitypackage.webJ.tools.test;
 
-import com.velocitypackage.webj.materials.hypertext.HyperTextPage;
-import com.velocitypackage.webj.materials.webJ.Application;
-import com.velocitypackage.webj.services.http.HttpContext;
+import com.velocitypackage.webJ.materials.hypertext.HyperTextPage;
+import com.velocitypackage.webJ.materials.webJ.Application;
+import com.velocitypackage.webJ.services.http.HttpContext;
 
 import java.io.IOException;
 import java.util.HashMap;

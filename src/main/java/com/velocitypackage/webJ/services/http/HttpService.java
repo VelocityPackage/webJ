@@ -1,4 +1,4 @@
-package com.velocitypackage.webj.services.http;
+package com.velocitypackage.webJ.services.http;
 
 import org.webbitserver.HttpControl;
 import org.webbitserver.HttpHandler;

@@ -1,4 +1,4 @@
-package com.velocitypackage.webj.services.file;
+package com.velocitypackage.webJ.services.file;
 
 import java.io.*;
 import java.util.Base64;

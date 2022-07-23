@@ -1,4 +1,4 @@
-package com.velocitypackage.webj.materials.hypertext;
+package com.velocitypackage.webJ.materials.hypertext;
 
 import java.util.Map;
 
