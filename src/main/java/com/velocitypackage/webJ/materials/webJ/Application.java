@@ -1,6 +1,6 @@
-package com.velocitypackage.webj.materials.webJ;
+package com.velocitypackage.webJ.materials.webJ;
 
-import com.velocitypackage.webj.materials.hypertext.HyperTextPage;
+import com.velocitypackage.webJ.materials.hypertext.HyperTextPage;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;

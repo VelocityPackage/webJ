@@ -1,4 +1,4 @@
-package com.velocitypackage.webj.materials.hypertext;
+package com.velocitypackage.webJ.materials.hypertext;
 
 /**
  * The Bootstrap enumeration contains all bootstrap classes.

@@ -1,4 +1,4 @@
-package com.velocitypackage.webj.materials.webJ;
+package com.velocitypackage.webJ.materials.webJ;
 
 import java.util.Arrays;
 

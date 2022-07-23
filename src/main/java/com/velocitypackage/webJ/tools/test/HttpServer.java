@@ -1,7 +1,7 @@
-package com.velocitypackage.webj.tools.test;
+package com.velocitypackage.webJ.tools.test;
 
-import com.velocitypackage.webj.services.http.HttpContext;
-import com.velocitypackage.webj.services.http.HttpFileContext;
+import com.velocitypackage.webJ.services.http.HttpContext;
+import com.velocitypackage.webJ.services.http.HttpFileContext;
 
 import java.io.IOException;
 import java.io.OutputStream;

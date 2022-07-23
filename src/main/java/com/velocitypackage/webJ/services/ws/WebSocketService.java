@@ -1,4 +1,4 @@
-package com.velocitypackage.webj.services.ws;
+package com.velocitypackage.webJ.services.ws;
 
 import org.webbitserver.BaseWebSocketHandler;
 import org.webbitserver.WebSocketConnection;
