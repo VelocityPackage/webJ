@@ -157,12 +157,18 @@ public final class HyperTextElement
         }
         
         StringBuilder stringBuilder = new StringBuilder();
-        for (Attribute.AttributeIdentifier a : map.keySet())
+        for (Map.Entry<Attribute.AttributeIdentifier, String> a : map.entrySet())
         {
-            stringBuilder.append(a.name().toLowerCase().replaceAll("_", "-"));
-            stringBuilder.append("=\"");
-            stringBuilder.append(map.get(a));
-            stringBuilder.append("\" ");
+            stringBuilder.append(a.getKey().name().toLowerCase().replaceAll("_", "-"));
+            if (a.getValue() != null && !a.getValue().equals(""))
+            {
+                stringBuilder.append("=\"");
+                stringBuilder.append(a.getValue());
+                stringBuilder.append("\" ");
+            } else
+            {
+                stringBuilder.append(" ");
+            }
         }
         return stringBuilder.toString();
     }
