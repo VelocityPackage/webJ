@@ -13,7 +13,7 @@ import org.webbitserver.WebSocketConnection;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.nio.file.Files;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -88,7 +88,7 @@ public final class WebJManager
                 .replaceFirst("%NAME%", application.getApplicationName());
         if (application.getFavicon() != null)
         {
-            frameHtmlResource = frameHtmlResource.replaceAll("%FAVICON%", FileService.toBase64(application.getFavicon()));
+            frameHtmlResource = frameHtmlResource.replaceAll("%FAVICON%", application.getFavicon());
         } else
         {
             frameHtmlResource = frameHtmlResource.replaceAll("%FAVICON%", "");
@@ -164,7 +164,7 @@ public final class WebJManager
         });
         if (application.getFavicon() != null)
         {
-            faviconIco = Files.readAllBytes(application.getFavicon().toPath());
+            faviconIco = Base64.getDecoder().decode("data:image/x-icon;base64," + application.getFavicon());
             httpService.add(new HttpFileContext()
             {
                 @Override
