@@ -2,12 +2,12 @@ package com.velocitypackage.webJ.materials.webJ;
 
 import com.velocitypackage.webJ.materials.hypertext.HyperTextPage;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * IMPORTANT -> constructor parameter always overwrite with null
@@ -19,7 +19,7 @@ public abstract class Application implements Cloneable
     private final Set<HyperTextPage> pages = new HashSet<>();
     private String currentPath = "/";
     private String applicationName;
-    private File favicon;
+    private String faviconBase64;
     
     private Runnable onForceUpdate;
     
@@ -46,19 +46,27 @@ public abstract class Application implements Cloneable
      * @param favicon the application icon (only *.ico)
      * @throws IllegalArgumentException if the file is not a valid image or null
      */
-    public void setFavicon(File favicon) throws IllegalArgumentException
+    public void setFavicon(File favicon) throws IllegalArgumentException, IOException
     {
         if(favicon == null)
         {
             throw new IllegalArgumentException("favicon cannot be null");
         }
-        if (favicon.getName().endsWith(".ico"))
+        this.faviconBase64 = toBase64(favicon);
+    }
+    
+    /**
+     * sets the application icon
+     * @param favicon the application icon (only *.ico)
+     * @throws IllegalArgumentException if the file is not a valid image or null
+     */
+    public void setFavicon(String favicon) throws IllegalArgumentException
+    {
+        if(favicon == null)
         {
-            this.favicon = favicon;
-        } else
-        {
-            throw new IllegalArgumentException("favicon must be an ico file");
+            throw new IllegalArgumentException("favicon cannot be null");
         }
+        this.faviconBase64 = favicon;
     }
     
     /**
@@ -97,9 +105,9 @@ public abstract class Application implements Cloneable
      * returns the application favicon
      * @return application favicon
      */
-    public File getFavicon()
+    public String getFavicon()
     {
-        return favicon;
+        return faviconBase64;
     }
     
     /**
@@ -159,6 +167,31 @@ public abstract class Application implements Cloneable
         {
             throw new NotSupportedMessageFormat("id:<id> inputs:{}", "id:<id> inputs:{<inputID>??<value>;;...}");
         }
+    }
+    
+    /**
+     * Convert a file into a image base64 interpretation
+     * @param image file of image
+     * @return the base64 version
+     * @throws IOException throws if the image didn't exist
+     */
+    private static String toBase64(File image) throws IOException
+    {
+        FileInputStream stream = new FileInputStream(image);
+        int bufLength = 2048;
+        byte[] buffer = new byte[2048];
+        byte[] data;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        int readLength;
+        while ((readLength = stream.read(buffer, 0, bufLength)) != - 1)
+        {
+            out.write(buffer, 0, readLength);
+        }
+        data = out.toByteArray();
+        String imageString = Base64.getEncoder().withoutPadding().encodeToString(data);
+        out.close();
+        stream.close();
+        return imageString;
     }
     
     @Override
