@@ -1,5 +1,8 @@
 package com.velocitypackage.webJ.services.file;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Base64;
 
@@ -93,5 +96,29 @@ public class FileService
         } catch (Exception e) {
             return "";
         }
+    }
+    
+    /**
+     * A stable methode to resize images
+     * @param img
+     * @param width
+     * @param height
+     * @return
+     * @throws IOException
+     */
+    public static byte[] resizeImage(byte[] img, int width, int height) throws IOException
+    {
+        BufferedImage bi = ImageIO.read(new ByteArrayInputStream(img));
+        
+        Image tmp = bi.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        ImageIO.write(resized, "png", os);
+        os.flush();
+        os.close();
+        return os.toByteArray();
     }
 }

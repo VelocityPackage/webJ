@@ -31,7 +31,7 @@ public final class WebJManager
     private final Application application;
     
     private String frameHtmlResource, streamJsResource, robotsTxtResource;
-    private byte[] faviconIco;
+    private byte[] favicon, favicon16, favicon32, favicon64;
     
     /**
      * Creates a Server service management system for a specific application
@@ -164,7 +164,10 @@ public final class WebJManager
         });
         if (application.getFavicon() != null)
         {
-            faviconIco = Base64.getDecoder().decode(application.getFavicon());
+            favicon = Base64.getDecoder().decode(application.getFavicon());
+            favicon16 = FileService.resizeImage(favicon, 16, 16);
+            favicon32 = FileService.resizeImage(favicon, 32, 32);
+            favicon64 = FileService.resizeImage(favicon, 64, 64);
             httpService.add(new HttpFileContext()
             {
                 @Override
@@ -182,7 +185,67 @@ public final class WebJManager
                 @Override
                 public byte[] content(String path)
                 {
-                    return faviconIco;
+                    return favicon;
+                }
+            });
+            httpService.add(new HttpFileContext()
+            {
+                @Override
+                public boolean acceptPath(String path)
+                {
+                    return path.equals("/favicon16.ico");
+                }
+        
+                @Override
+                public String contentType()
+                {
+                    return "image/x-icon";
+                }
+        
+                @Override
+                public byte[] content(String path)
+                {
+                    return favicon16;
+                }
+            });
+            httpService.add(new HttpFileContext()
+            {
+                @Override
+                public boolean acceptPath(String path)
+                {
+                    return path.equals("/favicon32.ico");
+                }
+        
+                @Override
+                public String contentType()
+                {
+                    return "image/x-icon";
+                }
+        
+                @Override
+                public byte[] content(String path)
+                {
+                    return favicon32;
+                }
+            });
+            httpService.add(new HttpFileContext()
+            {
+                @Override
+                public boolean acceptPath(String path)
+                {
+                    return path.equals("/favicon64.ico");
+                }
+        
+                @Override
+                public String contentType()
+                {
+                    return "image/x-icon";
+                }
+        
+                @Override
+                public byte[] content(String path)
+                {
+                    return favicon64;
                 }
             });
         }
