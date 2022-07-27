@@ -29,6 +29,17 @@ public class Attribute
     }
     
     /**
+     * A constructor for the Attribute class that creates a new Attribute object from the given html attribute.
+     *
+     * @param attributeIdentifier the attribute that the value is assigned to
+     */
+    public Attribute(AttributeIdentifier attributeIdentifier)
+    {
+        this.attributeIdentifier = attributeIdentifier;
+        this.value = null;
+    }
+    
+    /**
      * Gets the html attribute of the Attribute object.
      *
      * @return the html attribute
