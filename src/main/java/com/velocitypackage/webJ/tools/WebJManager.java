@@ -164,7 +164,7 @@ public final class WebJManager
         });
         if (application.getFavicon() != null)
         {
-            faviconIco = Base64.getDecoder().decode("data:image/x-icon;base64," + application.getFavicon());
+            faviconIco = Base64.getDecoder().decode(application.getFavicon());
             httpService.add(new HttpFileContext()
             {
                 @Override
