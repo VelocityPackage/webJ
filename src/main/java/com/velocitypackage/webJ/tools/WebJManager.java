@@ -7,13 +7,15 @@ import com.velocitypackage.webJ.services.http.HttpContext;
 import com.velocitypackage.webJ.services.http.HttpFileContext;
 import com.velocitypackage.webJ.services.http.HttpService;
 import com.velocitypackage.webJ.services.ws.WebSocketService;
+import org.apache.commons.imaging.ImageReadException;
+import org.apache.commons.imaging.ImageWriteException;
 import org.webbitserver.WebServer;
 import org.webbitserver.WebServers;
 import org.webbitserver.WebSocketConnection;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.Base64;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -31,7 +33,11 @@ public final class WebJManager
     private final Application application;
     
     private String frameHtmlResource, streamJsResource, robotsTxtResource;
-    private byte[] favicon, favicon16, favicon32, favicon64;
+    
+    private final HashMap<Integer, byte[]> faviconCacheIco;
+    private final HashMap<Integer, byte[]> faviconCachePng;
+    private byte[] faviconIco;
+    private byte[] faviconPng;
     
     /**
      * Creates a Server service management system for a specific application
@@ -42,6 +48,8 @@ public final class WebJManager
     public WebJManager(int port, Application application) throws IOException
     {
         this.connections = new HashMap<>();
+        this.faviconCacheIco = new HashMap<>();
+        this.faviconCachePng = new HashMap<>();
         this.port = port;
         this.application = application;
         this.webServer = WebServers.createWebServer(this.port);
@@ -86,26 +94,20 @@ public final class WebJManager
         httpService = new HttpService();
         frameHtmlResource = FileService.getContentOfResource("frame.html")
                 .replaceFirst("%NAME%", application.getApplicationName());
-        if (application.getFavicon() != null)
-        {
-            frameHtmlResource = frameHtmlResource.replaceAll("%FAVICON%", application.getFavicon());
-        } else
-        {
-            frameHtmlResource = frameHtmlResource.replaceAll("%FAVICON%", "");
-        }
+        frameHtmlResource = faviconBase64ServiceSetup(frameHtmlResource);
         httpService.add(new HttpContext()
         {
             @Override
             public boolean acceptPath(String path)
             {
-                for (String notAllowed : new String[]{"/stream", "/robots.txt", "/favicon.ico", "/socket"})
+                for (String notAllowed : new String[]{"/stream", "/robots.txt", "/favicon.ico", "/favicon.png", "/socket"})
                 {
                     if (Objects.equals(path, notAllowed))
                     {
                         return false;
                     }
                 }
-                return true;
+                return (!path.startsWith("/favicon.ico") && !path.startsWith("/favicon.png"));
             }
     
             @Override
@@ -162,90 +164,122 @@ public final class WebJManager
                 return robotsTxtResource;
             }
         });
+        faviconServiceSetup();
+    }
+    
+    /**
+     * Replace all favicons throw base64
+     * @param frameHtmlResource source
+     * @return new source
+     */
+    private String faviconBase64ServiceSetup(String frameHtmlResource) throws IOException
+    {
         if (application.getFavicon() != null)
         {
-            favicon = Base64.getDecoder().decode(application.getFavicon());
-            favicon16 = FileService.resizeImage(favicon, 16, 16);
-            favicon32 = FileService.resizeImage(favicon, 32, 32);
-            favicon64 = FileService.resizeImage(favicon, 64, 64);
+            frameHtmlResource = frameHtmlResource.replaceAll("%FAVICON%", FileService.toBase64(application.getFavicon()));
+        } else
+        {
+            frameHtmlResource = frameHtmlResource.replaceAll("%FAVICON%", "");
+        }
+        return frameHtmlResource;
+    }
+    
+    /**
+     * Setting up the favicons
+     * @throws IOException don't throw
+     */
+    private void faviconServiceSetup() throws IOException
+    {
+        if (application.getFavicon() != null)
+        {
+            faviconIco = Files.readAllBytes(application.getFavicon().toPath());
             httpService.add(new HttpFileContext()
             {
                 @Override
                 public boolean acceptPath(String path)
                 {
-                    return path.equals("/favicon.ico");
+                    return path.startsWith("/favicon.ico");
                 }
-        
+            
                 @Override
                 public String contentType()
                 {
                     return "image/x-icon";
                 }
-        
+            
                 @Override
                 public byte[] content(String path)
                 {
-                    return favicon;
+                    String[] pathParameter = path.split("\\?");
+                    if (pathParameter.length == 1)
+                    {
+                        return faviconIco;
+                    } else
+                    {
+                        int size = Integer.parseInt(pathParameter[1]);
+                        if (faviconCacheIco.get(size) == null)
+                        {
+                            try
+                            {
+                                faviconCacheIco.put(size, FileService.resizedIco(application.getFavicon(), size, size));
+                                return faviconCacheIco.get(size);
+                            } catch (IOException | ImageReadException | ImageWriteException e)
+                            {
+                                throw new RuntimeException(e);
+                            }
+                        } else
+                        {
+                            return faviconCacheIco.get(size);
+                        }
+                    }
                 }
             });
+            try
+            {
+                faviconPng = FileService.resizedIcoToPng(application.getFavicon(), 64, 64);
+            } catch (ImageReadException e)
+            {
+                throw new IOException(e);
+            }
             httpService.add(new HttpFileContext()
             {
                 @Override
                 public boolean acceptPath(String path)
                 {
-                    return path.equals("/favicon16.ico");
+                    return path.startsWith("/favicon.png");
                 }
         
                 @Override
                 public String contentType()
                 {
-                    return "image/x-icon";
+                    return "image/png";
                 }
         
                 @Override
                 public byte[] content(String path)
                 {
-                    return favicon16;
-                }
-            });
-            httpService.add(new HttpFileContext()
-            {
-                @Override
-                public boolean acceptPath(String path)
-                {
-                    return path.equals("/favicon32.ico");
-                }
-        
-                @Override
-                public String contentType()
-                {
-                    return "image/x-icon";
-                }
-        
-                @Override
-                public byte[] content(String path)
-                {
-                    return favicon32;
-                }
-            });
-            httpService.add(new HttpFileContext()
-            {
-                @Override
-                public boolean acceptPath(String path)
-                {
-                    return path.equals("/favicon64.ico");
-                }
-        
-                @Override
-                public String contentType()
-                {
-                    return "image/x-icon";
-                }
-        
-                @Override
-                public byte[] content(String path)
-                {
-                    return favicon64;
+                    String[] pathParameter = path.split("\\?");
+                    if (pathParameter.length == 1)
+                    {
+                        return faviconPng;
+                    } else
+                    {
+                        int size = Integer.parseInt(pathParameter[1]);
+                        if (faviconCachePng.get(size) == null)
+                        {
+                            try
+                            {
+                                faviconCachePng.put(size, FileService.resizedIcoToPng(application.getFavicon(), size, size));
+                                return faviconCachePng.get(size);
+                            } catch (IOException | ImageReadException e)
+                            {
+                                throw new RuntimeException(e);
+                            }
+                        } else
+                        {
+                            return faviconCachePng.get(size);
+                        }
+                    }
                 }
             });
         }

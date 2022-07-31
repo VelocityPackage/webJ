@@ -1,10 +1,16 @@
 package com.velocitypackage.webJ.services.file;
 
+import org.apache.commons.imaging.ImageFormats;
+import org.apache.commons.imaging.ImageReadException;
+import org.apache.commons.imaging.ImageWriteException;
+import org.apache.commons.imaging.Imaging;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Base64;
+import java.util.List;
 
 /**
  * This is the utility for files
@@ -99,26 +105,57 @@ public class FileService
     }
     
     /**
-     * A stable methode to resize images
-     * @param img
-     * @param width
-     * @param height
-     * @return
-     * @throws IOException
+     * resize ico image and returns the resized version as byte array
+     * @param image ico file
+     * @param h new height
+     * @param w new weight
+     * @return the resized image bytes
+     * @throws IOException thrown if the image does not exist
+     * @throws ImageReadException thrown if the image is not readable
+     * @throws ImageWriteException thrown if the image is not writable
      */
-    public static byte[] resizeImage(byte[] img, int width, int height) throws IOException
+    public static byte[] resizedIco(File image, int h, int w) throws IOException, ImageReadException, ImageWriteException
     {
-        BufferedImage bi = ImageIO.read(new ByteArrayInputStream(img));
-        
-        Image tmp = bi.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = resized.createGraphics();
-        g2d.drawImage(tmp, 0, 0, null);
-        g2d.dispose();
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        ImageIO.write(resized, "png", os);
-        os.flush();
-        os.close();
-        return os.toByteArray();
+        List<BufferedImage> nonScaledImages = Imaging.getAllBufferedImages(image);
+        if (nonScaledImages.isEmpty())
+        {
+           throw new IOException("Image does not exits");
+        }
+        BufferedImage nonScaledImage = nonScaledImages.get(0);
+        Image scaledImage = nonScaledImage.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
+        Imaging.writeImage(imageToBufferedImage(scaledImage), byteArrayOutputStream, ImageFormats.ICO);
+        return byteArrayOutputStream.toByteArray();
+    }
+    
+    /**
+     * resize ico image and returns the resized version as byte array
+     * @param image ico file
+     * @param h new height
+     * @param w new weight
+     * @return the resized image bytes
+     * @throws IOException thrown if the image does not exist
+     * @throws ImageReadException thrown if the image is not readable
+     */
+    public static byte[] resizedIcoToPng(File image, int h, int w) throws IOException, ImageReadException
+    {
+        List<BufferedImage> nonScaledImages = Imaging.getAllBufferedImages(image);
+        if (nonScaledImages.isEmpty())
+        {
+            throw new IOException("Image does not exits");
+        }
+        BufferedImage nonScaledImage = nonScaledImages.get(0);
+        Image scaledImage = nonScaledImage.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
+        ImageIO.write(imageToBufferedImage(scaledImage), "png", byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+    
+    private static BufferedImage imageToBufferedImage(Image image) {
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null),image.getHeight(null),BufferedImage.TYPE_INT_ARGB);
+        Graphics bg = bufferedImage.getGraphics();
+        bg.drawImage(image, 0, 0, null);
+        bg.dispose();
+        return bufferedImage;
     }
 }
