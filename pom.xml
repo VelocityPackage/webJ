@@ -7,7 +7,7 @@
     <!-- INFO -->
     <groupId>com.velocitypackage</groupId>
     <artifactId>webJ</artifactId>
-    <version>v0.0.2</version>
+    <version>v0.0.6</version>
     <packaging>jar</packaging>
 
     <name>Java Web library</name>
@@ -71,6 +71,12 @@
             <groupId>com.github.webbit</groupId>
             <artifactId>webbit</artifactId>
             <version>v0.4.19</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-imaging</artifactId>
+            <version>1.0-alpha3</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
