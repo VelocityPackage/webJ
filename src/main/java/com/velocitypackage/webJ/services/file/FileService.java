@@ -114,8 +114,12 @@ public class FileService
      * @throws ImageReadException thrown if the image is not readable
      * @throws ImageWriteException thrown if the image is not writable
      */
-    public static byte[] resizedIco(File image, int h, int w) throws IOException, ImageReadException, ImageWriteException
+    public static byte[] resizedIco(File image, int h, int w) throws IOException, ImageReadException, ImageWriteException, IllegalArgumentException
     {
+        if (h > 256 || w > 256)
+        {
+            throw new IllegalArgumentException("ico max size == 256");
+        }
         List<BufferedImage> nonScaledImages = Imaging.getAllBufferedImages(image);
         if (nonScaledImages.isEmpty())
         {
@@ -125,6 +129,26 @@ public class FileService
         Image scaledImage = nonScaledImage.getScaledInstance(w, h, Image.SCALE_SMOOTH);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
         Imaging.writeImage(imageToBufferedImage(scaledImage), byteArrayOutputStream, ImageFormats.ICO);
+        return byteArrayOutputStream.toByteArray();
+    }
+    
+    /**
+     * convert a .ico file into png bytes
+     * @param image ico file
+     * @return the png image bytes
+     * @throws IOException thrown if the image does not exist
+     * @throws ImageReadException thrown if the image is not readable
+     */
+    public static byte[] icoToPng(File image) throws IOException, ImageReadException
+    {
+        List<BufferedImage> nonScaledImages = Imaging.getAllBufferedImages(image);
+        if (nonScaledImages.isEmpty())
+        {
+            throw new IOException("Image does not exits");
+        }
+        BufferedImage nonScaledImage = nonScaledImages.get(0);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
+        ImageIO.write(nonScaledImage, "png", byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
     

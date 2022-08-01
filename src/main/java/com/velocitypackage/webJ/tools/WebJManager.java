@@ -217,6 +217,10 @@ public final class WebJManager
                     } else
                     {
                         int size = Integer.parseInt(pathParameter[1]);
+                        if (size > 256)
+                        {
+                            return new byte[]{-1};
+                        }
                         if (faviconCacheIco.get(size) == null)
                         {
                             try
@@ -236,7 +240,7 @@ public final class WebJManager
             });
             try
             {
-                faviconPng = FileService.resizedIcoToPng(application.getFavicon(), 64, 64);
+                faviconPng = FileService.icoToPng(application.getFavicon());
             } catch (ImageReadException e)
             {
                 throw new IOException(e);
