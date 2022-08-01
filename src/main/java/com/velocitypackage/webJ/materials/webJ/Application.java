@@ -84,6 +84,20 @@ public abstract class Application implements Cloneable
     }
     
     /**
+     * returns the style inert parameter
+     * @return the style inert parameter
+     */
+    public String getStyleInert()
+    {
+        for (HyperTextPage hyperTextPage : pages) {
+            if (hyperTextPage.getPath().equals(currentPath)) {
+                return hyperTextPage.getStyleInert();
+            }
+        }
+        return "";
+    }
+    
+    /**
      * returns the application name
      * @return application name
      */

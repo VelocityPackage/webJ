@@ -306,7 +306,12 @@ public final class WebJManager
                 {
                     e.printStackTrace();
                 }
-                connections.get(connection).setForceUpdate(() -> connection.send(connections.get(connection).getTextRepresentation())); //force update
+                connections.get(connection).setForceUpdate(() ->
+                        {
+                            connection.send("bstyl:" + connections.get(connection).getStyleInert());
+                            connection.send(connections.get(connection).getTextRepresentation());
+                        }
+                ); //force update
             }
     
             @Override
@@ -325,6 +330,7 @@ public final class WebJManager
                 {
                     e.printStackTrace();
                 }
+                connection.send("bstyl:" + connections.get(connection).getStyleInert());
                 connection.send(connections.get(connection).getTextRepresentation());
             }
         };
