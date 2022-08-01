@@ -10,6 +10,7 @@ import java.util.Map;
 public class HyperTextPage
 {
     private final String path;
+    private final Style[] bodyStyles;
     private final HyperTextBehavior[] children;
     
     /**
@@ -20,8 +21,37 @@ public class HyperTextPage
     public HyperTextPage(String path, HyperTextBehavior... children)
     {
         this.path = path;
+        this.bodyStyles = new Style[]{};
         this.children = children;
     }
+    
+    /**
+     *
+     * @param path path to the page
+     * @param styles style options for the page
+     * @param children children of the page
+     */
+    public HyperTextPage(String path, Style[] styles, HyperTextBehavior... children)
+    {
+        this.path = path;
+        this.bodyStyles = styles;
+        this.children = children;
+    }
+    
+    /**
+     * returns the style inert parameter
+     * @return the style inert parameter
+     */
+    public String getStyleInert()
+    {
+        StringBuilder styleInterpretation = new StringBuilder();
+        for (Style style : bodyStyles)
+        {
+            styleInterpretation.append(style.getIdentifier().name().toLowerCase()).append(":").append(style.getValue()).append(";");
+        }
+        return new String(styleInterpretation);
+    }
+    
     
     /**
      *

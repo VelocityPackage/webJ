@@ -61,6 +61,12 @@ socket.onmessage = function(event)
 {
 	var msg = event.data;
 	var content = document.body;
+	if (msg.startsWith("bstyl:"))
+	{
+        msg = msg.replace("bstyl:", "");
+        content.setAttribute("style", msg);
+        return;
+	}
 	content.innerHTML = msg;
 	const buttons = document.getElementsByTagName('button');
 	for (const button of buttons)
