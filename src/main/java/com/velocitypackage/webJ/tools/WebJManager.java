@@ -236,7 +236,7 @@ public final class WebJManager
             });
             try
             {
-                faviconPng = FileService.resizedIcoToPng(application.getFavicon(), 64, 64);
+                faviconPng = FileService.icoToPng(application.getFavicon());
             } catch (ImageReadException e)
             {
                 throw new IOException(e);
