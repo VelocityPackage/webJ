@@ -47,7 +47,7 @@ public class HyperTextPage
         StringBuilder styleInterpretation = new StringBuilder();
         for (Style style : bodyStyles)
         {
-            styleInterpretation.append(style.getIdentifier().name().toLowerCase()).append(":").append(style.getValue()).append(";");
+            styleInterpretation.append(style.getIdentifier().name().toLowerCase().replaceAll("_", "-")).append(":").append(style.getValue()).append(";");
         }
         return new String(styleInterpretation);
     }
