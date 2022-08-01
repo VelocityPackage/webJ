@@ -129,6 +129,26 @@ public class FileService
     }
     
     /**
+     * convert a .ico file into png bytes
+     * @param image ico file
+     * @return the png image bytes
+     * @throws IOException thrown if the image does not exist
+     * @throws ImageReadException thrown if the image is not readable
+     */
+    public static byte[] icoToPng(File image) throws IOException, ImageReadException
+    {
+        List<BufferedImage> nonScaledImages = Imaging.getAllBufferedImages(image);
+        if (nonScaledImages.isEmpty())
+        {
+            throw new IOException("Image does not exits");
+        }
+        BufferedImage nonScaledImage = nonScaledImages.get(0);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
+        ImageIO.write(nonScaledImage, "png", byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+    
+    /**
      * resize ico image and returns the resized version as byte array
      * @param image ico file
      * @param h new height
