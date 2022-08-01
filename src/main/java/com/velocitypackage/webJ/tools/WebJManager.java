@@ -217,6 +217,10 @@ public final class WebJManager
                     } else
                     {
                         int size = Integer.parseInt(pathParameter[1]);
+                        if (size > 256)
+                        {
+                            return new byte[]{-1};
+                        }
                         if (faviconCacheIco.get(size) == null)
                         {
                             try
