@@ -114,8 +114,12 @@ public class FileService
      * @throws ImageReadException thrown if the image is not readable
      * @throws ImageWriteException thrown if the image is not writable
      */
-    public static byte[] resizedIco(File image, int h, int w) throws IOException, ImageReadException, ImageWriteException
+    public static byte[] resizedIco(File image, int h, int w) throws IOException, ImageReadException, ImageWriteException, IllegalArgumentException
     {
+        if (h > 256 || w > 256)
+        {
+            throw new IllegalArgumentException("ico max size == 256");
+        }
         List<BufferedImage> nonScaledImages = Imaging.getAllBufferedImages(image);
         if (nonScaledImages.isEmpty())
         {
