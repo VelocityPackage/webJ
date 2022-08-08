@@ -74,6 +74,9 @@ socket.onmessage = function(event)
 	{
 		button.addEventListener('click', function()
 		{
+		    update(
+        		load
+        	);
 			socket.send("id:" + button.id + " inputs:{}");
 		});
 	}
