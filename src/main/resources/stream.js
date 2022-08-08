@@ -74,6 +74,9 @@ socket.onmessage = function(event)
 	{
 		button.addEventListener('click', function()
 		{
+		    update(
+        		load
+        	);
 			socket.send("id:" + button.id + " inputs:{}");
 		});
 	}
@@ -82,6 +85,9 @@ socket.onmessage = function(event)
     {
         form.addEventListener('submit', function(e)
         {
+            update(
+                load
+            );
             const inputs = form.getElementsByTagName('input');
             var inputsAsString = "";
             for (const input of inputs)
