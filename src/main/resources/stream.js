@@ -23,6 +23,7 @@ function update(content)
 {
 	document.body.innerHTML = "";
 	document.body.appendChild(content);
+	document.body.removeAttribute("style");
 }
 
 update(
