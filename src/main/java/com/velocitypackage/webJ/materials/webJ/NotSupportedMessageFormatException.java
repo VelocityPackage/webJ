@@ -7,12 +7,12 @@ import java.util.Arrays;
  * @author maxmielchen
  */
 @SuppressWarnings("unused")
-public class NotSupportedMessageFormat extends Exception
+public class NotSupportedMessageFormatException extends Exception
 {
     /**
      * Constructor
      */
-    public NotSupportedMessageFormat()
+    public NotSupportedMessageFormatException()
     {
         super();
     }
@@ -21,7 +21,7 @@ public class NotSupportedMessageFormat extends Exception
      * Constructor
      * @param format supported format as array / varargs -> IMPORTANT: It's not a format check
      */
-    public NotSupportedMessageFormat(String... format)
+    public NotSupportedMessageFormatException(String... format)
     {
         super("Supported Formats: " + Arrays.toString(format));
     }

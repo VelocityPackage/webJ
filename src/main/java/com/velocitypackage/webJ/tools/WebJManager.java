@@ -1,7 +1,7 @@
 package com.velocitypackage.webJ.tools;
 
 import com.velocitypackage.webJ.materials.webJ.Application;
-import com.velocitypackage.webJ.materials.webJ.NotSupportedMessageFormat;
+import com.velocitypackage.webJ.materials.webJ.NotSupportedMessageFormatException;
 import com.velocitypackage.webJ.services.file.FileService;
 import com.velocitypackage.webJ.services.http.HttpContext;
 import com.velocitypackage.webJ.services.http.HttpFileContext;
@@ -326,7 +326,7 @@ public final class WebJManager
                 try
                 {
                     connections.get(connection).onMessage(message);
-                } catch (NotSupportedMessageFormat e)
+                } catch (NotSupportedMessageFormatException e)
                 {
                     e.printStackTrace();
                 }
