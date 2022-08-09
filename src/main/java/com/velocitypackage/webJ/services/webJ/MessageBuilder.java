@@ -57,6 +57,6 @@ public class MessageBuilder
     @Override
     public String toString()
     {
-        return String.format("style:%s bootstrap:%s hypertext:%s", getStyleInert().trim(), getBootstrapInert().trim(), textRepresentation);
+        return String.format("style:%s&&bootstrap:%s&&hypertext:%s", getStyleInert().trim(), getBootstrapInert().trim(), textRepresentation);
     }
 }

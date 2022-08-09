@@ -61,7 +61,7 @@ socket.onclose = function(event)
 socket.onmessage = function(event)
 {
 	var msg = event.data;
-	var convertedMsg = msg.split(" ", 3);
+	var convertedMsg = msg.split("&&", 3);
 	var style = convertedMsg[0].split(":", 2)[1];
 	var bootstrap = convertedMsg[1].split(":", 2)[1];
 	var hypertext = convertedMsg[2].split(":", 2)[1];
