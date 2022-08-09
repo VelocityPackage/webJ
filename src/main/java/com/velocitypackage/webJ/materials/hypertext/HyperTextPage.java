@@ -10,7 +10,8 @@ import java.util.Map;
 public class HyperTextPage
 {
     private final String path;
-    private final Style[] bodyStyles;
+    private final Style[] styles;
+    private final Bootstrap[] bootstraps;
     private final HyperTextBehavior[] children;
     
     /**
@@ -21,7 +22,8 @@ public class HyperTextPage
     public HyperTextPage(String path, HyperTextBehavior... children)
     {
         this.path = path;
-        this.bodyStyles = new Style[]{};
+        this.styles = new Style[]{};
+        this.bootstraps = new Bootstrap[]{};
         this.children = children;
     }
     
@@ -34,24 +36,57 @@ public class HyperTextPage
     public HyperTextPage(String path, Style[] styles, HyperTextBehavior... children)
     {
         this.path = path;
-        this.bodyStyles = styles;
+        this.styles = styles;
+        this.bootstraps = new Bootstrap[]{};
         this.children = children;
     }
     
     /**
-     * returns the style inert parameter
-     * @return the style inert parameter
+     *
+     * @param path path to the page
+     * @param bootstraps bootstrap options for the page
+     * @param children children of the page
      */
-    public String getStyleInert()
+    public HyperTextPage(String path, Bootstrap[] bootstraps, HyperTextBehavior... children)
     {
-        StringBuilder styleInterpretation = new StringBuilder();
-        for (Style style : bodyStyles)
-        {
-            styleInterpretation.append(style.getIdentifier().name().toLowerCase().replaceAll("_", "-")).append(":").append(style.getValue()).append(";");
-        }
-        return new String(styleInterpretation);
+        this.path = path;
+        this.styles = new Style[]{};
+        this.bootstraps = bootstraps;
+        this.children = children;
     }
     
+    /**
+     *
+     * @param path path to the page
+     * @param styles style options for the page
+     * @param bootstraps bootstrap options for the page
+     * @param children children of the page
+     */
+    public HyperTextPage(String path, Style[] styles, Bootstrap[] bootstraps, HyperTextBehavior... children)
+    {
+        this.path = path;
+        this.styles = styles;
+        this.bootstraps = bootstraps;
+        this.children = children;
+    }
+    
+    /**
+     * getter for the style options for the body
+     * @return the style array
+     */
+    public Style[] getStyles()
+    {
+        return styles;
+    }
+    
+    /**
+     * getter for the bootstrap options for the body
+     * @return the bootstraps array
+     */
+    public Bootstrap[] getBootstraps()
+    {
+        return bootstraps;
+    }
     
     /**
      *

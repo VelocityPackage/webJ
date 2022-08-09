@@ -1,6 +1,8 @@
 package com.velocitypackage.webJ.materials.webJ;
 
+import com.velocitypackage.webJ.materials.hypertext.Bootstrap;
 import com.velocitypackage.webJ.materials.hypertext.HyperTextPage;
+import com.velocitypackage.webJ.materials.hypertext.Style;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -20,7 +22,6 @@ public abstract class Application implements Cloneable
     private String currentPath = "/";
     private String applicationName;
     private File favicon;
-    
     private Runnable onForceUpdate;
     
     /**
@@ -70,7 +71,7 @@ public abstract class Application implements Cloneable
     }
     
     /**
-     * Returns an interpretation of all components as html
+     * Returns an interpretation of all components as html of the current page
      * @return string as html
      */
     public final String getTextRepresentation()
@@ -84,17 +85,31 @@ public abstract class Application implements Cloneable
     }
     
     /**
-     * returns the style inert parameter
-     * @return the style inert parameter
+     * Returns an interpretation of the style options of the current page
+     * @return the style options of the current page
      */
-    public String getStyleInert()
+    public Style[] getStyle()
     {
         for (HyperTextPage hyperTextPage : pages) {
             if (hyperTextPage.getPath().equals(currentPath)) {
-                return hyperTextPage.getStyleInert();
+                return hyperTextPage.getStyles();
             }
         }
-        return "";
+        return new Style[]{};
+    }
+    
+    /**
+     * Returns an interpretation of the bootstrap options of the current page
+     * @return the bootstrap options of the current page
+     */
+    public Bootstrap[] getBootstrap()
+    {
+        for (HyperTextPage hyperTextPage : pages) {
+            if (hyperTextPage.getPath().equals(currentPath)) {
+                return hyperTextPage.getBootstraps();
+            }
+        }
+        return new Bootstrap[]{};
     }
     
     /**

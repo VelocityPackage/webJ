@@ -61,14 +61,15 @@ socket.onclose = function(event)
 socket.onmessage = function(event)
 {
 	var msg = event.data;
+	var convertedMsg = msg.split("&&", 3);
+	var style = convertedMsg[0].replace("style:", "");
+	var bootstrap = convertedMsg[1].replace("bootstrap:", "");
+	var hypertext = convertedMsg[2].replace("hypertext:", "");
+	
 	var content = document.body;
-	if (msg.startsWith("bstyl:"))
-	{
-        msg = msg.replace("bstyl:", "");
-        content.setAttribute("style", msg);
-        return;
-	}
-	content.innerHTML = msg;
+	content.setAttribute("style", style);
+	content.setAttribute("class", bootstrap);
+	content.innerHTML = hypertext;
 	const buttons = document.getElementsByTagName('button');
 	for (const button of buttons)
 	{
