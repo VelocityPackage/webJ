@@ -142,7 +142,7 @@ public abstract class Application implements Cloneable
      * onMessage
      * @param message the message as string
      */
-    public final void onMessage(String message) throws NotSupportedMessageFormat
+    public final void onMessage(String message) throws NotSupportedMessageFormatException
     {
         if (message.trim().startsWith("path:")) {
             currentPath = message.replaceAll("path:", "").trim();
@@ -170,7 +170,7 @@ public abstract class Application implements Cloneable
             }
         } catch (Exception ignore)
         {
-            throw new NotSupportedMessageFormat("id:<id> inputs:{}", "id:<id> inputs:{<inputID>??<value>;;...}");
+            throw new NotSupportedMessageFormatException("id:<id> inputs:{}", "id:<id> inputs:{<inputID>??<value>;;...}");
         }
     }
     

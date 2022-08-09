@@ -3,6 +3,10 @@ package com.velocitypackage.webJ.services.ws;
 import org.webbitserver.BaseWebSocketHandler;
 import org.webbitserver.WebSocketConnection;
 
+/**
+ * Wrapper for BaseWebSocketHandler
+ * @author maxmielchen
+ */
 public abstract class WebSocketService extends BaseWebSocketHandler
 {
     @Override

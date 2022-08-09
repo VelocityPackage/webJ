@@ -71,7 +71,8 @@ public class HttpService implements HttpHandler
     }
     
     @Override
-    public void handleHttpRequest(HttpRequest request, HttpResponse response, HttpControl control) throws Exception
+    @SuppressWarnings("ConstantConditions")
+    public void handleHttpRequest(HttpRequest request, HttpResponse response, HttpControl control)
     {
         String path = request.uri();
     
