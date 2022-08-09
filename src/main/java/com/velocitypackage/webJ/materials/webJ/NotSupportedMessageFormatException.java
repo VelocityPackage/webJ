@@ -1,5 +1,6 @@
 package com.velocitypackage.webJ.materials.webJ;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Arrays;
  * @author maxmielchen
  */
 @SuppressWarnings("unused")
-public class NotSupportedMessageFormatException extends Exception
+public class NotSupportedMessageFormatException extends IOException
 {
     /**
      * Constructor
