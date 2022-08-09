@@ -6,6 +6,7 @@ import com.velocitypackage.webJ.services.file.FileService;
 import com.velocitypackage.webJ.services.http.HttpContext;
 import com.velocitypackage.webJ.services.http.HttpFileContext;
 import com.velocitypackage.webJ.services.http.HttpService;
+import com.velocitypackage.webJ.services.webJ.MessageBuilder;
 import com.velocitypackage.webJ.services.ws.WebSocketService;
 import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.ImageWriteException;
@@ -308,8 +309,11 @@ public final class WebJManager
                 }
                 connections.get(connection).setForceUpdate(() ->
                         {
-                            connection.send("bstyl:" + connections.get(connection).getStyleInert());
-                            connection.send(connections.get(connection).getTextRepresentation());
+                            connection.send(new MessageBuilder(
+                                    connections.get(connection).getTextRepresentation(),
+                                    connections.get(connection).getStyle(),
+                                    connections.get(connection).getBootstrap()
+                            ).toString());
                         }
                 ); //force update
             }
@@ -330,8 +334,11 @@ public final class WebJManager
                 {
                     e.printStackTrace();
                 }
-                connection.send("bstyl:" + connections.get(connection).getStyleInert());
-                connection.send(connections.get(connection).getTextRepresentation());
+                connection.send(new MessageBuilder(
+                        connections.get(connection).getTextRepresentation(),
+                        connections.get(connection).getStyle(),
+                        connections.get(connection).getBootstrap()
+                ).toString());
             }
         };
     }
