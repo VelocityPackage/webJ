@@ -6,6 +6,7 @@ import com.velocitypackage.webJ.services.file.FileService;
 import com.velocitypackage.webJ.services.http.HttpContext;
 import com.velocitypackage.webJ.services.http.HttpFileContext;
 import com.velocitypackage.webJ.services.http.HttpService;
+import com.velocitypackage.webJ.services.image.ImageService;
 import com.velocitypackage.webJ.services.webJ.MessageBuilder;
 import com.velocitypackage.webJ.services.ws.WebSocketService;
 import org.apache.commons.imaging.ImageReadException;
@@ -226,7 +227,7 @@ public final class WebJManager
                         {
                             try
                             {
-                                faviconCacheIco.put(size, FileService.resizedIco(application.getFavicon(), size, size));
+                                faviconCacheIco.put(size, ImageService.resizedIco(application.getFavicon(), size, size));
                                 return faviconCacheIco.get(size);
                             } catch (IOException | ImageReadException | ImageWriteException e)
                             {
@@ -241,7 +242,7 @@ public final class WebJManager
             });
             try
             {
-                faviconPng = FileService.icoToPng(application.getFavicon());
+                faviconPng = ImageService.icoToPng(application.getFavicon());
             } catch (ImageReadException e)
             {
                 throw new IOException(e);
@@ -274,7 +275,7 @@ public final class WebJManager
                         {
                             try
                             {
-                                faviconCachePng.put(size, FileService.resizedIcoToPng(application.getFavicon(), size, size));
+                                faviconCachePng.put(size, ImageService.resizedIcoToPng(application.getFavicon(), size, size));
                                 return faviconCachePng.get(size);
                             } catch (IOException | ImageReadException e)
                             {
@@ -307,14 +308,11 @@ public final class WebJManager
                 {
                     e.printStackTrace();
                 }
-                connections.get(connection).setForceUpdate(() ->
-                        {
-                            connection.send(new MessageBuilder(
-                                    connections.get(connection).getTextRepresentation(),
-                                    connections.get(connection).getStyle(),
-                                    connections.get(connection).getBootstrap()
-                            ).toString());
-                        }
+                connections.get(connection).setForceUpdate(() -> connection.send(new MessageBuilder(
+                        connections.get(connection).getTextRepresentation(),
+                        connections.get(connection).getStyle(),
+                        connections.get(connection).getBootstrap()
+                ).toString())
                 ); //force update
             }
     
