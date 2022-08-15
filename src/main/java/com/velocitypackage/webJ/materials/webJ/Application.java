@@ -84,7 +84,7 @@ public abstract class Application implements Cloneable
      * Returns an interpretation of all components as html of the current page
      * @return string as html
      */
-    public final String getTextRepresentation()
+    public final String getCurrentPageRepresentation()
     {
         for (HyperTextPage hyperTextPage : pages) {
             if (hyperTextPage.getPath().equals(currentPath)) {
@@ -98,7 +98,7 @@ public abstract class Application implements Cloneable
      * Returns an interpretation of the style options of the current page
      * @return the style options of the current page
      */
-    public final Style[] getStyle()
+    public final Style[] getCurrentPageStyle()
     {
         for (HyperTextPage hyperTextPage : pages) {
             if (hyperTextPage.getPath().equals(currentPath)) {
@@ -112,7 +112,7 @@ public abstract class Application implements Cloneable
      * Returns an interpretation of the bootstrap options of the current page
      * @return the bootstrap options of the current page
      */
-    public final Bootstrap[] getBootstrap()
+    public final Bootstrap[] getCurrentPageBootstraps()
     {
         for (HyperTextPage hyperTextPage : pages) {
             if (hyperTextPage.getPath().equals(currentPath)) {
