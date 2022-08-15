@@ -309,9 +309,10 @@ public final class WebJManager
                     e.printStackTrace();
                 }
                 connections.get(connection).setForceUpdate(() -> connection.send(new MessageBuilder(
-                        connections.get(connection).getTextRepresentation(),
-                        connections.get(connection).getStyle(),
-                        connections.get(connection).getBootstrap()
+                        connections.get(connection).getCurrentPageName(),
+                        connections.get(connection).getCurrentPageRepresentation(),
+                        connections.get(connection).getCurrentPageStyle(),
+                        connections.get(connection).getCurrentPageBootstraps()
                 ).toString())
                 ); //force update
             }
@@ -333,9 +334,10 @@ public final class WebJManager
                     e.printStackTrace();
                 }
                 connection.send(new MessageBuilder(
-                        connections.get(connection).getTextRepresentation(),
-                        connections.get(connection).getStyle(),
-                        connections.get(connection).getBootstrap()
+                        connections.get(connection).getCurrentPageName(),
+                        connections.get(connection).getCurrentPageRepresentation(),
+                        connections.get(connection).getCurrentPageStyle(),
+                        connections.get(connection).getCurrentPageBootstraps()
                 ).toString());
             }
         };

@@ -18,9 +18,9 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public abstract class Application implements Cloneable
 {
+    private String applicationName;
     private final Set<HyperTextPage> pages = new HashSet<>();
     private String currentPath = "/";
-    private String applicationName;
     private File favicon;
     private Runnable onForceUpdate;
     
@@ -47,7 +47,7 @@ public abstract class Application implements Cloneable
      * @param favicon the application icon (only *.ico)
      * @throws IllegalArgumentException if the file is not a valid image or null
      */
-    public void setFavicon(File favicon) throws IllegalArgumentException
+    public final void setFavicon(File favicon) throws IllegalArgumentException
     {
         if (favicon == null)
         {
@@ -65,16 +65,26 @@ public abstract class Application implements Cloneable
      * Sets the force update
      * @param runnable force update methode
      */
-    public void setForceUpdate(Runnable runnable)
+    public final void setForceUpdate(Runnable runnable)
     {
         this.onForceUpdate = runnable;
+    }
+    
+    public final String getCurrentPageName()
+    {
+        for (HyperTextPage hyperTextPage : pages) {
+            if (hyperTextPage.getPath().equals(currentPath)) {
+                return hyperTextPage.getName();
+            }
+        }
+        return "";
     }
     
     /**
      * Returns an interpretation of all components as html of the current page
      * @return string as html
      */
-    public final String getTextRepresentation()
+    public final String getCurrentPageRepresentation()
     {
         for (HyperTextPage hyperTextPage : pages) {
             if (hyperTextPage.getPath().equals(currentPath)) {
@@ -88,7 +98,7 @@ public abstract class Application implements Cloneable
      * Returns an interpretation of the style options of the current page
      * @return the style options of the current page
      */
-    public Style[] getStyle()
+    public final Style[] getCurrentPageStyle()
     {
         for (HyperTextPage hyperTextPage : pages) {
             if (hyperTextPage.getPath().equals(currentPath)) {
@@ -102,7 +112,7 @@ public abstract class Application implements Cloneable
      * Returns an interpretation of the bootstrap options of the current page
      * @return the bootstrap options of the current page
      */
-    public Bootstrap[] getBootstrap()
+    public final Bootstrap[] getCurrentPageBootstraps()
     {
         for (HyperTextPage hyperTextPage : pages) {
             if (hyperTextPage.getPath().equals(currentPath)) {
@@ -125,7 +135,7 @@ public abstract class Application implements Cloneable
      * returns the application favicon
      * @return application favicon
      */
-    public File getFavicon()
+    public final File getFavicon()
     {
         return favicon;
     }
@@ -134,7 +144,7 @@ public abstract class Application implements Cloneable
      * get all pages
      * @return array of pages
      */
-    public HyperTextPage[] getPages()
+    public final HyperTextPage[] getPages()
     {
         HyperTextPage[] pages = new HyperTextPage[this.pages.size()];
         this.pages.toArray(pages);
@@ -144,7 +154,7 @@ public abstract class Application implements Cloneable
     /**
      * update the UI
      */
-    public void forceUpdate()
+    public final void forceUpdate()
     {
         if (onForceUpdate == null)
         {
