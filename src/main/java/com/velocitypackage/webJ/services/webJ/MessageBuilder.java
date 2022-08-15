@@ -5,15 +5,33 @@ import com.velocitypackage.webJ.materials.hypertext.Style;
 
 public class MessageBuilder
 {
+    private final String title;
     private final String textRepresentation;
     private final Style[] styles;
     private final Bootstrap[] bootstraps;
     
-    public MessageBuilder(String textRepresentation, Style[] styles, Bootstrap[] bootstraps)
+    /**
+     * Constructor
+     * @param title the message title
+     * @param textRepresentation the message html
+     * @param styles the message style
+     * @param bootstraps the message classes / bootstrap
+     */
+    public MessageBuilder(String title, String textRepresentation, Style[] styles, Bootstrap[] bootstraps)
     {
+        this.title = title;
         this.textRepresentation = textRepresentation;
         this.styles = styles;
         this.bootstraps = bootstraps;
+    }
+    
+    /**
+     * returns the message title
+     * @return the message title
+     */
+    public String getTitle()
+    {
+        return title;
     }
     
     /**
@@ -54,9 +72,13 @@ public class MessageBuilder
         return new String(bootstrapInterpretation);
     }
     
+    /**
+     * Message formatter
+     * @return Format (title:{TITLE}&&style:{STYLE}&&classes:{CLASSES}&&hypertext:{HTML})
+     */
     @Override
     public String toString()
     {
-        return String.format("style:%s&&bootstrap:%s&&hypertext:%s", getStyleInert().trim(), getBootstrapInert().trim(), textRepresentation);
+        return String.format("title:%s&&style:%s&&classes:%s&&hypertext:%s", getTitle(), getStyleInert().trim(), getBootstrapInert().trim(), textRepresentation);
     }
 }
