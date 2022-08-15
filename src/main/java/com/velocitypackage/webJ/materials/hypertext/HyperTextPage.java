@@ -9,6 +9,7 @@ import java.util.Map;
  */
 public class HyperTextPage
 {
+    private final String name;
     private final String path;
     private final Style[] styles;
     private final Bootstrap[] bootstraps;
@@ -19,8 +20,9 @@ public class HyperTextPage
      * @param path path to the page
      * @param children children of the page
      */
-    public HyperTextPage(String path, HyperTextBehavior... children)
+    public HyperTextPage(String name, String path, HyperTextBehavior... children)
     {
+        this.name = name;
         this.path = path;
         this.styles = new Style[]{};
         this.bootstraps = new Bootstrap[]{};
@@ -33,8 +35,9 @@ public class HyperTextPage
      * @param styles style options for the page
      * @param children children of the page
      */
-    public HyperTextPage(String path, Style[] styles, HyperTextBehavior... children)
+    public HyperTextPage(String name, String path, Style[] styles, HyperTextBehavior... children)
     {
+        this.name = name;
         this.path = path;
         this.styles = styles;
         this.bootstraps = new Bootstrap[]{};
@@ -47,8 +50,9 @@ public class HyperTextPage
      * @param bootstraps bootstrap options for the page
      * @param children children of the page
      */
-    public HyperTextPage(String path, Bootstrap[] bootstraps, HyperTextBehavior... children)
+    public HyperTextPage(String name, String path, Bootstrap[] bootstraps, HyperTextBehavior... children)
     {
+        this.name = name;
         this.path = path;
         this.styles = new Style[]{};
         this.bootstraps = bootstraps;
@@ -62,12 +66,31 @@ public class HyperTextPage
      * @param bootstraps bootstrap options for the page
      * @param children children of the page
      */
-    public HyperTextPage(String path, Style[] styles, Bootstrap[] bootstraps, HyperTextBehavior... children)
+    public HyperTextPage(String name, String path, Style[] styles, Bootstrap[] bootstraps, HyperTextBehavior... children)
     {
+        this.name = name;
         this.path = path;
         this.styles = styles;
         this.bootstraps = bootstraps;
         this.children = children;
+    }
+    
+    /**
+     * getter for the path of this page
+     * @return path to the page
+     */
+    public String getPath()
+    {
+        return path;
+    }
+    
+    /**
+     * getter for the name of this page
+     * @return the page name
+     */
+    public String getName()
+    {
+        return name;
     }
     
     /**
@@ -99,15 +122,6 @@ public class HyperTextPage
             pageInterpretation.append(child.getTextRepresentation());
         }
         return new String(pageInterpretation);
-    }
-    
-    /**
-     *
-     * @return path to the page
-     */
-    public String getPath()
-    {
-        return path;
     }
     
     /**
