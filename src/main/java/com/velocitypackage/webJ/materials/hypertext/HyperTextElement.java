@@ -170,7 +170,7 @@ public final class HyperTextElement
                 stringBuilder.append(" ");
             }
         }
-        return stringBuilder.toString();
+        return new String(stringBuilder).trim();
     }
     
     /**
