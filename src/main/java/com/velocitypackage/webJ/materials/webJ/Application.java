@@ -18,9 +18,9 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public abstract class Application implements Cloneable
 {
+    private String applicationName;
     private final Set<HyperTextPage> pages = new HashSet<>();
     private String currentPath = "/";
-    private String applicationName;
     private File favicon;
     private Runnable onForceUpdate;
     
@@ -70,7 +70,15 @@ public abstract class Application implements Cloneable
         this.onForceUpdate = runnable;
     }
     
-    
+    public final String getCurrentPageName()
+    {
+        for (HyperTextPage hyperTextPage : pages) {
+            if (hyperTextPage.getPath().equals(currentPath)) {
+                return hyperTextPage.getName();
+            }
+        }
+        return "";
+    }
     
     /**
      * Returns an interpretation of all components as html of the current page
