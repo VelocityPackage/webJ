@@ -47,7 +47,7 @@ public abstract class Application implements Cloneable
      * @param favicon the application icon (only *.ico)
      * @throws IllegalArgumentException if the file is not a valid image or null
      */
-    public void setFavicon(File favicon) throws IllegalArgumentException
+    public final void setFavicon(File favicon) throws IllegalArgumentException
     {
         if (favicon == null)
         {
@@ -65,10 +65,12 @@ public abstract class Application implements Cloneable
      * Sets the force update
      * @param runnable force update methode
      */
-    public void setForceUpdate(Runnable runnable)
+    public final void setForceUpdate(Runnable runnable)
     {
         this.onForceUpdate = runnable;
     }
+    
+    
     
     /**
      * Returns an interpretation of all components as html of the current page
@@ -88,7 +90,7 @@ public abstract class Application implements Cloneable
      * Returns an interpretation of the style options of the current page
      * @return the style options of the current page
      */
-    public Style[] getStyle()
+    public final Style[] getStyle()
     {
         for (HyperTextPage hyperTextPage : pages) {
             if (hyperTextPage.getPath().equals(currentPath)) {
@@ -102,7 +104,7 @@ public abstract class Application implements Cloneable
      * Returns an interpretation of the bootstrap options of the current page
      * @return the bootstrap options of the current page
      */
-    public Bootstrap[] getBootstrap()
+    public final Bootstrap[] getBootstrap()
     {
         for (HyperTextPage hyperTextPage : pages) {
             if (hyperTextPage.getPath().equals(currentPath)) {
@@ -125,7 +127,7 @@ public abstract class Application implements Cloneable
      * returns the application favicon
      * @return application favicon
      */
-    public File getFavicon()
+    public final File getFavicon()
     {
         return favicon;
     }
@@ -134,7 +136,7 @@ public abstract class Application implements Cloneable
      * get all pages
      * @return array of pages
      */
-    public HyperTextPage[] getPages()
+    public final HyperTextPage[] getPages()
     {
         HyperTextPage[] pages = new HyperTextPage[this.pages.size()];
         this.pages.toArray(pages);
@@ -144,7 +146,7 @@ public abstract class Application implements Cloneable
     /**
      * update the UI
      */
-    public void forceUpdate()
+    public final void forceUpdate()
     {
         if (onForceUpdate == null)
         {
