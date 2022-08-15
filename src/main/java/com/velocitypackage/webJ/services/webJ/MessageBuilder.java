@@ -74,11 +74,11 @@ public class MessageBuilder
     
     /**
      * Message formatter
-     * @return Format (title:{TITLE}&&style:{STYLE}&&classes:{CLASSES}&&hypertext:{HTML})
+     * @return Format (name:{TITLE}&&style:{STYLE}&&classes:{CLASSES}&&hypertext:{HTML})
      */
     @Override
     public String toString()
     {
-        return String.format("title:%s&&style:%s&&classes:%s&&hypertext:%s", getTitle(), getStyleInert().trim(), getBootstrapInert().trim(), textRepresentation);
+        return String.format("name:%s&&style:%s&&classes:%s&&hypertext:%s", getTitle(), getStyleInert().trim(), getBootstrapInert().trim(), textRepresentation);
     }
 }
