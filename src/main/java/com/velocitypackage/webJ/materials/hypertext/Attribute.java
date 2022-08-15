@@ -9,7 +9,6 @@ import java.util.Objects;
  * @author marvinmielchen
  * @author maxmielchen
  */
-@SuppressWarnings("unused")
 public class Attribute
 {
     
