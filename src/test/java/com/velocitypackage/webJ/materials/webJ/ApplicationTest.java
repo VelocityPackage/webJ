@@ -1,6 +1,7 @@
 package com.velocitypackage.webJ.materials.webJ;
 
 import com.velocitypackage.webJ.materials.hypertext.*;
+import com.velocitypackage.webJ.tools.TestApplication;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ class ApplicationTest
     Application application;
     
     @BeforeEach
-    void setUp()
+    void setUp() throws NotSupportedMessageFormatException
     {
         hyperTextBehavior.setHyperTextElement(hyperTextElement);
         hyperTextPage = new HyperTextPage("Page", "/", new Style[]{
@@ -45,6 +46,7 @@ class ApplicationTest
         application = new Application()
         {
         };
+        onMessage();
     }
     
     @AfterEach
@@ -99,14 +101,14 @@ class ApplicationTest
     void getCurrentPageStyle()
     {
         addPage();
-        assertEquals(new Style[]{new Style(Style.StyleIdentifier.BACKGROUND_COLOR, "black")}, application.getCurrentPageStyle());
+        assertTrue(Style.equals(new Style[]{new Style(Style.StyleIdentifier.BACKGROUND_COLOR, "black")}, application.getCurrentPageStyle()));
     }
     
     @Test
     void getCurrentPageBootstraps()
     {
         addPage();
-        assertEquals(new Bootstrap[]{Bootstrap.BORDER_DARK}, application.getCurrentPageBootstraps());
+        assertTrue(Bootstrap.equals(new Bootstrap[]{Bootstrap.BORDER_DARK}, application.getCurrentPageBootstraps()));
     }
     
     @Test
@@ -137,15 +139,14 @@ class ApplicationTest
     }
     
     @Test
-    void onMessage()
+    void onMessage() throws NotSupportedMessageFormatException
     {
-        // TODO: 15.08.22 #38
+        application.onMessage("path:/");
     }
     
     @Test
     void testClone() throws CloneNotSupportedException
     {
-        // TODO: 15.08.22 The application must be separated in another class
-        assertNotEquals(application, application.clone());
+        assertNotEquals(new TestApplication(), new TestApplication().clone());
     }
 }
