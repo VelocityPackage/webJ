@@ -1,6 +1,7 @@
 package com.velocitypackage.webJ.materials.webJ;
 
 import com.velocitypackage.webJ.materials.hypertext.*;
+import com.velocitypackage.webJ.tools.TestApplication;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -145,7 +146,6 @@ class ApplicationTest
     @Test
     void testClone() throws CloneNotSupportedException
     {
-        // TODO: 15.08.22 The application must be separated in another class
-        assertNotEquals(application, application.clone());
+        assertNotEquals(new TestApplication(), new TestApplication().clone());
     }
 }
