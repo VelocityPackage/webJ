@@ -62,13 +62,13 @@ class HyperTextPageTest
     @Test
     void getStyles()
     {
-        assertEquals(new Style[]{new Style(Style.StyleIdentifier.BACKGROUND_COLOR, "black")}, hyperTextPage.getStyles());
+        assertTrue(Style.equals(new Style[]{new Style(Style.StyleIdentifier.BACKGROUND_COLOR, "black")}, hyperTextPage.getStyles()));
     }
     
     @Test
     void getBootstraps()
     {
-        assertEquals(new Bootstrap[]{Bootstrap.BORDER_DARK}, hyperTextPage.getBootstraps());
+        assertTrue(Bootstrap.equals(new Bootstrap[]{Bootstrap.BORDER_DARK}, hyperTextPage.getBootstraps()));
     }
     
     @Test
