@@ -11,7 +11,6 @@ import java.util.Objects;
  * @author marvinmielchen
  * @author maxmielchen
  */
-@SuppressWarnings("unused")
 public class Style
 {
     private final StyleIdentifier styleIdentifier;

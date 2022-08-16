@@ -36,7 +36,6 @@ public abstract class HyperTextBehavior
      *
      * @param hyperTextElement the new HyperTextElement object of this HyperTextBehavior object
      */
-    @SuppressWarnings("unused")
     public void setHyperTextElement(HyperTextElement hyperTextElement)
     {
         this.hyperTextElement = hyperTextElement;
@@ -104,7 +103,6 @@ public abstract class HyperTextBehavior
      *
      * @param hyperTextBehavior the behavior that gets added to the child list of this behavior
      */
-    @SuppressWarnings("unused")
     public final void addChild(HyperTextBehavior hyperTextBehavior)
     {
         if (hyperTextBehavior != null)
@@ -120,7 +118,6 @@ public abstract class HyperTextBehavior
      *
      * @param hyperTextBehavior the behavior that should be removed from the child list odf this behavior
      */
-    @SuppressWarnings("unused")
     public final void removeChild(HyperTextBehavior hyperTextBehavior)
     {
         if (hyperTextBehavior != null)
