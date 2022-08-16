@@ -187,12 +187,11 @@ public abstract class Application implements Cloneable
                     inputMap.put(s.split("\\?\\?")[0], s.split("\\?\\?")[1]);
                 }
             }
-            for (HyperTextPage hyperTextPage : pages)
-            {
+            pages.forEach(hyperTextPage -> {
                 if (hyperTextPage.getPath().equals(currentPath)) {
                     hyperTextPage.onMessage(id, inputMap);
                 }
-            }
+            });
         } catch (Exception ignore)
         {
             throw new NotSupportedMessageFormatException("id:<id> inputs:{}", "id:<id> inputs:{<inputID>??<value>;;...}");
@@ -207,7 +206,7 @@ public abstract class Application implements Cloneable
             return this.getClass().getDeclaredConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
         {
-            throw new CloneNotSupportedException("Async Application Clients isn't working...");
+            throw new CloneNotSupportedException("Async Application Clients isn't working. The ground can be that the application constructor isn't public.");
         }
     }
 }
