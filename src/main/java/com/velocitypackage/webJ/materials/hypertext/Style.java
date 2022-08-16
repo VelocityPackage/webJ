@@ -1,5 +1,7 @@
 package com.velocitypackage.webJ.materials.hypertext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -50,12 +52,26 @@ public class Style
     @Override
     public boolean equals(Object o)
     {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Style style = (Style) o;
         return styleIdentifier == style.styleIdentifier && value.equals(style.value);
+    }
+    
+    public static boolean equals(Style[] styles1, Style[] styles2)
+    {
+        List<Style> styleList1 = List.of(styles1);
+        List<Style> styleList2 = new ArrayList<>(List.of(styles2));
+        for (Style style : styleList1)
+        {
+            if (styleList2.contains(style))
+            {
+                styleList2.remove(style);
+            } else {
+                return false;
+            }
+        }
+        return styleList2.isEmpty();
     }
     
     @Override
