@@ -1,5 +1,7 @@
 package com.velocitypackage.webJ.materials.hypertext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -9,10 +11,8 @@ import java.util.Objects;
  * @author marvinmielchen
  * @author maxmielchen
  */
-@SuppressWarnings("unused")
 public class Attribute
 {
-    
     private final AttributeIdentifier attributeIdentifier;
     private final String value;
     
@@ -62,12 +62,26 @@ public class Attribute
     @Override
     public boolean equals(Object o)
     {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Attribute attribute = (Attribute) o;
-        return attributeIdentifier == attribute.attributeIdentifier && value.equals(attribute.value);
+        return attributeIdentifier == attribute.attributeIdentifier && Objects.requireNonNull(value).equals(attribute.value);
+    }
+    
+    public static boolean equals(Attribute[] attributes1, Attribute[] attributes2)
+    {
+        List<Attribute> attributeList1 = List.of(attributes1);
+        List<Attribute> attributeList2 = new ArrayList<>(List.of(attributes2));
+        for (Attribute attribute : attributeList1)
+        {
+            if (attributeList2.contains(attribute))
+            {
+                attributeList2.remove(attribute);
+            } else {
+                return false;
+            }
+        }
+        return attributeList2.isEmpty();
     }
     
     @Override

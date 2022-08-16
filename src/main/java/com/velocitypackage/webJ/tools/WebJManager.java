@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-@SuppressWarnings("unused")
 public final class WebJManager
 {
     private HttpService httpService;
