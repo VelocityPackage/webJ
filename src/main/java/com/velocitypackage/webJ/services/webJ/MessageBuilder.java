@@ -74,7 +74,6 @@ public class MessageBuilder
     
     /**
      * Message formatter
-     * @return Format (name:TITLE&&style:STYLE&&classes:CLASSES&&hypertext:HTML)
      */
     @Override
     public String toString()
