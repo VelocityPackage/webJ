@@ -59,7 +59,7 @@ public class MessageBuilder
         {
             styleInterpretation.append(style.getIdentifier().name().toLowerCase().replaceAll("_", "-")).append(":").append(style.getValue()).append(";");
         }
-        return new String(styleInterpretation);
+        return new String(styleInterpretation).trim();
     }
     
     private static String bootstrapInterpreter(Bootstrap[] bootstraps)
@@ -69,7 +69,7 @@ public class MessageBuilder
         {
             bootstrapInterpretation.append(bootstrap.name().toLowerCase().replaceAll("_", "-")).append(" ");
         }
-        return new String(bootstrapInterpretation);
+        return new String(bootstrapInterpretation).trim();
     }
     
     /**
