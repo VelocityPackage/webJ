@@ -1,8 +1,6 @@
 package com.velocitypackage.webJ.materials.hypertext;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Each HyperTextBehavior stores a HyperTextElement object and is responsible for generating its text representation and combining it with the text representation of its children.
@@ -12,7 +10,7 @@ import java.util.Map;
  *
  * @author marvinmielchen
  */
-public abstract class HyperTextBehavior
+public abstract class HyperTextBehavior implements Collection<HyperTextBehavior>
 {
     private final List<HyperTextBehavior> children;
     private HyperTextBehavior parent;
@@ -98,36 +96,6 @@ public abstract class HyperTextBehavior
     }
     
     /**
-     * Adds a child behavior to this behavior.
-     * This corresponds to the creation of nested html where this behavior is responsible for the outer html tag and the new child forms a new inner html tag.
-     *
-     * @param hyperTextBehavior the behavior that gets added to the child list of this behavior
-     */
-    public final void addChild(HyperTextBehavior hyperTextBehavior)
-    {
-        if (hyperTextBehavior != null)
-        {
-            children.add(hyperTextBehavior);
-            hyperTextBehavior.setParent(this);
-        }
-        recompile();
-    }
-    
-    /**
-     * Removes the specified behavior from the child list of this behavior if present.
-     *
-     * @param hyperTextBehavior the behavior that should be removed from the child list odf this behavior
-     */
-    public final void removeChild(HyperTextBehavior hyperTextBehavior)
-    {
-        if (hyperTextBehavior != null)
-        {
-            children.remove(hyperTextBehavior);
-        }
-        recompile();
-    }
-    
-    /**
      * Is invoked when this behavior receives an interaction.
      *
      * @param values the values that belong to the interaction event
@@ -144,5 +112,83 @@ public abstract class HyperTextBehavior
     private void setParent(HyperTextBehavior hyperTextBehavior)
     {
         parent = hyperTextBehavior;
+    }
+    
+    @Override
+    public int size()
+    {
+        return children.size();
+    }
+    
+    @Override
+    public boolean isEmpty()
+    {
+        return children.isEmpty();
+    }
+    
+    @Override
+    public boolean contains(Object o)
+    {
+        return children.contains(o);
+    }
+    
+    @Override
+    public Iterator<HyperTextBehavior> iterator()
+    {
+        return children.iterator();
+    }
+    
+    @Override
+    public Object[] toArray()
+    {
+        return children.toArray(new HyperTextBehavior[0]);
+    }
+    
+    @Override
+    public <T> T[] toArray(T[] a)
+    {
+        return children.toArray(a);
+    }
+    
+    @Override
+    public boolean add(HyperTextBehavior hyperTextBehavior)
+    {
+        return children.add(hyperTextBehavior);
+    }
+    
+    @Override
+    public boolean remove(Object o)
+    {
+        return children.remove(o);
+    }
+    
+    @Override
+    public boolean containsAll(Collection<?> c)
+    {
+        return new HashSet<>(children).containsAll(c);
+    }
+    
+    @Override
+    public boolean addAll(Collection<? extends HyperTextBehavior> c)
+    {
+        return children.addAll(c);
+    }
+    
+    @Override
+    public boolean removeAll(Collection<?> c)
+    {
+        return children.removeAll(c);
+    }
+    
+    @Override
+    public boolean retainAll(Collection<?> c)
+    {
+        return children.retainAll(c);
+    }
+    
+    @Override
+    public void clear()
+    {
+        children.clear();
     }
 }
