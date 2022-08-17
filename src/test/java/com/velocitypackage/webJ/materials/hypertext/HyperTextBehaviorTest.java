@@ -78,7 +78,7 @@ class HyperTextBehaviorTest
             }
         };
         hyperTextBehavior1.setHyperTextElement(new HyperTextElement(Tag.H1, null, null, null));
-        hyperTextBehavior.addChild(hyperTextBehavior1);
+        hyperTextBehavior.add(hyperTextBehavior1);
         System.out.println(hyperTextBehavior.getTextRepresentation());
     }
 }
