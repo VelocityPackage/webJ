@@ -33,7 +33,7 @@ public final class WebJManager
     private final int port;
     private final Application application;
     
-    private String frameHtmlResource, streamJsResource, robotsTxtResource;
+    private String frameHtmlResource, styleCssResources, streamJsResource, robotsTxtResource;
     
     private final HashMap<Integer, byte[]> faviconCacheIco;
     private final HashMap<Integer, byte[]> faviconCachePng;
@@ -101,7 +101,7 @@ public final class WebJManager
             @Override
             public boolean acceptPath(String path)
             {
-                for (String notAllowed : new String[]{"/stream", "/robots.txt", "/favicon.ico", "/favicon.png", "/socket"})
+                for (String notAllowed : new String[]{"/stream", "/robots.txt", "/favicon.ico", "/favicon.png", "/socket", "/style"})
                 {
                     if (Objects.equals(path, notAllowed))
                     {
@@ -121,6 +121,27 @@ public final class WebJManager
             public String content(String path)
             {
                 return frameHtmlResource;
+            }
+        });
+        styleCssResources = FileService.getContentOfResource("style.css");
+        httpService.add(new HttpContext()
+        {
+            @Override
+            public boolean acceptPath(String path)
+            {
+                return path.equals("/style");
+            }
+    
+            @Override
+            public String contentType()
+            {
+                return "text/css";
+            }
+    
+            @Override
+            public String content(String path)
+            {
+                return styleCssResources;
             }
         });
         streamJsResource = FileService.getContentOfResource("stream.js");
