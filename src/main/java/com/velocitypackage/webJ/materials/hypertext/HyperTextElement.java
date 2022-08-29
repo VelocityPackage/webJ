@@ -65,7 +65,11 @@ public final class HyperTextElement
      */
     public HyperTextElement(Tag tag, Bootstrap[] bootstraps, Attribute[] attributes, Style[] styles, String text)
     {
-        this.text = Objects.requireNonNullElse(text, "");
+        if (text == null)
+        {
+            text = "";
+        }
+        this.text = text;
         this.tag = tag;
         this.attributeList = new ArrayList<>();
         this.id = String.valueOf(this.hashCode());
