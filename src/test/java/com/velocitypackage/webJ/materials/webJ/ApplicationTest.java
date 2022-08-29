@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +60,7 @@ class ApplicationTest
     void addPage()
     {
         application.addPage(hyperTextPage);
-        List.of(application.getPages()).forEach(hyperTextPage1 -> assertEquals(hyperTextPage, hyperTextPage1));
+        Arrays.asList(application.getPages()).forEach(hyperTextPage1 -> assertEquals(hyperTextPage, hyperTextPage1));
     }
     
     @Test

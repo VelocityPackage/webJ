@@ -1,6 +1,7 @@
 package com.velocitypackage.webJ.materials.hypertext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -70,9 +71,8 @@ public class Attribute
     
     public static boolean equals(Attribute[] attributes1, Attribute[] attributes2)
     {
-        List<Attribute> attributeList1 = List.of(attributes1);
-        List<Attribute> attributeList2 = new ArrayList<>(List.of(attributes2));
-        for (Attribute attribute : attributeList1)
+        List<Attribute> attributeList2 = new ArrayList<>(Arrays.asList(attributes2));
+        for (Attribute attribute : attributes1)
         {
             if (attributeList2.contains(attribute))
             {

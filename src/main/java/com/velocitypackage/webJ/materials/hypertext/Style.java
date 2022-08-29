@@ -1,6 +1,7 @@
 package com.velocitypackage.webJ.materials.hypertext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,9 +60,8 @@ public class Style
     
     public static boolean equals(Style[] styles1, Style[] styles2)
     {
-        List<Style> styleList1 = List.of(styles1);
-        List<Style> styleList2 = new ArrayList<>(List.of(styles2));
-        for (Style style : styleList1)
+        List<Style> styleList2 = new ArrayList<>(Arrays.asList(styles2));
+        for (Style style : styles1)
         {
             if (styleList2.contains(style))
             {

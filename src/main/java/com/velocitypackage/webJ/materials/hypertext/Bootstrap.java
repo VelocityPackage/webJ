@@ -1,6 +1,7 @@
 package com.velocitypackage.webJ.materials.hypertext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,9 +13,8 @@ public enum Bootstrap
     
     public static boolean equals(Bootstrap[] bootstraps1, Bootstrap[] bootstraps2)
     {
-        List<Bootstrap> bootstrapList1 = List.of(bootstraps1);
-        List<Bootstrap> bootstrapList2 = new ArrayList<>(List.of(bootstraps2));
-        for (Bootstrap bootstrap : bootstrapList1)
+        List<Bootstrap> bootstrapList2 = new ArrayList<>(Arrays.asList(bootstraps2));
+        for (Bootstrap bootstrap : bootstraps1)
         {
             if (bootstrapList2.contains(bootstrap))
             {

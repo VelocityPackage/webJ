@@ -6,8 +6,8 @@
 
     <!-- Settings -->
     <properties>
-        <project.java.version>15</project.java.version>
-        <project.version>v0.1.2</project.version>
+        <project.java.version>1.8</project.java.version>
+        <project.version>v0.1.3</project.version>
         <project.name>webJ</project.name>
         <project.description>WebJ is a framework for building and host webpages.</project.description>
     </properties>
