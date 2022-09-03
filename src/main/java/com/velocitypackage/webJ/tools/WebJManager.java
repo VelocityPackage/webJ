@@ -35,8 +35,8 @@ public final class WebJManager
     
     private String frameHtmlResource, styleCssResources, streamJsResource, robotsTxtResource;
     
-    private final HashMap<Integer, byte[]> faviconCacheIco;
-    private final HashMap<Integer, byte[]> faviconCachePng;
+    private final Map<Integer, byte[]> faviconCacheIco;
+    private final Map<Integer, byte[]> faviconCachePng;
     private byte[] faviconIco;
     private byte[] faviconPng;
     
