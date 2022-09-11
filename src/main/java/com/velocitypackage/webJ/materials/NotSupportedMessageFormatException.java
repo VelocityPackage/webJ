@@ -1,4 +1,4 @@
-package com.velocitypackage.webJ.materials.webJ;
+package com.velocitypackage.webJ.materials;
 
 import java.io.IOException;
 import java.util.Arrays;

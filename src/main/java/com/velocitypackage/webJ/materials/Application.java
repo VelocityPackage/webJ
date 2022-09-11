@@ -1,4 +1,4 @@
-package com.velocitypackage.webJ.materials.webJ;
+package com.velocitypackage.webJ.materials;
 
 import com.velocitypackage.webJ.materials.hypertext.Bootstrap;
 import com.velocitypackage.webJ.materials.hypertext.HyperTextPage;
