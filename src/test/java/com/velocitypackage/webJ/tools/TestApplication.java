@@ -1,7 +1,7 @@
 package com.velocitypackage.webJ.tools;
 
 import com.velocitypackage.webJ.materials.hypertext.*;
-import com.velocitypackage.webJ.materials.webJ.Application;
+import com.velocitypackage.webJ.materials.Application;
 
 import java.io.File;
 import java.util.Map;
