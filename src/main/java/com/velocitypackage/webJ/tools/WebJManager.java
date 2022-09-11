@@ -1,7 +1,7 @@
 package com.velocitypackage.webJ.tools;
 
-import com.velocitypackage.webJ.materials.webJ.Application;
-import com.velocitypackage.webJ.materials.webJ.NotSupportedMessageFormatException;
+import com.velocitypackage.webJ.materials.Application;
+import com.velocitypackage.webJ.materials.NotSupportedMessageFormatException;
 import com.velocitypackage.webJ.services.file.FileService;
 import com.velocitypackage.webJ.services.http.HttpContext;
 import com.velocitypackage.webJ.services.http.HttpFileContext;
