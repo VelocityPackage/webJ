@@ -124,7 +124,13 @@ class ApplicationTest
     void getFavicon()
     {
         application.setFavicon(new File("src/test/resources/favicon.ico"));
-        assertEquals("src/test/resources/favicon.ico", application.getFavicon().getPath());
+        if (!System.getProperty("os.name").toLowerCase().contains("windows"))
+        {
+            assertEquals("src/test/resources/favicon.ico", application.getFavicon().getPath());
+        } else
+        {
+            assertEquals("src\\test\\resources\\favicon.ico", application.getFavicon().getPath());
+        }
     }
     
     @Test
