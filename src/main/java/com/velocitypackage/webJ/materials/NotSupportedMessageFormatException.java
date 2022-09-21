@@ -20,7 +20,7 @@ public class NotSupportedMessageFormatException extends IOException
     
     /**
      * Constructor
-     * @param format supported format as array / varargs -> IMPORTANT: It's not a format check
+     * @param format supported format as array / varargs - IMPORTANT: It's not a format check
      */
     public NotSupportedMessageFormatException(String... format)
     {
