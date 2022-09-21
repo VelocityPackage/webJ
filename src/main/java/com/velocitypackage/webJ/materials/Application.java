@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * IMPORTANT -> constructor parameter always overwrite with null
+ * IMPORTANT - constructor parameter always overwrite with null
  * @author maxmielchen
  */
 public abstract class Application implements Cloneable
