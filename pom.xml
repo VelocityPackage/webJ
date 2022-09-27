@@ -16,10 +16,9 @@
     <!-- Dependencies  -->
     <dependencies>
         <dependency>
-            <groupId>com.github.webbit</groupId>
-            <artifactId>webbit</artifactId>
-            <version>v0.4.19</version>
-            <scope>compile</scope>
+            <groupId>com.velocitypackage</groupId>
+            <artifactId>webserver</artifactId>
+            <version>v1.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
