@@ -16,7 +16,7 @@
     <dependency>
         <groupId>com.velocitypackage</groupId>
         <artifactId>webJ</artifactId>
-        <version>v0.1.1</version>
+        <version>TAG</version>
     </dependency>
 </dependencies>
 ```
